@@ -1,0 +1,374 @@
+{
+  "meta": {
+    "semaine": 1,
+    "theme_principal": "freelance",
+    "destination_nomade": "Lisbonne (Portugal)",
+    "date_generation": "2026-05-22",
+    "modele": "claude-sonnet-4-6",
+    "plateforme": "MoneyFlow",
+    "url_site": "https://moneyflowcompany.netlify.app"
+  },
+  "temoignage": {
+    "prenom": "Mathieu",
+    "age": 29,
+    "ville": "Bordeaux",
+    "methode": "freelance design",
+    "titre_court": "De graphiste salarié à 4 200€/mois en freelance en 6 mois",
+    "avatar_initiales": "MB",
+    "parcours": {
+      "avant": "J'étais graphiste dans une agence à Bordeaux, 2 100€ nets par mois. Le boulot était correct mais j'avais l'impression de bosser pour enrichir les autres. Je faisais des heures sup non payées et je voyais mes clients finaux dépenser 3 ou 4 fois ce que l'agence me reversait.",
+      "pendant": "En février 2025, j'ai créé mon profil Malt un soir après le travail. Première semaine : rien. Deuxième semaine : un premier client qui proposait 250€ pour un logo. J'ai failli refuser tellement c'était en dessous de ma valeur, mais j'ai accepté pour avoir un avis. Le plus dur a été de fixer mes tarifs — j'avais tendance à me sous-vendre par peur de perdre le client.",
+      "resultat": "Au bout de 6 mois, je gagne deux fois mon ancien salaire et je choisis mes clients. J'ai quitté l'agence en juillet, pas de regrets. Ce qui m'a surpris, c'est que la liberté n'est pas forcément dans les revenus — c'est surtout dans le fait de pouvoir dire non."
+    },
+    "revenus_progressifs": [
+      {"mois": 1, "revenus": 380, "commentaire": "Premier client via Malt, logo + carte de visite"},
+      {"mois": 2, "revenus": 720, "commentaire": "Deux clients, premiers avis positifs"},
+      {"mois": 3, "revenus": 1450, "commentaire": "Bouche-à-oreille, premier client récurrent"},
+      {"mois": 4, "revenus": 2200, "commentaire": "Quitte l'agence, freelance à 100%"},
+      {"mois": 5, "revenus": 3100, "commentaire": "Hausse des tarifs, 3 clients actifs"},
+      {"mois": 6, "revenus": 4200, "commentaire": "Premier mois à temps plein, liste d'attente"}
+    ],
+    "plan_moneyflow": "Pro",
+    "pourquoi_plan": "Les formations complètes et le coaching groupe m'ont aidé à structurer mon offre et mes tarifs dès le départ.",
+    "citation": "Le plus difficile n'est pas de trouver des clients — c'est d'accepter de se payer ce qu'on vaut vraiment. Dès que j'ai augmenté mes tarifs, j'ai eu de meilleurs clients."
+  },
+  "formation": {
+    "titre": "Freelance : comment gagner vos 1 000 premiers euros en 30 jours",
+    "sous_titre": "Le guide étape par étape pour lancer votre activité depuis zéro, sans réseau et sans expérience client",
+    "introduction": "La majorité des freelances qui échouent font la même erreur : ils attendent d'être parfaitement prêts. En réalité, vos 1 000 premiers euros ne viendront pas d'un portfolio parfait — ils viendront de votre capacité à décrocher un premier client, livrer, et obtenir un avis. Ce guide vous donne le chemin le plus court entre aujourd'hui et votre premier revenu.",
+    "etapes": [
+      {
+        "numero": 1,
+        "titre": "Définir une offre précise, pas une liste de services",
+        "description": "La plupart des débutants créent un profil qui dit 'je fais du graphisme, du web, de la vidéo'. C'est l'erreur n°1. Un client qui cherche quelqu'un pour un logo veut le spécialiste du logo, pas un généraliste. Choisissez UN seul service pour UNE seule cible. Ex : 'identité visuelle pour artisans locaux' ou 'landing pages pour coachs'. Plus c'est précis, plus vous vous démarquez.",
+        "action_immediate": "Écrivez en une phrase votre offre : 'J'aide [cible précise] à [résultat concret] grâce à [votre compétence]'"
+      },
+      {
+        "numero": 2,
+        "titre": "Créer un profil Malt qui convertit",
+        "description": "Malt est la plateforme n°1 en France pour les missions freelance. Votre profil est votre vitrine. Photo professionnelle, titre accrocheur (pas 'graphiste freelance' mais 'je crée des identités visuelles mémorables pour PME'), et 2 à 3 exemples de travaux — même des projets fictifs ou personnels. Les clients veulent voir ce que vous savez faire, pas votre CV.",
+        "action_immediate": "Créez ou complétez votre profil Malt avec une photo, un titre précis et au moins 2 exemples de travaux"
+      },
+      {
+        "numero": 3,
+        "titre": "Fixer un tarif juste — ni trop bas, ni trop haut",
+        "description": "Se sous-vendre attire les mauvais clients : ceux qui négocient tout, paient en retard, demandent 10 révisions. En France, un graphiste freelance débutant peut demander 300 à 500€ pour un logo avec charte. Ne descendez jamais en dessous de 250€ pour un projet complet. Le client qui dit non parce que c'est 'trop cher' n'était pas votre client idéal de toute façon.",
+        "action_immediate": "Listez 3 services avec leurs tarifs fixes — évitez le 'devis sur demande' au départ, ça freine les décisions"
+      },
+      {
+        "numero": 4,
+        "titre": "Décrocher le premier client avec la méthode des cercles",
+        "description": "Oubliez la prospection froide pour commencer. Prévenez vos amis, famille, anciens collègues que vous vous lancez. Postez sur LinkedIn. Rejoignez 2 ou 3 groupes Facebook de votre secteur et répondez aux demandes. Le premier client vient presque toujours du réseau existant. Une fois ce premier avis obtenu, Malt deviendra beaucoup plus efficace.",
+        "action_immediate": "Envoyez un message à 5 personnes de votre réseau pour leur annoncer votre lancement aujourd'hui"
+      },
+      {
+        "numero": 5,
+        "titre": "Livrer, obtenir un avis, recommencer",
+        "description": "Votre premier client est votre investissement marketing le plus important. Livrez dans les délais, communiquez régulièrement, et demandez explicitement un avis à la fin : 'Seriez-vous prêt à me laisser un commentaire sur Malt ?' La plupart acceptent si vous avez bien travaillé. Avec 3 avis positifs, votre profil devient crédible et les demandes entrantes commencent.",
+        "action_immediate": "Préparez un template de message pour demander un avis client à la fin de chaque mission"
+      }
+    ],
+    "outils_recommandes": [
+      {
+        "nom": "Malt",
+        "url": "https://www.malt.fr",
+        "prix": "Gratuit (commission 10%)",
+        "usage": "Plateforme n°1 en France pour trouver des missions — profil, devis, paiement sécurisé"
+      },
+      {
+        "nom": "Canva",
+        "url": "https://www.canva.com",
+        "prix": "Gratuit / Pro 13€/mois",
+        "usage": "Créer un portfolio visuel, des présentations clients et des templates de proposition"
+      },
+      {
+        "nom": "Notion",
+        "url": "https://www.notion.so",
+        "prix": "Gratuit",
+        "usage": "Organiser ses clients, suivre ses projets et gérer son espace de travail"
+      },
+      {
+        "nom": "Pennylane",
+        "url": "https://www.pennylane.com",
+        "prix": "À partir de 26€/mois",
+        "usage": "Facturation et comptabilité freelance — obligatoire pour facturer en règle en France"
+      },
+      {
+        "nom": "Calendly",
+        "url": "https://calendly.com",
+        "prix": "Gratuit (basique)",
+        "usage": "Permettre aux prospects de prendre RDV directement dans votre agenda"
+      },
+      {
+        "nom": "Upwork",
+        "url": "https://www.upwork.com",
+        "prix": "Gratuit (commission 20% puis 10%)",
+        "usage": "Alternative internationale à Malt pour trouver des clients anglophones et augmenter vos tarifs"
+      }
+    ],
+    "erreurs_courantes": [
+      {
+        "erreur": "Attendre d'avoir un portfolio parfait avant de prospecter",
+        "consequence": "Vous repoussez le démarrage de 3 à 6 mois et perdez des revenus potentiels sans aucun bénéfice réel",
+        "solution": "Créez 2 ou 3 projets fictifs de qualité pour illustrer votre compétence, puis lancez-vous — le portfolio s'enrichit avec les vrais clients"
+      },
+      {
+        "erreur": "Fixer des tarifs trop bas pour attirer plus de clients",
+        "consequence": "Vous attirez des clients qui négocient tout, paient en retard et demandent des révisions infinies — épuisement garanti pour peu de revenus",
+        "solution": "Positionnez-vous dans la fourchette médiane du marché. Testez des tarifs 20% plus élevés que prévu — vous serez surpris du résultat"
+      },
+      {
+        "erreur": "Travailler sans contrat ni acompte",
+        "consequence": "Risque de ne jamais être payé, de devoir tout refaire sans compensation, et de vous retrouver sans recours légal",
+        "solution": "Utilisez un contrat simple et demandez 30 à 50% d'acompte avant de commencer chaque mission"
+      }
+    ],
+    "resultat_attendu": {
+      "semaine_4": "Premier client décroché, entre 250 et 600€ facturés, profil Malt opérationnel",
+      "mois_3": "2 à 3 clients actifs, revenus entre 800 et 1 500€/mois, premiers avis positifs",
+      "mois_6": "Revenus entre 2 000 et 4 000€/mois, clients récurrents, possibilité de quitter un emploi salarié"
+    },
+    "cta_moneyflow": "Le plan Pro MoneyFlow donne accès aux 50 formations complètes et au coaching groupe mensuel — exactement ce qu'il faut pour structurer votre offre et doubler vos tarifs en 90 jours."
+  },
+  "guide_digital_nomade": {
+    "destination": "Lisbonne (Portugal)",
+    "pays_code": "PT",
+    "introduction": "Lisbonne est devenue la capitale européenne des digital nomades. Climat exceptionnel, coût de la vie 40% moins cher que Paris, internet fiable, communauté internationale dynamique — et la possibilité légale de s'y installer avec le visa nomade digital. Pour un entrepreneur français, c'est probablement la meilleure base européenne en ce moment.",
+    "budget_mensuel": {
+      "logement": {
+        "budget_serre": 650,
+        "budget_confort": 1000,
+        "budget_premium": 1700,
+        "notes": "Chambre en colocation (serré), studio meublé en périphérie (confort), appartement centre-ville (premium)"
+      },
+      "nourriture": {
+        "budget_serre": 220,
+        "budget_confort": 380,
+        "budget_premium": 600,
+        "notes": "Cuisine maison (serré), restos locaux le midi + cuisine soir (confort), restaurants quotidiens (premium)"
+      },
+      "coworking": {
+        "budget_serre": 80,
+        "budget_confort": 160,
+        "budget_premium": 260,
+        "notes": "Accès ponctuel (serré), abonnement mensuel entrée de gamme (confort), bureau fixe haut de gamme (premium)"
+      },
+      "transport": {
+        "budget_serre": 30,
+        "budget_confort": 55,
+        "budget_premium": 120,
+        "notes": "Pass Navegante metro+bus (serré), vélo+transports (confort), Uber régulier (premium)"
+      },
+      "loisirs_sorties": {
+        "budget_serre": 80,
+        "budget_confort": 180,
+        "budget_premium": 380
+      },
+      "sante_divers": {
+        "budget_serre": 60,
+        "budget_confort": 100,
+        "budget_premium": 160
+      },
+      "totaux": {
+        "budget_serre": 1120,
+        "budget_confort": 1875,
+        "budget_premium": 3220
+      }
+    },
+    "meilleurs_quartiers": [
+      {
+        "nom": "Mouraria / Intendente",
+        "ambiance": "Multiculturel, authentique, en pleine gentrification douce",
+        "avantages_nomade": "Cafés avec bon wifi, loyers raisonnables, 10 min du centre, communauté créative internationale",
+        "prix_chambre_studio": "550 à 850€/mois"
+      },
+      {
+        "nom": "Príncipe Real",
+        "ambiance": "Bobo chic, nombreux cafés branchés, verdoyant",
+        "avantages_nomade": "Concentration de cafés laptop-friendly, restaurants abordables le midi, proche des coworkings centraux",
+        "prix_chambre_studio": "900 à 1 400€/mois"
+      },
+      {
+        "nom": "Alcântara / LX Factory",
+        "ambiance": "Industriel reconverti, créatif, moins touristique",
+        "avantages_nomade": "LX Factory avec espaces de travail, communauté startup, moins cher que le centre",
+        "prix_chambre_studio": "700 à 1 100€/mois"
+      }
+    ],
+    "espaces_coworking": [
+      {
+        "nom": "Second Home Lisboa",
+        "prix_journee": 25,
+        "prix_mois": 280,
+        "quartier": "Mercado da Ribeira",
+        "point_fort": "Design végétal spectaculaire, réseau international, ambiance startup premium"
+      },
+      {
+        "nom": "Heden",
+        "prix_journee": 15,
+        "prix_mois": 160,
+        "quartier": "Chiado",
+        "point_fort": "Central, communauté active, événements networking réguliers"
+      },
+      {
+        "nom": "Lisboa WorkHub",
+        "prix_journee": 12,
+        "prix_mois": 120,
+        "quartier": "Mouraria",
+        "point_fort": "Meilleur rapport qualité/prix du centre, internet gigabit, café inclus"
+      },
+      {
+        "nom": "Village Underground",
+        "prix_journee": 10,
+        "prix_mois": 110,
+        "quartier": "Alcântara",
+        "point_fort": "Dans des bus et containers recyclés, ambiance unique, proche scène créative"
+      }
+    ],
+    "communaute_nomades": {
+      "description": "Lisbonne a l'une des communautés de nomades les plus actives d'Europe. Des centaines de Français y vivent à l'année. Les rencontres sont fréquentes, l'atmosphère accueillante, et il est facile de trouver des collaborateurs.",
+      "evenements_reguliers": [
+        "Meetups Nomad List Lisboa (mensuels)",
+        "Remote Work Lisboa (networking)",
+        "Startup Lisboa events (pitchs, conférences)",
+        "Meetup Alliance Française Lisboa (pour les francophones)"
+      ],
+      "ressources_en_ligne": [
+        "Groupe Facebook 'Digital Nomads Lisboa'",
+        "Groupe Facebook 'Français à Lisbonne'",
+        "Discord Nomad List #lisbon",
+        "Meetup.com — 'remote work Lisbon'"
+      ]
+    },
+    "visa_et_legalite": {
+      "citoyen_ue": "Citoyen français (UE) : séjour illimité, aucune démarche visa. Après 3 mois, inscription au registre des étrangers (AIMA) recommandée.",
+      "visa_nomade_digital": {
+        "nom_officiel": "Visto D8 — Visa de Nómade Digital",
+        "revenu_minimum_mensuel": 3480,
+        "cout_demande": "83€ à l'ambassade + frais de dossier",
+        "duree_initiale": "1 an, renouvelable 2 ans",
+        "avantage_fiscal": "Statut RNH (Résident Non Habituel) : imposition à taux réduit pendant 10 ans sur les revenus étrangers — à valider avec un comptable portugais"
+      },
+      "conseils_pratiques": [
+        "Obtenir le NIF (numéro fiscal portugais) dès l'arrivée — gratuit, indispensable pour louer, ouvrir un compte, tout",
+        "Ouvrir un compte Revolut ou Wise pour les dépenses locales sans frais de change",
+        "Déclarer en 'recibos verdes' si vous restez plus de 6 mois — moins coûteux que la structure française"
+      ]
+    },
+    "internet": {
+      "vitesse_moyenne_mbps": 120,
+      "operateur_recommande": "NOS ou MEO",
+      "sim_touriste": "NOS Unlimited — 15€ pour 15 jours, 25 Go en 4G+"
+    },
+    "temoignage_nomade": {
+      "prenom": "Clara",
+      "activite": "Consultante marketing freelance",
+      "duree_lisbonne": "depuis 14 mois",
+      "revenu_mensuel_net": 3400,
+      "coup_de_coeur_local": "Le Café de São Bento — wifi parfait, prises partout, pastel de nata à 1,20€ et personne ne vous fait la tête si vous restez 4h"
+    }
+  },
+  "newsletter": {
+    "objet_email": "il a quitté son CDI à 29 ans (voici son plan)",
+    "preheader": "Freelance, Lisbonne, et les 3 erreurs qui font rater les débutants — Semaine 1",
+    "sections": {
+      "astuce": {
+        "titre": "Astuce de la semaine",
+        "contenu": "Avant de fixer votre tarif freelance, cherchez 5 profils similaires sur Malt. Notez leurs tarifs. Positionnez-vous dans la médiane — puis ajoutez 20%. Ça ne changera presque pas votre taux de conversion, mais ça changera beaucoup vos revenus."
+      },
+      "success_story": {
+        "titre": "Témoignage de la semaine",
+        "prenom_ville": "Mathieu, Bordeaux",
+        "contenu": "Graphiste salarié à 2 100€/mois, il crée son profil Malt un soir de février. Mois 1 : 380€. Mois 6 : 4 200€. Pas de miracle — une offre précise, des tarifs assumés, les bons outils. 'Le plus dur était de me payer ce que je vaux vraiment.'"
+      },
+      "ressource_gratuite": {
+        "titre": "Ressource gratuite",
+        "description": "Template de proposition commerciale MoneyFlow : une page, claire, professionnelle. Format Notion modifiable en 5 minutes. Des dizaines de freelances s'en sont servis pour décrocher leurs premiers clients.",
+        "lien_texte": "Télécharger gratuitement →",
+        "lien_url": "https://moneyflowcompany.netlify.app"
+      }
+    },
+    "html": "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>MoneyFlow — Semaine 1</title></head><body style=\"margin:0;padding:0;background:#0f0f1a;font-family:Arial,Helvetica,sans-serif\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a\"><tr><td align=\"center\" style=\"padding:32px 16px\"><table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%\"><tr><td style=\"background:#1a1a2e;border-radius:14px 14px 0 0;padding:32px 36px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.07)\"><p style=\"margin:0 0 6px;font-size:28px;font-weight:900;color:#f0a500\">💰 MoneyFlow</p><p style=\"margin:0;font-size:13px;color:#a0a0b0\">Semaine 1 &bull; Freelance &amp; Lisbonne</p></td></tr><tr><td style=\"background:#1a1a2e;padding:28px 36px\"><p style=\"margin:0 0 8px;font-size:17px;font-weight:800;color:#ffffff\">Cette semaine dans MoneyFlow</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">Mathieu a quitté son CDI à 29 ans. Pas en claquant la porte — en construisant quelque chose en parallèle, méthodiquement. On vous explique exactement comment il a fait.</p></td></tr><tr><td style=\"background:#1a1a2e;padding:0 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px;border-left:3px solid #f0a500\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#f0a500\">⚡ Astuce de la semaine</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Fixez votre tarif comme un pro</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">Cherchez 5 profils similaires sur Malt. Notez leurs tarifs. Positionnez-vous dans la médiane — puis ajoutez 20%. Résultat : mêmes clients, revenus plus élevés.</p></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:16px 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#00c896\">💬 Success story</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Mathieu, Bordeaux — de 2 100€ à 4 200€/mois</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">Graphiste salarié, crée son profil Malt un soir de février. Mois 1 : 380€. Mois 6 : 4 200€. <em style=\"color:#ffffff\">&laquo;&nbsp;Le plus dur était de me payer ce que je vaux vraiment.&nbsp;&raquo;</em></p></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:16px 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#a0a0b0\">🎁 Ressource gratuite</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Template de proposition commerciale</p><p style=\"margin:0 0 16px;font-size:14px;color:#a0a0b0;line-height:1.65\">Une page, claire, professionnelle. Format Notion modifiable en 5 minutes. Utilisé par des dizaines de freelances pour décrocher leurs premiers clients.</p><a href=\"https://moneyflowcompany.netlify.app\" style=\"display:inline-block;background:#f0a500;color:#000000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:7px;text-decoration:none\">Télécharger gratuitement &rarr;</a></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:24px 36px;text-align:center;border-top:1px solid rgba(255,255,255,0.07)\"><p style=\"margin:0 0 12px;font-size:15px;font-weight:800;color:#ffffff\">Passez au plan Pro</p><p style=\"margin:0 0 16px;font-size:13px;color:#a0a0b0\">+50 formations &bull; Coaching groupe &bull; Webinaires live</p><a href=\"https://moneyflowcompany.netlify.app\" style=\"display:inline-block;background:#f0a500;color:#000000;font-weight:800;font-size:15px;padding:14px 32px;border-radius:8px;text-decoration:none\">Rejoindre MoneyFlow Pro &mdash; 29€/mois &rarr;</a></td></tr><tr><td style=\"background:#0f0f1a;border-radius:0 0 14px 14px;padding:20px 36px;text-align:center;border-top:1px solid rgba(255,255,255,0.05)\"><p style=\"margin:0 0 8px;font-size:12px;color:#606070\"><a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Site</a> &nbsp;&bull;&nbsp; <a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Blog</a> &nbsp;&bull;&nbsp; <a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Contact</a></p><p style=\"margin:0;font-size:11px;color:#404050\">Vous recevez cet email car vous &ecirc;tes inscrit &agrave; MoneyFlow &bull; <a href=\"#\" style=\"color:#404050\">Se d&eacute;sabonner</a></p></td></tr></table></td></tr></table></body></html>"
+  },
+
+  "contenu_pro": {
+    "titre_section": "Stratégies Pro — Freelance",
+    "badge": "Pro",
+    "couleur": "#f0a500",
+    "accroche": "Comment passer de 1 500€ à 5 000€/mois en freelance : la méthode des clients premium",
+    "modules": [
+      {
+        "numero": 1,
+        "titre": "Le pricing premium : facturer 600€/jour sans perdre de clients",
+        "contenu": "La plupart des freelances pensent qu'augmenter leurs tarifs va les faire fuir leurs clients. C'est faux — ça fait fuir les mauvais clients. Voici la méthode exacte pour passer à 600€/jour : repositionnez votre offre autour d'un résultat business (pas d'une compétence), présentez 3 niveaux de tarifs (dont un 'premium' à 800€ pour ancrer la perception), et intégrez une garantie de résultat. Résultat observé : 70% des freelances qui appliquent cette méthode gardent leurs clients existants et en attirent de meilleurs.",
+        "action": "Réécrivez votre page Malt en mettant en avant le résultat business que vous apportez, pas votre liste de logiciels maîtrisés"
+      },
+      {
+        "numero": 2,
+        "titre": "Construire un pipeline de 3 clients récurrents à 1 500€/mois",
+        "contenu": "Un client récurrent vaut 10 clients ponctuels : pas de prospection, pas de devis, revenus prévisibles. La stratégie : proposez un 'forfait mensuel' à tous vos clients ponctuels satisfaits après la première mission. Exemple : 'Je vous propose un accompagnement mensuel à 1 200€ — 2 jours de disponibilité, révisions illimitées, priorité absolue.' 60% des clients qui ont eu une bonne expérience acceptent si vous posez la question au bon moment (lors de la livraison).",
+        "action": "Identifiez vos 3 meilleurs clients des 6 derniers mois et préparez une proposition de forfait mensuel pour chacun"
+      },
+      {
+        "numero": 3,
+        "titre": "Le template de contrat qui protège et rassure",
+        "contenu": "Un contrat bien rédigé n'est pas là pour intimider — il rassure le client professionnel et vous protège des abus. Vos clauses indispensables : délai de paiement (15 jours max), définition précise du scope (nombre de révisions incluses), clause de résiliation, propriété intellectuelle. Un client sérieux est toujours soulagé de voir un contrat — ça prouve votre professionnalisme.",
+        "action": "Téléchargez le template de contrat MoneyFlow Pro et personnalisez les 5 champs essentiels avec vos informations"
+      },
+      {
+        "numero": 4,
+        "titre": "LinkedIn comme machine à prospects : 2h/semaine pour 3 leads qualifiés",
+        "contenu": "LinkedIn génère 80% des leads B2B freelance en France. La méthode des 3-2-1 : chaque semaine, publiez 3 commentaires approfondis sur des posts de votre cible, rédigez 2 messages de connexion personnalisés (pas de pitch immédiat), et publiez 1 post de valeur (étude de cas, tip, avis d'expert). En 60 jours, votre réseau cible grossit et les demandes entrantes commencent. Aucun outil payant nécessaire.",
+        "action": "Identifiez 10 décideurs de votre secteur cible sur LinkedIn et commentez 3 de leurs posts cette semaine"
+      }
+    ],
+    "ressource_exclusive": {
+      "titre": "Template contrat freelance + calculateur de tarif journalier",
+      "description": "Un contrat en 2 pages prêt à personnaliser + un fichier Google Sheets pour calculer votre TJM optimal en fonction de vos charges et objectifs de revenu.",
+      "format": "Notion + Google Sheets"
+    }
+  },
+
+  "contenu_expert": {
+    "titre_section": "Playbook Expert — Freelance",
+    "badge": "Expert",
+    "couleur": "#00c896",
+    "accroche": "De solo freelance à studio : comment scaler de 5 000€ à 15 000€/mois sans travailler plus",
+    "modules": [
+      {
+        "numero": 1,
+        "titre": "Créer votre premier réseau de sous-traitants : déléguer sans perdre en qualité",
+        "contenu": "Le plafond du freelance solo est autour de 8 000€/mois (au-delà, vous n'avez plus de vie). Pour franchir ce cap : constituez un réseau de 3 à 5 freelances complémentaires que vous sous-traitez. Vous gardez la relation client, la direction créative, et la marge. Modèle économique : vous facturez 1 200€/jour au client, vous sous-traitez à 600€/jour, vous gardez 600€ sans produire. Avec 2 projets simultanés sous-traités, vous ajoutez 6 000€/mois net à votre CA.",
+        "action": "Identifiez 2 freelances dans votre réseau avec qui vous pourriez créer une relation de sous-traitance régulière"
+      },
+      {
+        "numero": 2,
+        "titre": "Le positionnement ultra-niche qui justifie 1 500€/jour",
+        "contenu": "Les freelances les mieux payés ne sont pas les plus compétents — ce sont les plus spécialisés. Un 'graphiste' facture 400€/jour. Un 'spécialiste en branding pour startups SaaS Series A' facture 1 500€/jour. La différence : la rareté perçue et l'adéquation parfaite avec le besoin. Exercice : croisez votre compétence technique avec un secteur précis ET un moment critique du cycle de vie de l'entreprise (levée de fonds, lancement produit, refonte post-rachat).",
+        "action": "Rédigez votre positionnement ultra-niche en 2 phrases et testez-le sur 5 prospects cette semaine"
+      },
+      {
+        "numero": 3,
+        "titre": "Structurer un produit d'information à 497€ à partir de votre expertise freelance",
+        "contenu": "Votre méthode de travail vaut de l'argent en elle-même. Un freelance qui gagne bien a développé un process reproductible — c'est exactement ce que des centaines de débutants cherchent à acheter. Étapes : documentez votre process en 5 à 7 étapes clés, créez un module vidéo de 3h sur Loom ou Riverside, vendez-le 497€ sur Gumroad. Avec 20 ventes/mois (très réaliste avec votre réseau LinkedIn), c'est 9 940€ de revenu passif.",
+        "action": "Listez les 5 étapes de votre méthode freelance et estimez combien de débutants paieraient pour l'apprendre"
+      },
+      {
+        "numero": 4,
+        "titre": "Mastermind privé : accéder aux clients Corporate à 2 000€+/jour",
+        "contenu": "Les contrats Corporate (CAC40, ETI, cabinets de conseil) ne se trouvent pas sur Malt — ils se négocient en direct, souvent via recommandation. Comment y accéder : rejoignez 2 associations professionnelles de votre secteur, participez aux événements (même en tant que speaker sur un micro-sujet), et cultivez 3 à 5 contacts prescripteurs dans des ESN ou cabinets de conseil qui sous-traitent régulièrement. Un contact prescripteur bien entretenu peut générer 50 000€ de missions/an.",
+        "action": "Identifiez 2 événements professionnels de votre secteur dans les 60 prochains jours et inscrivez-vous"
+      }
+    ],
+    "ressource_exclusive": {
+      "titre": "Modèle financier Studio Freelance + scripts d'approche Corporate",
+      "description": "Un fichier de modélisation pour projeter vos revenus solo vs studio, + 3 scripts de prise de contact testés pour approcher des décideurs Corporate sans paraître 'vendeur'.",
+      "format": "Google Sheets + PDF"
+    },
+    "session_coaching": {
+      "disponible": true,
+      "description": "Session 1-on-1 de 45 min avec un expert MoneyFlow pour analyser votre situation et définir votre plan de scaling personnalisé.",
+      "cta": "Réserver ma session →"
+    }
+  }
+}

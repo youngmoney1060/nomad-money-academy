@@ -1,0 +1,12 @@
+{
+  "name": "moneyflow-content-generator",
+  "version": "1.0.0",
+  "description": "Générateur de contenu hebdomadaire pour MoneyFlow",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate-content.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "semaine_courante": 2,
+  "derniere_mise_a_jour": "2026-05-26",
+  "semaines": [
+    {
+      "numero": 1,
+      "fichier": "content/semaine-1/semaine-1.json",
+      "theme_principal": "freelance",
+      "destination_nomade": "Lisbonne (Portugal)",
+      "date_publication": "2026-05-21",
+      "hook_newsletter": "De 2 100€ en CDI à 4 800€ en freelance : son plan en 6 mois"
+    },
+    {
+      "numero": 2,
+      "fichier": "content/semaine-2/semaine-2.json",
+      "theme_principal": "trading et investissement",
+      "destination_nomade": "Bali (Indonésie)",
+      "date_publication": "2026-05-26",
+      "hook_newsletter": "SpaceX va coter — voici quand acheter (et quand ne pas le faire)"
+    },
+    {
+      "numero": 3,
+      "fichier": "content/semaine-3/semaine-3.json",
+      "theme_principal": "trading et investissement",
+      "destination_nomade": "Chiang Mai (Thaïlande)",
+      "date_publication": "2026-05-26",
+      "hook_newsletter": "l'airdrop qui a rapporté 28 000€ à un dev lyonnais"
+    }
+  ]
+}

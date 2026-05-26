@@ -1,0 +1,379 @@
+{
+  "meta": {
+    "semaine": 2,
+    "theme_principal": "trading et investissement",
+    "destination_nomade": "Bali (Indonésie)",
+    "date_generation": "2026-05-26",
+    "modele": "claude-sonnet-4-6",
+    "plateforme": "MoneyFlow",
+    "url_site": "https://moneyflowcompany.netlify.app",
+    "sujets_chauds": ["SpaceX IPO", "comment investir dans une IPO tech", "stratégie d'entrée"]
+  },
+
+  "temoignage": {
+    "prenom": "Alexandre",
+    "age": 37,
+    "ville": "Paris",
+    "methode": "trading et investissement",
+    "titre_court": "Il a multiplié par 3 son investissement sur une IPO tech — voici comment il a évité le piège",
+    "avatar_initiales": "AB",
+    "parcours": {
+      "avant": "Ingénieur chez un grand groupe, Alexandre épargnait 600€/mois sur un livret A. Il regardait les IPO tech de loin — trop peur de se faire brûler comme ceux qui avaient perdu sur Uber ou Rivian. 'Je voyais des gens acheter le jour J dans l'euphorie et revendre en panique 3 mois après avec -40%. Je ne voulais pas être ce type-là.'",
+      "pendant": "En 2024, il se forme sérieusement à l'analyse fondamentale via MoneyFlow. Il apprend à lire un prospectus d'introduction, à calculer un ratio price/sales, et surtout à ne pas acheter dans les premières heures. Sur sa première IPO tech, il attend 6 semaines après l'introduction, entre sur une correction de 22%, investit 3 000€ avec un plan de sortie défini à l'avance.",
+      "resultat": "18 mois plus tard, sa position vaut 9 200€. Il n'a pas vendu au top absolu — mais il a appliqué sa règle de paliers et sorti 50% à x2,5. 'La différence avec mes erreurs passées : j'avais un plan avant d'acheter, pas après.'"
+    },
+    "revenus_progressifs": [
+      {"mois": 1, "revenus": 0, "commentaire": "Observation, pas d'achat — attente de la correction post-IPO"},
+      {"mois": 2, "revenus": 0, "commentaire": "Entrée sur correction -22%, 3 000€ investis"},
+      {"mois": 3, "revenus": 480, "commentaire": "Position +16%, première évaluation du plan"},
+      {"mois": 4, "revenus": 1200, "commentaire": "Position +40%, vente de 25% au premier palier"},
+      {"mois": 5, "revenus": 800, "commentaire": "Consolidation du marché, position maintenue"},
+      {"mois": 6, "revenus": 3100, "commentaire": "Vente de 50% à x2,5 — 3 750€ de plus-value réalisée"}
+    ],
+    "plan_moneyflow": "Pro",
+    "pourquoi_plan": "Les modules d'analyse fondamentale et la checklist IPO m'ont évité d'acheter dans l'euphorie. Sans ça j'aurais perdu comme les autres.",
+    "citation": "Une bonne IPO achetée au mauvais moment reste un mauvais investissement. Le timing n'est pas le jour J — c'est 4 à 8 semaines après, sur la première vraie correction."
+  },
+
+  "formation": {
+    "titre": "SpaceX en bourse : comment investir dans une IPO tech sans se faire brûler",
+    "sous_titre": "La méthode étape par étape pour analyser, entrer et sortir d'une introduction en bourse à fort potentiel",
+    "introduction": "SpaceX s'apprête à entrer en bourse — l'un des événements financiers les plus attendus de la décennie. Des millions de particuliers vont vouloir acheter des actions. La grande majorité le fera de façon émotionnelle, au mauvais moment, sans plan. Ce guide vous donne la méthode exacte pour ne pas être dans cette catégorie.",
+    "etapes": [
+      {
+        "numero": 1,
+        "titre": "Comprendre ce qu'on achète vraiment avec SpaceX",
+        "description": "SpaceX n'est pas qu'une entreprise de fusées. C'est en réalité trois business distincts : les lancements commerciaux (Falcon 9, Falcon Heavy, Starship), les contrats gouvernementaux (NASA Artemis, contrats DoD classifiés), et surtout Starlink — le réseau satellite internet avec déjà plusieurs millions d'abonnés payants à ~100$/mois. Starlink seul, à 20 millions d'abonnés, représente 24 milliards$ de revenus récurrents annuels. C'est le moteur de croissance principal à surveiller.",
+        "action_immediate": "Recherchez 'SpaceX revenue breakdown 2025' pour comprendre la part de Starlink dans le chiffre d'affaires total avant tout investissement"
+      },
+      {
+        "numero": 2,
+        "titre": "Analyser la valorisation : est-ce que le prix d'introduction est juste ?",
+        "description": "La valorisation d'une IPO se mesure avec le ratio Price/Sales (P/S) : capitalisation boursière divisée par les revenus annuels. Pour SpaceX estimé à 300 milliards$ de valorisation et ~10 milliards$ de revenus, le P/S serait de 30x. C'est élevé — mais cohérent avec des entreprises tech en hypercroissance (+40%/an). Comparaison : Tesla cotait à 20-25x ses revenus à son introduction. La question n'est pas 'est-ce cher' mais 'la croissance justifie-t-elle ce prix'.",
+        "action_immediate": "Notez la valorisation annoncée de SpaceX et divisez par les revenus estimés pour calculer le P/S — comparez à Amazon, Tesla et Palantir à leur introduction"
+      },
+      {
+        "numero": 3,
+        "titre": "La règle d'or : ne jamais acheter le jour J",
+        "description": "Statistiquement, 70% des grandes IPO tech très médiatisées baissent dans les 3 premiers mois suivant leur introduction. L'euphorie du jour J fait monter le titre au-delà de sa valeur fondamentale — les institutionnels qui ont eu des actions à prix préférentiel vendent dans les premières semaines. La stratégie optimale : observer les 4 à 8 premières semaines, identifier le premier support de prix, et entrer sur une correction de 15 à 30%. Vous achetez le même business à prix réduit.",
+        "action_immediate": "Créez une alerte prix sur Trade Republic ou Degiro pour SpaceX dès son introduction, fixée à -20% du prix d'ouverture du premier jour"
+      },
+      {
+        "numero": 4,
+        "titre": "Dimensionner sa position : combien investir sans mettre sa stabilité en jeu",
+        "description": "Règle fondamentale : maximum 5% de votre patrimoine total sur une seule IPO, aussi prometteuse soit-elle. Si vous avez 20 000€ d'épargne, votre exposition SpaceX maximale est de 1 000€. Si vous avez 100 000€, c'est 5 000€. Cette limite protège votre capital si la thèse d'investissement se révèle fausse — ce qui arrive même avec les meilleures entreprises. Au-delà de 5%, vous spéculez, vous n'investissez plus.",
+        "action_immediate": "Calculez 5% de votre épargne totale — c'est votre budget maximum SpaceX, ne le dépassez pas quelle que soit la conviction"
+      },
+      {
+        "numero": 5,
+        "titre": "Définir son plan de sortie avant d'acheter",
+        "description": "Un investisseur sérieux définit ses paliers de vente AVANT d'acheter, pas après. Pour SpaceX : palier 1 à +50% (vendre 25% de la position pour récupérer une partie du capital), palier 2 à +150% (vendre 50%), garder 25% indefiniment pour capter la croissance long terme. Stop loss mental à -35% si la thèse fondamentale change (perte d'un contrat NASA majeur, problème Starship). Ce plan écrit à froid évite les décisions émotionnelles à chaud.",
+        "action_immediate": "Écrivez dès maintenant vos 3 paliers de vente et votre stop loss — gardez-les dans une note sur votre téléphone"
+      }
+    ],
+    "outils_recommandes": [
+      {
+        "nom": "Trade Republic",
+        "url": "https://www.traderepublic.com",
+        "prix": "Gratuit (1€/ordre)",
+        "usage": "Accès aux IPO tech dès le premier jour de cotation, alertes de prix automatiques, interface simple"
+      },
+      {
+        "nom": "Degiro",
+        "url": "https://www.degiro.fr",
+        "prix": "Frais variables selon marché",
+        "usage": "Courtier européen réputé avec accès NYSE/Nasdaq — adapté aux investisseurs qui veulent plus de contrôle"
+      },
+      {
+        "nom": "Macrotrends",
+        "url": "https://www.macrotrends.net",
+        "prix": "Gratuit",
+        "usage": "Historiques financiers des entreprises cotées, comparaisons de ratios P/S et P/E entre secteurs"
+      },
+      {
+        "nom": "SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar",
+        "prix": "Gratuit",
+        "usage": "Prospectus S-1 officiel de SpaceX — le document légal d'introduction avec tous les chiffres réels"
+      },
+      {
+        "nom": "Seeking Alpha",
+        "url": "https://seekingalpha.com",
+        "prix": "Gratuit (basique)",
+        "usage": "Analyses d'investisseurs professionnels sur les IPO tech — contre-perspectives et thèses bear"
+      },
+      {
+        "nom": "Koyfin",
+        "url": "https://www.koyfin.com",
+        "prix": "Gratuit (basique)",
+        "usage": "Dashboard financier pour comparer SpaceX à ses pairs dès la cotation — ratios, croissance, marges"
+      }
+    ],
+    "erreurs_courantes": [
+      {
+        "erreur": "Acheter dans les premières heures de cotation par peur de 'rater le train'",
+        "consequence": "Vous achetez au prix le plus élevé de l'histoire du titre — les institutionnels vendent dans votre euphorie et vous vous retrouvez en moins-value dès la semaine 2",
+        "solution": "Attendez minimum 4 semaines post-IPO, définissez un prix d'entrée cible à -15 à -25% du pic d'ouverture, et respectez-le"
+      },
+      {
+        "erreur": "Investir plus de 10% de son patrimoine sur une seule IPO 'de conviction'",
+        "consequence": "Rivian, Uber, WeWork, Deliveroo — toutes étaient des convictions absolues à l'introduction. Toutes ont perdu 60 à 95% dans les 2 ans suivants",
+        "solution": "Maximum 5% du patrimoine total, horizon 5 ans minimum, et diversification sur d'autres actifs simultanément"
+      },
+      {
+        "erreur": "Ne pas lire le prospectus S-1 et se baser uniquement sur les articles de presse",
+        "consequence": "Les médias couvrent l'histoire, pas les risques. Les vrais risques (dépendance à Elon Musk, concentration des contrats, dette) sont dans le prospectus, pas dans les gros titres",
+        "solution": "Lisez au minimum le résumé exécutif et la section 'Risk Factors' du S-1 officiel avant tout investissement"
+      }
+    ],
+    "resultat_attendu": {
+      "semaine_4": "Compte de trading ouvert, alerte prix configurée sur SpaceX, budget d'investissement défini",
+      "mois_3": "Position initiée sur correction post-IPO, plan de sortie écrit et respecté",
+      "mois_6": "Premier palier de vente atteint ou non — dans les deux cas, décision prise selon le plan initial et non l'émotion"
+    },
+    "cta_moneyflow": "Le plan Pro MoneyFlow inclut la checklist complète d'analyse IPO, le modèle de valorisation SpaceX mis à jour, et les alertes communautaires quand les membres Pro détectent des opportunités d'entrée."
+  },
+
+  "guide_digital_nomade": {
+    "destination": "Bali (Indonésie)",
+    "pays_code": "ID",
+    "introduction": "Bali est la destination préférée des entrepreneurs en ligne du monde entier. Surf le matin, coworking l'après-midi, coucher de soleil depuis un rooftop — à moins de 1 500€/mois tout compris. La communauté de nomades y est si dense qu'il est impossible de ne pas rencontrer des gens inspirants dans les premières 48h.",
+    "budget_mensuel": {
+      "logement": {
+        "budget_serre": 300,
+        "budget_confort": 600,
+        "budget_premium": 1200,
+        "notes": "Chambre en guesthouse Canggu (serré), villa avec piscine partagée (confort), villa privée Seminyak (premium)"
+      },
+      "nourriture": {
+        "budget_serre": 150,
+        "budget_confort": 280,
+        "budget_premium": 500,
+        "notes": "Warungs locaux (serré), mix restos nomades + locaux (confort), restaurants branchés Canggu quotidiens (premium)"
+      },
+      "coworking": {
+        "budget_serre": 60,
+        "budget_confort": 120,
+        "budget_premium": 220,
+        "notes": "Dojo ou Outpost pass journalier (serré), abonnement mensuel (confort), bureau privé Hubud (premium)"
+      },
+      "transport": {
+        "budget_serre": 60,
+        "budget_confort": 100,
+        "budget_premium": 200,
+        "notes": "Scooter loué 80K IDR/jour (serré), scooter + Grab selon besoin (confort), voiture avec chauffeur régulier (premium)"
+      },
+      "loisirs_sorties": {
+        "budget_serre": 80,
+        "budget_confort": 200,
+        "budget_premium": 450
+      },
+      "sante_divers": {
+        "budget_serre": 50,
+        "budget_confort": 100,
+        "budget_premium": 180
+      },
+      "totaux": {
+        "budget_serre": 700,
+        "budget_confort": 1400,
+        "budget_premium": 2750
+      }
+    },
+    "meilleurs_quartiers": [
+      {
+        "nom": "Canggu",
+        "ambiance": "Surf, hipster, nomades, cafés design — le Brooklyn de Bali",
+        "avantages_nomade": "Concentration maximale de coworkings et cafés laptop-friendly, communauté internationale très active, surf à 5 min",
+        "prix_chambre_studio": "300 à 700€/mois"
+      },
+      {
+        "nom": "Ubud",
+        "ambiance": "Rizières, spirituel, calme, nature — Bali authentique",
+        "avantages_nomade": "Loyers les plus bas, connexion internet correcte, idéal pour les sprints de travail intensif loin de la distraction Canggu",
+        "prix_chambre_studio": "200 à 450€/mois"
+      },
+      {
+        "nom": "Seminyak",
+        "ambiance": "Luxueux, fêtes, restaurants haut de gamme, expats aisés",
+        "avantages_nomade": "Infrastructure premium, proche aéroport, adapté aux séjours courts ou aux profils revenus élevés",
+        "prix_chambre_studio": "500 à 1 200€/mois"
+      }
+    ],
+    "espaces_coworking": [
+      {
+        "nom": "Dojo Bali",
+        "prix_journee": 12,
+        "prix_mois": 180,
+        "quartier": "Canggu",
+        "point_fort": "Le coworking de référence de Canggu — communauté active, events hebdomadaires, piscine sur place"
+      },
+      {
+        "nom": "Outpost Bali",
+        "prix_journee": 15,
+        "prix_mois": 200,
+        "quartier": "Canggu / Ubud",
+        "point_fort": "Internet gigabit fiable, cabines téléphoniques insonorisées, accès 24h"
+      },
+      {
+        "nom": "Hubud",
+        "prix_journee": 18,
+        "prix_mois": 250,
+        "quartier": "Ubud",
+        "point_fort": "Structure bambou iconique, communauté créative premium, le préféré des fondateurs de startups"
+      },
+      {
+        "nom": "Potato Head Beach Club (café work)",
+        "prix_journee": 0,
+        "prix_mois": 0,
+        "quartier": "Seminyak",
+        "point_fort": "Gratuit avec conso min, vue mer, ambiance unique — pour les après-midis de travail inspirants"
+      }
+    ],
+    "communaute_nomades": {
+      "description": "Bali Canggu est probablement l'endroit au monde avec la plus haute densité d'entrepreneurs en ligne au m². Des milliers de nomades s'y croisent en permanence. Les connexions professionnelles se font naturellement — au surf, au café, aux events Dojo.",
+      "evenements_reguliers": [
+        "Dojo Pitch Night (mensuel — startups et side projects)",
+        "Canggu Nomad Meetup (hebdomadaire)",
+        "Bali Startup Weekend",
+        "Sunset networking Finns Beach Club (informel, jeudi soir)"
+      ],
+      "ressources_en_ligne": [
+        "Groupe Facebook 'Bali Digital Nomads' (100K+ membres)",
+        "Groupe Facebook 'Canggu Community'",
+        "Discord Nomad List #bali",
+        "Telegram 'Bali Expats & Nomads'"
+      ]
+    },
+    "visa_et_legalite": {
+      "citoyen_ue": "Visa on arrival gratuit à l'aéroport : 30 jours, extensible une fois (+30 jours, ~35€). Total : 60 jours sans démarche préalable.",
+      "visa_nomade_digital": {
+        "nom_officiel": "Visa E33G — Second Home Visa / Digital Nomad Visa Indonesia",
+        "revenu_minimum_mensuel": 2000,
+        "cout_demande": "~150€ de frais de dossier",
+        "duree_initiale": "6 mois à 1 an renouvelable",
+        "avantage_fiscal": "Pas d'imposition sur les revenus de source étrangère pour les non-résidents fiscaux indonésiens — statut avantageux pour les freelances et traders"
+      },
+      "conseils_pratiques": [
+        "Téléchargez Gojek dès l'atterrissage — équivalent Uber/Deliveroo local, 10x moins cher que les taxis touristiques",
+        "Retirez de l'argent uniquement dans les BCA ou BNI ATM — les autres facturent des frais cachés importants",
+        "Souscrivez une assurance santé internationale avant de partir — les hôpitaux BIMC Kuta et Siloam sont excellents mais coûteux sans couverture"
+      ]
+    },
+    "internet": {
+      "vitesse_moyenne_mbps": 50,
+      "operateur_recommande": "Telkomsel ou XL Axiata",
+      "sim_touriste": "Telkomsel Tourist SIM — 100K IDR (~6€) pour 30 jours, 20 Go en 4G"
+    },
+    "temoignage_nomade": {
+      "prenom": "Sophie",
+      "activite": "Trader actions + créatrice de contenu finance",
+      "duree_lisbonne": "depuis 8 mois",
+      "revenu_mensuel_net": 3800,
+      "coup_de_coeur_local": "Sari Organik à Ubud — table dans les rizières, petit-déjeuner à 3€, connexion wifi stable. Je fais mes meilleures sessions de trading de la semaine là-bas."
+    }
+  },
+
+  "newsletter": {
+    "objet_email": "SpaceX va coter — voici quand acheter (et quand ne pas le faire)",
+    "preheader": "La méthode pour investir dans une IPO tech sans se faire brûler + guide Bali · Semaine 2",
+    "sections": {
+      "astuce": {
+        "titre": "Astuce IPO de la semaine",
+        "contenu": "Créez une alerte prix sur votre application de bourse dès l'introduction de SpaceX, fixée à -20% du prix d'ouverture du premier jour. Quand l'alerte se déclenche, vous avez votre signal d'entrée. Pas d'émotion, pas de FOMO — juste un plan défini à froid, exécuté à chaud."
+      },
+      "success_story": {
+        "titre": "Témoignage de la semaine",
+        "prenom_ville": "Alexandre, Paris",
+        "contenu": "Ingénieur parisien, il attendait patiemment 6 semaines après une IPO tech, entrait sur une correction de -22%, et revendait 50% à x2,5. Plus-value : 3 750€ sur 3 000€ investis. 'La différence avec mes erreurs passées : j'avais un plan avant d'acheter, pas après.'"
+      },
+      "ressource_gratuite": {
+        "titre": "Checklist d'analyse IPO — 12 questions avant d'investir",
+        "description": "Les 12 questions que tout investisseur sérieux doit se poser avant d'acheter une action à son introduction en bourse. Format PDF, applicable à SpaceX et à toutes les IPO tech à venir.",
+        "lien_texte": "Télécharger la checklist →",
+        "lien_url": "https://moneyflowcompany.netlify.app"
+      }
+    },
+    "html": "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>MoneyFlow — Semaine 2</title></head><body style=\"margin:0;padding:0;background:#0f0f1a;font-family:Arial,Helvetica,sans-serif\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a\"><tr><td align=\"center\" style=\"padding:32px 16px\"><table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;width:100%\"><tr><td style=\"background:#1a1a2e;border-radius:14px 14px 0 0;padding:32px 36px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.07)\"><p style=\"margin:0 0 6px;font-size:28px;font-weight:900;color:#f0a500\">💰 MoneyFlow</p><p style=\"margin:0;font-size:13px;color:#a0a0b0\">Semaine 2 &bull; IPO SpaceX &bull; Bali</p></td></tr><tr><td style=\"background:#1a1a2e;padding:28px 36px\"><p style=\"margin:0 0 8px;font-size:17px;font-weight:800;color:#ffffff\">SpaceX va coter — êtes-vous prêt ?</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">L'IPO la plus attendue de la décennie approche. Des millions de particuliers vont se précipiter. La grande majorité achètera au mauvais moment. Ce numéro vous explique comment ne pas être dans cette catégorie.</p></td></tr><tr><td style=\"background:#1a1a2e;padding:0 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px;border-left:3px solid #f0a500\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#f0a500\">⚡ Astuce IPO</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Ne pas acheter le jour J</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">70% des grandes IPO tech baissent dans les 3 premiers mois. Créez une alerte à -20% du prix d'ouverture SpaceX — c'est votre signal d'entrée. Plan froid, exécution disciplinée.</p></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:16px 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#00c896\">💬 Success story</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Alexandre, Paris — x3 sur une IPO tech</p><p style=\"margin:0;font-size:14px;color:#a0a0b0;line-height:1.65\">Attend 6 semaines, entre sur -22%, vend 50% à x2,5. <em style=\"color:#ffffff\">&laquo;&nbsp;J'avais un plan avant d'acheter, pas après. C'est ça qui change tout.&nbsp;&raquo;</em></p></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:16px 36px 8px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0f0f1a;border-radius:10px\"><tr><td style=\"padding:20px 22px\"><p style=\"margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#a0a0b0\">🎁 Ressource gratuite</p><p style=\"margin:0 0 8px;font-size:15px;font-weight:700;color:#ffffff\">Checklist IPO — 12 questions avant d'acheter</p><p style=\"margin:0 0 16px;font-size:14px;color:#a0a0b0;line-height:1.65\">Applicable à SpaceX et toutes les IPO tech. PDF prêt à imprimer ou garder sur téléphone.</p><a href=\"https://moneyflowcompany.netlify.app\" style=\"display:inline-block;background:#f0a500;color:#000000;font-weight:700;font-size:14px;padding:12px 24px;border-radius:7px;text-decoration:none\">Télécharger la checklist &rarr;</a></td></tr></table></td></tr><tr><td style=\"background:#1a1a2e;padding:24px 36px;text-align:center;border-top:1px solid rgba(255,255,255,0.07)\"><p style=\"margin:0 0 12px;font-size:15px;font-weight:800;color:#ffffff\">Accédez à l'analyse complète SpaceX</p><p style=\"margin:0 0 16px;font-size:13px;color:#a0a0b0\">Valorisation &bull; Scénarios de prix &bull; Niveaux d'entrée &bull; Plan de sortie détaillé</p><a href=\"https://moneyflowcompany.netlify.app\" style=\"display:inline-block;background:#f0a500;color:#000000;font-weight:800;font-size:15px;padding:14px 32px;border-radius:8px;text-decoration:none\">Rejoindre MoneyFlow Pro &mdash; 29€/mois &rarr;</a></td></tr><tr><td style=\"background:#0f0f1a;border-radius:0 0 14px 14px;padding:20px 36px;text-align:center;border-top:1px solid rgba(255,255,255,0.05)\"><p style=\"margin:0 0 8px;font-size:12px;color:#606070\"><a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Site</a>&nbsp;&bull;&nbsp;<a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Blog</a>&nbsp;&bull;&nbsp;<a href=\"https://moneyflowcompany.netlify.app\" style=\"color:#606070;text-decoration:none\">Contact</a></p><p style=\"margin:0 0 6px;font-size:11px;color:#404050\">Vous recevez cet email car vous êtes inscrit à MoneyFlow &bull; <a href=\"#\" style=\"color:#404050\">Se désabonner</a></p><p style=\"margin:0;font-size:10px;color:#303040\">⚠️ Ceci n'est pas un conseil financier. Investir comporte des risques de perte en capital.</p></td></tr></table></td></tr></table></body></html>"
+  },
+
+  "contenu_pro": {
+    "titre_section": "Analyse Pro — IPO SpaceX",
+    "badge": "Pro",
+    "couleur": "#f0a500",
+    "accroche": "L'analyse complète SpaceX : valorisation, scénarios de prix, niveaux d'entrée et plan de sortie détaillé",
+    "modules": [
+      {
+        "numero": 1,
+        "titre": "Modèle de valorisation SpaceX : bull case, base case, bear case",
+        "contenu": "Bull case (probabilité 25%) : Starlink atteint 30M abonnés, Starship opérationnel, contrats gouvernementaux en hausse — valorisation cible 500-700Md$, soit +70 à +130% depuis l'IPO. Base case (probabilité 50%) : croissance Starlink à 15M abonnés, Starship en service commercial partiel — valorisation stable à 280-320Md$, rendement +10 à +25% sur 3 ans. Bear case (probabilité 25%) : problèmes réglementaires Starlink, accident Starship, départ d'Elon Musk — valorisation 120-150Md$, soit -50 à -60% depuis l'introduction.",
+        "action": "Allouez votre budget SpaceX selon ces probabilités : 50% du budget en base case, réservez 50% pour renforcer en cas de bear case"
+      },
+      {
+        "numero": 2,
+        "titre": "Les 3 catalyseurs qui feront doubler le titre en 18 mois",
+        "contenu": "Catalyseur 1 — Starlink dépasse 10M d'abonnés payants (annonce trimestrielle à surveiller). Catalyseur 2 — Premier vol commercial Starship avec payload client (mission NASA Artemis ou satellite commercial). Catalyseur 3 — Contrat gouvernemental majeur hors USA (Japon, UK, Australie, OTAN). Quand l'un de ces catalyseurs se confirme, c'est un signal pour renforcer la position avec 25% de la réserve prévue.",
+        "action": "Créez une alerte Google News pour 'SpaceX Starlink subscribers' et 'Starship commercial launch' pour ne pas manquer ces annonces"
+      },
+      {
+        "numero": 3,
+        "titre": "Comparaison sectorielle : SpaceX vs Rocket Lab vs AST SpaceMobile",
+        "contenu": "Pour diversifier l'exposition au secteur spatial : Rocket Lab (RKLB) est déjà cotée, valorisation ~6Md$, croissance solide mais sans le moat SpaceX. AST SpaceMobile (ASTS) parie sur le satellite direct-to-smartphone, potentiel x10 si le déploiement réussit mais risque élevé. En portefeuille : 70% SpaceX (leader établi), 20% RKLB (diversification), 10% ASTS (position spéculative). Total exposition secteur spatial : maximum 8% du portefeuille global.",
+        "action": "Ouvrez les fiches Koyfin de Rocket Lab et AST SpaceMobile pour comparer leurs métriques avec SpaceX dès la cotation"
+      },
+      {
+        "numero": 4,
+        "titre": "Plan de trading actif autour de l'IPO : les 90 premiers jours",
+        "contenu": "Semaine 1-2 : observer uniquement, noter le prix plancher établi. Semaine 3-4 : si correction >15%, entrer avec 50% du budget prévu. Semaine 5-8 : si consolidation et volume en hausse, entrer avec les 50% restants. Mois 2-3 : si le titre monte sans fondamentaux (pure euphorie), vendre 25% pour sécuriser. Mois 3 : réévaluer selon les premiers résultats trimestriels — c'est le vrai test de la thèse.",
+        "action": "Configurez ce calendrier de décision dans votre agenda avec des rappels automatiques pour chaque étape"
+      }
+    ],
+    "ressource_exclusive": {
+      "titre": "Modèle de valorisation SpaceX + tableau de suivi des catalyseurs",
+      "description": "Un Google Sheets avec les 3 scénarios de valorisation détaillés, un simulateur de rendement selon votre prix d'entrée, et un tableau de suivi des catalyseurs clés à surveiller chaque trimestre.",
+      "format": "Google Sheets"
+    }
+  },
+
+  "contenu_expert": {
+    "titre_section": "Playbook Expert — IPO & Marchés privés",
+    "badge": "Expert",
+    "couleur": "#00c896",
+    "accroche": "Accéder à SpaceX avant l'IPO, structurer une position institutionnelle, et profiter de l'écosystème spatial au-delà de la cotation",
+    "modules": [
+      {
+        "numero": 1,
+        "titre": "Accéder aux actions SpaceX sur les marchés secondaires privés",
+        "contenu": "Avant l'IPO, des actions SpaceX circulent sur Forge Global, Equityzen et NPM Capital. Accès théoriquement réservé aux investisseurs accrédités américains (patrimoine >1M$), mais certaines plateformes européennes permettent un accès via des SPV (Special Purpose Vehicles). Prix observés sur ces marchés : 180-220$ par action en 2024-2025. Avantage : prix potentiellement inférieur au prix d'IPO. Risque : illiquidité totale jusqu'à la cotation, frais de plateforme importants (3-5%).",
+        "action": "Créez un compte sur Forge Global pour surveiller les disponibilités et prix des actions SpaceX secondaires"
+      },
+      {
+        "numero": 2,
+        "titre": "La stratégie institutionnelle : construire une position de 50 000€+ sur 12 mois",
+        "contenu": "Pour des montants importants, le DCA post-IPO est la seule stratégie raisonnable. Plan sur 12 mois : 10 000€ au mois 1 (correction initiale), 10 000€ au mois 3 (après premiers résultats), 10 000€ au mois 6 (si catalyseurs positifs), 10 000€ au mois 9 (renforcement), 10 000€ au mois 12 (position complète). Prix moyen d'entrée lissé, risque de market timing éliminé. Pour une position de cette taille, ouvrir un compte titres dédié est recommandé pour le suivi fiscal.",
+        "action": "Préparez votre enveloppe d'investissement SpaceX sur 12 mois et ouvrez un CTO dédié chez un courtier sérieux"
+      },
+      {
+        "numero": 3,
+        "titre": "L'écosystème spatial au-delà de SpaceX : 5 positions satellites à surveiller",
+        "contenu": "Le succès de SpaceX va tirer l'ensemble du secteur. Les bénéficiaires indirects : Moog Inc (composants propulsion), L3Harris (électronique de défense spatiale), Maxar Technologies (satellites d'observation), Planet Labs (données satellites), Voyager Space (stations spatiales commerciales). Une allocation de 2-3% du portefeuille sur un panier de ces entreprises donne une exposition au secteur spatial sans la concentration sur SpaceX seul.",
+        "action": "Recherchez les tickers de ces 5 entreprises sur votre courtier et analysez leur exposition au marché spatial dans leurs rapports annuels"
+      },
+      {
+        "numero": 4,
+        "titre": "Optimisation fiscale d'une plus-value IPO importante en France",
+        "contenu": "Une plus-value de 50 000€ sur SpaceX en France sera taxée à 30% (flat tax) = 15 000€ d'impôt. Stratégies légales pour réduire cette facture : 1) Fractionnement sur 2 exercices fiscaux (vendre 50% en décembre, 50% en janvier). 2) Compensation avec des moins-values existantes dans votre portefeuille. 3) Apport des titres à une holding IS avant cession (régime 'apport-cession', délicat mais puissant). 4) Donation-cession pour transmission familiale. Au-delà de 30 000€ de plus-value, consultez un avocat fiscaliste.",
+        "action": "Calculez votre impôt potentiel sur votre position SpaceX cible et identifiez quelles moins-values existantes pourraient compenser"
+      }
+    ],
+    "ressource_exclusive": {
+      "titre": "Guide complet marchés privés SpaceX + simulateur fiscal plus-value IPO France",
+      "description": "Un accès aux plateformes de marchés secondaires expliqué pas à pas + un simulateur Google Sheets pour calculer votre impôt réel selon différents scénarios de vente et stratégies de fractionnement.",
+      "format": "PDF + Google Sheets"
+    },
+    "session_coaching": {
+      "disponible": true,
+      "description": "Session 1-on-1 de 60 min avec un expert MoneyFlow pour structurer votre stratégie d'investissement SpaceX : montant, timing d'entrée, plan de sortie et optimisation fiscale personnalisée.",
+      "cta": "Réserver ma session SpaceX →"
+    }
+  }
+}

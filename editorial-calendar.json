@@ -1,0 +1,187 @@
+{
+  "projet": "MoneyFlow",
+  "url": "moneyflowcompany.netlify.app",
+  "total_semaines": 12,
+  "semaines": [
+    {
+      "semaine": 1,
+      "theme_principal": "freelance",
+      "destination_nomade": "Lisbonne (Portugal)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Mathieu",
+        "age": 29,
+        "secteur": "développeur web freelance",
+        "ville": "Bordeaux",
+        "situation_depart": "CDI dans une agence web, 2 100€ nets/mois",
+        "resultat": "4 800€ son 6ème mois en freelance"
+      },
+      "niveau_contenu": "Starter",
+      "hook_newsletter": "De 2 100€ en CDI à 4 800€ en freelance : son plan en 6 mois"
+    },
+    {
+      "semaine": 2,
+      "theme_principal": "dropshipping",
+      "destination_nomade": "Bali (Indonésie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Camille",
+        "age": 24,
+        "secteur": "dropshipping produits bien-être",
+        "ville": "Lyon",
+        "situation_depart": "étudiante en master, 0€ de budget marketing",
+        "resultat": "1 900€ le premier mois, boutique rentable en 45 jours"
+      },
+      "niveau_contenu": "Starter",
+      "hook_newsletter": "Elle a lancé une boutique sans stock depuis sa chambre d'étudiant"
+    },
+    {
+      "semaine": 3,
+      "theme_principal": "trading et investissement",
+      "destination_nomade": "Chiang Mai (Thaïlande)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Alexandre",
+        "age": 35,
+        "secteur": "trading ETF & dividendes",
+        "ville": "Paris",
+        "situation_depart": "comptable salarié, aucune connaissance en bourse",
+        "resultat": "portefeuille de 28 000€ constitué en 18 mois, +340€/mois passifs"
+      },
+      "niveau_contenu": "Pro",
+      "hook_newsletter": "340€/mois sans rien faire : sa stratégie dividendes expliquée simplement"
+    },
+    {
+      "semaine": 4,
+      "theme_principal": "affiliation",
+      "destination_nomade": "Tbilissi (Géorgie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Sofia",
+        "age": 27,
+        "secteur": "affiliation finance & outils SaaS",
+        "ville": "Nantes",
+        "situation_depart": "community manager à 1 800€/mois, blog de 0 visiteur",
+        "resultat": "2 600€/mois de commissions récurrentes après 10 mois"
+      },
+      "niveau_contenu": "Pro",
+      "hook_newsletter": "2 600€/mois à vie grâce à 3 articles écrits il y a un an"
+    },
+    {
+      "semaine": 5,
+      "theme_principal": "formation en ligne",
+      "destination_nomade": "Las Palmas (Canaries)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Julien",
+        "age": 41,
+        "secteur": "formateur Excel & automatisation",
+        "ville": "Toulouse",
+        "situation_depart": "contrôleur de gestion, expert Excel ignoré de ses collègues",
+        "resultat": "première formation à 197€ : 47 ventes le premier mois = 9 259€"
+      },
+      "niveau_contenu": "Expert",
+      "hook_newsletter": "Il a monétisé ce que tout le monde faisait gratuitement au bureau"
+    },
+    {
+      "semaine": 6,
+      "theme_principal": "immobilier locatif",
+      "destination_nomade": "Medellín (Colombie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Isabelle",
+        "age": 33,
+        "secteur": "location courte durée Airbnb",
+        "ville": "Strasbourg",
+        "situation_depart": "infirmière, salaire plafonné, aucun apport au départ",
+        "resultat": "2 appartements en location saisonnière, +1 650€/mois net"
+      },
+      "niveau_contenu": "Expert",
+      "hook_newsletter": "+1 650€/mois en dehors de son salaire — son investissement Airbnb sans mystère"
+    },
+    {
+      "semaine": 7,
+      "theme_principal": "freelance",
+      "destination_nomade": "Lisbonne (Portugal)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Romain",
+        "age": 31,
+        "secteur": "consultant marketing freelance",
+        "ville": "Marseille",
+        "situation_depart": "responsable marketing, licencié lors d'une restructuration",
+        "resultat": "3 clients récurrents, 5 500€/mois facturés en 4 mois"
+      },
+      "niveau_contenu": "Starter",
+      "hook_newsletter": "Licencié un vendredi, 5 500€/mois en freelance 4 mois après"
+    },
+    {
+      "semaine": 8,
+      "theme_principal": "dropshipping",
+      "destination_nomade": "Bali (Indonésie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Laura",
+        "age": 22,
+        "secteur": "dropshipping accessoires maison",
+        "ville": "Lille",
+        "situation_depart": "job étudiant caissière à 900€/mois",
+        "resultat": "boutique à 3 400€ de CA dès le 2ème mois avec 300€ de pub"
+      },
+      "niveau_contenu": "Starter",
+      "hook_newsletter": "22 ans, caissière à 900€, maintenant 3 400€/mois en ligne"
+    },
+    {
+      "semaine": 9,
+      "theme_principal": "trading et investissement",
+      "destination_nomade": "Chiang Mai (Thaïlande)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Nicolas",
+        "age": 38,
+        "secteur": "investissement crypto & DCA Bitcoin",
+        "ville": "Grenoble",
+        "situation_depart": "ingénieur, économisait 200€/mois sans stratégie",
+        "resultat": "portefeuille x4 en 2 ans avec une méthode DCA disciplinée"
+      },
+      "niveau_contenu": "Pro",
+      "hook_newsletter": "200€/mois investis sans stratégie → portefeuille x4 en 2 ans"
+    },
+    {
+      "semaine": 10,
+      "theme_principal": "affiliation",
+      "destination_nomade": "Tbilissi (Géorgie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Emma",
+        "age": 26,
+        "secteur": "affiliation voyage & hébergement",
+        "ville": "Montpellier",
+        "situation_depart": "hôtesse d'accueil, passionnée de voyage sans budget",
+        "resultat": "1 800€/mois de commissions grâce à un compte Instagram à 8 000 abonnés"
+      },
+      "niveau_contenu": "Pro",
+      "hook_newsletter": "8 000 abonnés Instagram = 1 800€/mois : sa méthode affiliation voyage"
+    },
+    {
+      "semaine": 11,
+      "theme_principal": "formation en ligne",
+      "destination_nomade": "Las Palmas (Canaries)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Thierry",
+        "age": 44,
+        "secteur": "coach professionnel certifié en ligne",
+        "ville": "Rennes",
+        "situation_depart": "DRH reconverti, 20 ans d'expérience RH jamais monétisée",
+        "resultat": "programme de coaching à 1 200€, 12 clients en 2 mois = 14 400€"
+      },
+      "niveau_contenu": "Expert",
+      "hook_newsletter": "Il a transformé 20 ans de salariat en 14 400€ de formations vendues"
+    },
+    {
+      "semaine": 12,
+      "theme_principal": "immobilier locatif",
+      "destination_nomade": "Medellín (Colombie)",
+      "type_entrepreneur_temoignage": {
+        "prenom": "Marie",
+        "age": 36,
+        "secteur": "colocation meublée & LMNP",
+        "ville": "Nantes",
+        "situation_depart": "professeure, salaire plafonné, refus bancaire initial",
+        "resultat": "2 colocations meublées, 920€/mois de cashflow positif net"
+      },
+      "niveau_contenu": "Expert",
+      "hook_newsletter": "La banque l'a refusée 2 fois — elle a quand même 920€/mois de cashflow"
+    }
+  ]
+}
