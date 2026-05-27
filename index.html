@@ -733,6 +733,9 @@
 
   <!-- SCÈNE 1 : HOOK ─────────────────────────────────────────────────────── -->
   <section class="hero" id="hero">
+    <!-- 3D canvas scene -->
+    <canvas id="heroCanvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+
     <!-- 3D grid plane -->
     <div class="hero__grid" aria-hidden="true">
       <div class="hero__grid-plane" id="heroGridPlane"></div>
@@ -741,20 +744,6 @@
     <!-- Ambient glows -->
     <div class="hero__glow hero__glow--1" id="glow1" aria-hidden="true"></div>
     <div class="hero__glow hero__glow--2" id="glow2" aria-hidden="true"></div>
-
-    <!-- Particles -->
-    <div class="hero__particles" aria-hidden="true">
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-      <div class="hero__particle"></div>
-    </div>
 
     <!-- Floating stat cards -->
     <div class="hero__float hero__float--1" aria-hidden="true">
@@ -1141,7 +1130,7 @@
     'use strict';
 
     /* ── LENIS SMOOTH SCROLL ─────────────────────────────────────────────── */
-    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    const lenis = new Lenis({ duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(time => lenis.raf(time * 1000));
@@ -1152,6 +1141,127 @@
     lenis.on('scroll', ({ scroll }) => {
       nav.classList.toggle('scrolled', scroll > 60);
     });
+
+    /* ── 3D PARTICLE CANVAS ──────────────────────────────────────────────── */
+    (function initCanvas() {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [], mouse = { x: 0, y: 0 }, raf;
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Create 3D particles
+      const N = 90;
+      for (let i = 0; i < N; i++) {
+        particles.push({
+          x: (Math.random() - 0.5) * 2,
+          y: (Math.random() - 0.5) * 2,
+          z: Math.random() * 2 - 1,
+          vx: (Math.random() - 0.5) * 0.0008,
+          vy: (Math.random() - 0.5) * 0.0008,
+          vz: (Math.random() - 0.5) * 0.002,
+          r: Math.random() * 1.8 + 0.4,
+        });
+      }
+
+      document.addEventListener('mousemove', e => {
+        mouse.x = (e.clientX / window.innerWidth  - 0.5);
+        mouse.y = (e.clientY / window.innerHeight - 0.5);
+      });
+
+      const GOLD = [212, 168, 83];
+      const FOV = 400;
+
+      function project(p) {
+        // Slight camera tilt from mouse
+        const rx = p.y * Math.cos(mouse.y * 0.3) - p.z * Math.sin(mouse.y * 0.3);
+        const ry = p.y * Math.sin(mouse.y * 0.3) + p.z * Math.cos(mouse.y * 0.3);
+        const cx = p.x * Math.cos(mouse.x * 0.3) + p.z * Math.sin(mouse.x * 0.3);
+        const cz = -p.x * Math.sin(mouse.x * 0.3) + p.z * Math.cos(mouse.x * 0.3);
+        const z  = cz + 2;
+        if (z <= 0.1) return null;
+        const scale = FOV / (FOV + z * 180);
+        return {
+          sx: W * 0.5 + cx * W * 0.4 * scale,
+          sy: H * 0.5 + ry * H * 0.4 * scale,
+          scale,
+          depth: z,
+        };
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Sort by depth (far → near)
+        const projected = particles
+          .map((p, i) => ({ p, proj: project(p), i }))
+          .filter(d => d.proj)
+          .sort((a, b) => b.proj.depth - a.proj.depth);
+
+        // Draw connections
+        for (let a = 0; a < projected.length; a++) {
+          for (let b = a + 1; b < projected.length; b++) {
+            const pa = projected[a], pb = projected[b];
+            const dx = pa.p.x - pb.p.x, dy = pa.p.y - pb.p.y, dz = pa.p.z - pb.p.z;
+            const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            if (dist < 0.55) {
+              const alpha = (1 - dist / 0.55) * 0.18 * Math.min(pa.proj.scale, pb.proj.scale) * 2;
+              ctx.beginPath();
+              ctx.moveTo(pa.proj.sx, pa.proj.sy);
+              ctx.lineTo(pb.proj.sx, pb.proj.sy);
+              ctx.strokeStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${alpha.toFixed(3)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        for (const { p, proj } of projected) {
+          const alpha = 0.3 + proj.scale * 0.7;
+          const radius = p.r * proj.scale * 2.5;
+          // Glow
+          const grd = ctx.createRadialGradient(proj.sx, proj.sy, 0, proj.sx, proj.sy, radius * 3);
+          grd.addColorStop(0, `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${(alpha * 0.6).toFixed(3)})`);
+          grd.addColorStop(1, `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},0)`);
+          ctx.beginPath();
+          ctx.arc(proj.sx, proj.sy, radius * 3, 0, Math.PI * 2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+          // Core
+          ctx.beginPath();
+          ctx.arc(proj.sx, proj.sy, radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${alpha.toFixed(3)})`;
+          ctx.fill();
+        }
+
+        // Advance particles
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy; p.z += p.vz;
+          if (p.x >  1.2) p.x = -1.2;
+          if (p.x < -1.2) p.x =  1.2;
+          if (p.y >  1.2) p.y = -1.2;
+          if (p.y < -1.2) p.y =  1.2;
+          if (p.z >  1.2) p.z = -1.2;
+          if (p.z < -1.2) p.z =  1.2;
+        }
+        raf = requestAnimationFrame(draw);
+      }
+      draw();
+
+      // Pause canvas when hero leaves viewport
+      const heroObs = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) { cancelAnimationFrame(raf); }
+        else { raf = requestAnimationFrame(draw); }
+      }, { threshold: 0 });
+      heroObs.observe(document.getElementById('hero'));
+    })();
 
     /* ── BURGER ──────────────────────────────────────────────────────────── */
     const burger = document.getElementById('burgerBtn');
@@ -1211,125 +1321,110 @@
     });
 
     /* ── SCÈNE 2 : CONTEXTE ──────────────────────────────────────────────── */
-    // Stats explode from depth
+    gsap.set('.stats__item', { perspective: 800 });
     gsap.from('.stats__item', {
-      y: 70, opacity: 0, scale: 0.92,
-      stagger: 0.12, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '#stats', start: 'top 78%' }
+      y: 100, opacity: 0, rotateX: 40, scale: 0.85,
+      stagger: 0.14, duration: 1.2, ease: 'back.out(1.4)',
+      scrollTrigger: { trigger: '#stats', start: 'top 82%' }
     });
 
-    // Steps header
     gsap.from('#stepsHeader', {
-      y: 50, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#stepsHeader', start: 'top 80%' }
+      y: 60, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '#stepsHeader', start: 'top 82%' }
     });
 
-    // Steps: rotate in from behind (3D depth reveal)
+    // Steps: tombent depuis l'espace — rotateX 60° → 0
+    gsap.set('.steps__scene', { perspective: 1000 });
     gsap.from(['#step1', '#step2', '#step3'], {
-      rotateX: 25,
-      y: 80,
-      opacity: 0,
+      rotateX: 60, y: 120, opacity: 0,
       transformOrigin: 'top center',
-      stagger: 0.18,
-      duration: 1.2,
-      ease: 'back.out(1.4)',
-      scrollTrigger: { trigger: '.steps__grid', start: 'top 76%' }
+      stagger: 0.22, duration: 1.4, ease: 'back.out(1.6)',
+      scrollTrigger: { trigger: '.steps__grid', start: 'top 78%' }
     });
 
     /* ── SCÈNE 3 : PARCOURS ──────────────────────────────────────────────── */
-    // Methods header
     gsap.from('#methodesHeader', {
-      y: 50, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#methodesHeader', start: 'top 80%' }
+      y: 60, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '#methodesHeader', start: 'top 82%' }
     });
 
-    // Method cards stagger from depth
+    // Cartes méthodes : arrivent de profondeurs Z différentes
+    gsap.set('.methods__grid', { perspective: 1200 });
     gsap.from('.method-card', {
-      y: 60, opacity: 0, scale: 0.94,
-      stagger: { amount: 0.8, from: 'start' },
-      duration: 0.9, ease: 'power2.out',
-      scrollTrigger: { trigger: '.methods__grid', start: 'top 78%' }
+      z: -280, y: 50, opacity: 0, rotateX: 20,
+      stagger: { amount: 1, from: 'start' },
+      duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.methods__grid', start: 'top 80%' }
     });
 
-    // Revenue section
     gsap.from('#revenusHeader', {
-      x: -60, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#revenus', start: 'top 78%' }
+      x: -80, opacity: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '#revenus', start: 'top 80%' }
     });
     gsap.from('#revenusFeatures .revenue__feature', {
-      x: -40, opacity: 0,
-      stagger: 0.1, duration: 0.8,
-      scrollTrigger: { trigger: '#revenusFeatures', start: 'top 80%' }
+      x: -50, opacity: 0, stagger: 0.1, duration: 0.9,
+      scrollTrigger: { trigger: '#revenusFeatures', start: 'top 82%' }
     });
+    gsap.set('#revenusChart', { perspective: 800 });
     gsap.from('#revenusChart', {
-      x: 60, opacity: 0, rotateY: 8, duration: 1.2, ease: 'power3.out',
-      scrollTrigger: { trigger: '#revenusChart', start: 'top 78%' }
+      rotateY: 18, x: 80, opacity: 0, duration: 1.4, ease: 'power3.out',
+      scrollTrigger: { trigger: '#revenusChart', start: 'top 80%' }
     });
-
-    // Chart bars grow from zero
     gsap.from('.chart__bar', {
-      scaleY: 0,
-      transformOrigin: 'bottom',
-      stagger: 0.08,
-      duration: 0.9,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: '#revenusChart', start: 'top 72%' }
+      scaleY: 0, transformOrigin: 'bottom',
+      stagger: 0.08, duration: 1, ease: 'power2.out',
+      scrollTrigger: { trigger: '#revenusChart', start: 'top 74%' }
     });
 
     /* ── SCÈNE 4 : CLIMAX ────────────────────────────────────────────────── */
-    // Pricing header
     gsap.from('#tarifsHeader', {
-      y: 50, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#tarifsHeader', start: 'top 80%' }
+      y: 60, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '#tarifsHeader', start: 'top 82%' }
     });
 
-    // Plans: flip in with rotateY
+    // Plans flip 3D : vrais retournements de cartes
+    gsap.set('.pricing__grid', { perspective: 1000 });
     gsap.from('#plan1', {
-      rotateY: -20, x: -40, opacity: 0, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.pricing__grid', start: 'top 78%' }
+      rotateY: -55, x: -60, opacity: 0, duration: 1.3, ease: 'back.out(1)',
+      scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
     });
     gsap.from('#plan2', {
-      y: -30, scale: 0.9, opacity: 0, duration: 1.1, ease: 'back.out(1.2)',
-      scrollTrigger: { trigger: '.pricing__grid', start: 'top 78%' },
-      delay: 0.15
+      y: -60, rotateX: -30, scale: 0.8, opacity: 0, duration: 1.3, ease: 'back.out(1.5)',
+      delay: 0.15, scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
     });
     gsap.from('#plan3', {
-      rotateY: 20, x: 40, opacity: 0, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.pricing__grid', start: 'top 78%' },
-      delay: 0.3
+      rotateY: 55, x: 60, opacity: 0, duration: 1.3, ease: 'back.out(1)',
+      delay: 0.3, scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
     });
 
-    // Week content header
     gsap.from('#semaineHeader', {
-      y: 50, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#semaineHeader', start: 'top 80%' }
+      y: 60, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '#semaineHeader', start: 'top 82%' }
     });
 
     /* ── SCÈNE 5 : RÉSOLUTION ────────────────────────────────────────────── */
-    // Testimonials header
     gsap.from('#temoignagesHeader', {
-      y: 50, opacity: 0, duration: 1,
-      scrollTrigger: { trigger: '#temoignagesHeader', start: 'top 80%' }
+      y: 60, opacity: 0, duration: 1,
+      scrollTrigger: { trigger: '#temoignagesHeader', start: 'top 82%' }
     });
 
-    // Featured testimonial: scale from depth
+    gsap.set('.testimonials__featured', { perspective: 1000 });
     gsap.from('#temoignageFeatured', {
-      scale: 0.88, opacity: 0, duration: 1.3, ease: 'power3.out',
-      scrollTrigger: { trigger: '#temoignageFeatured', start: 'top 80%' }
+      rotateX: -20, scale: 0.82, opacity: 0, duration: 1.5, ease: 'power3.out',
+      scrollTrigger: { trigger: '#temoignageFeatured', start: 'top 82%' }
     });
     gsap.from('#temoignage2', {
-      x: -50, opacity: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: '#temoignage2', start: 'top 80%' }
+      rotateY: -35, x: -70, opacity: 0, duration: 1.2, ease: 'back.out(1)',
+      scrollTrigger: { trigger: '#temoignage2', start: 'top 82%' }
     });
     gsap.from('#temoignage3', {
-      x: 50, opacity: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: '#temoignage3', start: 'top 80%' }
+      rotateY: 35, x: 70, opacity: 0, duration: 1.2, ease: 'back.out(1)',
+      scrollTrigger: { trigger: '#temoignage3', start: 'top 82%' }
     });
 
-    // CTA: light burst reveal
     gsap.from('#ctaContent', {
-      scale: 0.92, opacity: 0, duration: 1.4, ease: 'power3.out',
-      scrollTrigger: { trigger: '#ctaContent', start: 'top 80%' }
+      scale: 0.85, opacity: 0, rotateX: -15, duration: 1.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#ctaContent', start: 'top 82%' }
     });
 
     /* ── 3D TILT ON CARDS ────────────────────────────────────────────────── */
@@ -1343,18 +1438,22 @@
           const x = (e.clientX - r.left) / r.width - 0.5;
           const y = (e.clientY - r.top)  / r.height - 0.5;
           gsap.to(card, {
-            rotateX: -y * 12, rotateY: x * 12, z: 10,
-            duration: 0.15, ease: 'power1.out',
-            transformPerspective: 1000
+            rotateX: -y * 20, rotateY: x * 20, z: 30,
+            duration: 0.12, ease: 'power1.out',
+            transformPerspective: 900,
+            boxShadow: `${-x*20}px ${-y*20}px 60px rgba(212,168,83,0.18), 0 40px 100px rgba(0,0,0,0.7)`,
           });
-          // Icon pops forward
           const icon = card.querySelector('.method-card__icon, .hero__float-icon');
-          if (icon) gsap.to(icon, { z: 25, duration: 0.15 });
+          if (icon) gsap.to(icon, { z: 40, scale: 1.15, duration: 0.12 });
+          const title = card.querySelector('.method-card__title, .plan__price, .testimonial__quote');
+          if (title) gsap.to(title, { z: 20, duration: 0.12 });
         });
         card.addEventListener('mouseleave', () => {
-          gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+          gsap.to(card, { rotateX: 0, rotateY: 0, z: 0, boxShadow: 'none', duration: 0.8, ease: 'elastic.out(1, 0.4)' });
           const icon = card.querySelector('.method-card__icon, .hero__float-icon');
-          if (icon) gsap.to(icon, { z: 0, duration: 0.7 });
+          if (icon) gsap.to(icon, { z: 0, scale: 1, duration: 0.8 });
+          const title = card.querySelector('.method-card__title, .plan__price, .testimonial__quote');
+          if (title) gsap.to(title, { z: 0, duration: 0.8 });
         });
       });
     }
