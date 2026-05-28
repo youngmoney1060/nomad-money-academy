@@ -1,0 +1,39 @@
+{
+  "semaine": 22,
+  "date": "2026-05-26",
+  "themes": {
+    "crypto": {
+      "actif": "Hyperliquid (HYPE)",
+      "angle": "Lancement HyperEVM et positionnement technique sur le support $14-15",
+      "prix_actuel": "$18.40"
+    },
+    "bourse": {
+      "actif": "SpaceX (SPCX)",
+      "angle": "IPO confirmée juin 2026 sur le Nasdaq, valorisation $1 750 milliards",
+      "ticker": "SPCX"
+    },
+    "remote": {
+      "focus_secteur": "Marketing digital IA et risk management",
+      "nouvelles_companies": ["Anthropic", "Mistral AI", "Perplexity", "Scale AI"]
+    },
+    "villes": {
+      "ville_spotlight": "Bangkok",
+      "angle": "Nouveau visa DTV 5 ans, meilleur rapport qualité-prix en 2026"
+    },
+    "immobilier": {
+      "pays": "Géorgie",
+      "angle": "Rendement 8.5% net, procédure achat simplifiée pour étrangers"
+    },
+    "rupture": {
+      "focus": "Timing optimal Q3 2026 avant les plans sociaux de rentrée",
+      "pays": "France"
+    },
+    "banques": {
+      "focus": "Comparatif Wise vs Revolut + résidence fiscale Géorgie 0%"
+    },
+    "psycho": {
+      "theme": "Burn-out comme déclencheur de reconversion",
+      "angle": "Les 4 profils de nomades qui réussissent et ceux qui échouent"
+    }
+  }
+}

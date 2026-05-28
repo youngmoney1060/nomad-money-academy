@@ -79,12 +79,15 @@
 
     /* ── SECTION LABELS & TITLES ─────────────────────────────────────────── */
     .section-label {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); background: var(--gold-dim); border: 1px solid var(--gold-brd);
-      border-radius: 999px; padding: 5px 16px; margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
     }
-    .section-label::before { content: '◆'; font-size: 7px; }
+    .section-label::before {
+      content: '';
+      display: block; width: 28px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
 
     .section-title {
       font-family: 'Playfair Display', Georgia, serif;
@@ -158,29 +161,33 @@
 
     /* ── HERO ────────────────────────────────────────────────────────────── */
     .hero {
-      padding: 140px 0 120px;
+      padding: 140px 0 160px;
       position: relative; overflow: hidden;
       min-height: 100vh;
       display: flex; align-items: center;
     }
 
-    /* Animated perspective grid */
-    .hero__grid {
-      position: absolute; inset: 0; pointer-events: none;
-      overflow: hidden;
-    }
-    .hero__grid-plane {
+    /* Concentric rings — editorial decoration */
+    .hero__ring {
       position: absolute;
-      bottom: -10%; left: -20%; right: -20%;
-      height: 65%;
-      background-image:
-        linear-gradient(rgba(212,168,83,0.09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,168,83,0.09) 1px, transparent 1px);
-      background-size: 72px 72px;
-      transform: perspective(500px) rotateX(62deg);
-      transform-origin: bottom center;
-      mask-image: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%);
-      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%);
+      right: -10%; top: 50%;
+      transform: translateY(-50%);
+      width: 700px; height: 700px;
+      border: 1px solid rgba(212,168,83,0.055);
+      border-radius: 50%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero__ring::before {
+      content: '';
+      position: absolute; inset: 90px;
+      border: 1px solid rgba(212,168,83,0.032);
+      border-radius: 50%;
+    }
+    .hero__ring::after {
+      content: '';
+      position: absolute; inset: 180px;
+      border: 1px solid rgba(212,168,83,0.018);
+      border-radius: 50%;
     }
 
     /* Ambient glows */
@@ -190,81 +197,31 @@
     }
     .hero__glow--1 {
       width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(212,168,83,0.12) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(212,168,83,0.11) 0%, transparent 60%);
       top: -320px; right: -220px;
     }
     .hero__glow--2 {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(196,98,45,0.09) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(196,98,45,0.07) 0%, transparent 60%);
       bottom: -220px; left: 8%;
     }
 
-    /* Floating 3D particles */
-    .hero__particles { position: absolute; inset: 0; pointer-events: none; }
-    .hero__particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--gold);
-      will-change: transform, opacity;
-    }
-    .hero__particle:nth-child(1)  { width:3px;height:3px; top:18%;left:12%; opacity:.5; animation:pfloat1 7s ease-in-out infinite; }
-    .hero__particle:nth-child(2)  { width:5px;height:5px; top:32%;left:72%; opacity:.35; animation:pfloat2 9s ease-in-out infinite 1s; }
-    .hero__particle:nth-child(3)  { width:2px;height:2px; top:55%;left:85%; opacity:.6; animation:pfloat1 6s ease-in-out infinite 2s; }
-    .hero__particle:nth-child(4)  { width:4px;height:4px; top:70%;left:25%; opacity:.3; animation:pfloat2 8s ease-in-out infinite 0.5s; }
-    .hero__particle:nth-child(5)  { width:6px;height:6px; top:22%;left:55%; opacity:.25; animation:pfloat1 11s ease-in-out infinite 3s; }
-    .hero__particle:nth-child(6)  { width:3px;height:3px; top:80%;left:60%; opacity:.45; animation:pfloat2 7.5s ease-in-out infinite 1.5s; }
-    .hero__particle:nth-child(7)  { width:2px;height:2px; top:45%;left:40%; opacity:.5; animation:pfloat1 9s ease-in-out infinite 4s; }
-    .hero__particle:nth-child(8)  { width:4px;height:4px; top:10%;left:90%; opacity:.3; animation:pfloat2 8s ease-in-out infinite 2.5s; }
-    .hero__particle:nth-child(9)  { width:5px;height:5px; top:62%;left:5%; opacity:.35; animation:pfloat1 10s ease-in-out infinite 0.8s; }
-    .hero__particle:nth-child(10) { width:2px;height:2px; top:38%;left:95%; opacity:.55; animation:pfloat2 6.5s ease-in-out infinite 3.5s; }
-
-    @keyframes pfloat1 {
-      0%,100% { transform: translateY(0) translateX(0) scale(1); }
-      33%      { transform: translateY(-22px) translateX(8px) scale(1.3); }
-      66%      { transform: translateY(-12px) translateX(-6px) scale(0.8); }
-    }
-    @keyframes pfloat2 {
-      0%,100% { transform: translateY(0) translateX(0) scale(1); }
-      50%      { transform: translateY(-28px) translateX(-10px) scale(1.2); }
-    }
-
-    /* Floating stat cards */
-    .hero__float {
-      position: absolute; right: 56px;
-      background: rgba(22,18,12,0.75);
-      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-      border: 1px solid rgba(212,168,83,0.22);
-      border-radius: var(--radius); padding: 18px 22px;
-      box-shadow: 0 24px 72px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.07) inset;
-      min-width: 165px;
-      will-change: transform;
-    }
-    .hero__float--1 { top: 130px; animation: float1 5s ease-in-out infinite; }
-    .hero__float--2 { top: 310px; animation: float2 6.5s ease-in-out infinite 1s; }
-
-    @keyframes float1 { 0%,100%{transform:perspective(700px) translateY(0) rotateX(2deg) rotateY(-5deg)} 50%{transform:perspective(700px) translateY(-18px) rotateX(-1deg) rotateY(5deg)} }
-    @keyframes float2 { 0%,100%{transform:perspective(700px) translateY(0) rotateX(-2deg) rotateY(4deg)} 50%{transform:perspective(700px) translateY(-14px) rotateX(2deg) rotateY(-4deg)} }
-
-    .hero__float-icon  { font-size: 22px; margin-bottom: 6px; display: block; }
-    .hero__float-val   { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; display: block; }
-    .hero__float-label { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; margin-top: 3px; display: block; }
-
     .hero__tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border); border-radius: 999px; padding: 6px 18px;
-      font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 36px;
-      background: rgba(212,168,83,0.04); will-change: transform;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 40px;
+      letter-spacing: 0.06em; will-change: transform;
     }
     .hero__tag-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
-      animation: pulse 2.5s infinite; box-shadow: 0 0 10px rgba(212,168,83,0.7);
+      width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+      animation: pulse 2.5s infinite; box-shadow: 0 0 8px rgba(212,168,83,0.6);
+      flex-shrink: 0;
     }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.65)} }
 
     .hero__title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(58px, 8.5vw, 110px); font-weight: 700;
-      line-height: 0.94; letter-spacing: -0.025em; margin-bottom: 30px; max-width: 820px;
+      font-size: clamp(62px, 9.5vw, 126px); font-weight: 700;
+      line-height: 0.92; letter-spacing: -0.028em; margin-bottom: 32px; max-width: 840px;
       will-change: transform;
     }
     .hero__title .accent {
@@ -406,16 +363,42 @@
 
     .method-card:nth-child(1) { grid-column: span 4; }
     .method-card:nth-child(2) { grid-column: span 2; }
-    .method-card:nth-child(3) { grid-column: span 2; }
-    .method-card:nth-child(4) { grid-column: span 2; }
+    .method-card:nth-child(3) { grid-column: span 3; }
+    .method-card:nth-child(4) { grid-column: span 3; }
     .method-card:nth-child(5) { grid-column: span 2; }
-    .method-card:nth-child(6) { grid-column: span 4; }
-    .method-card:nth-child(1), .method-card:nth-child(6) { background: linear-gradient(135deg, var(--bg) 65%, rgba(212,168,83,0.04)); }
-    .method-card:nth-child(1) .method-card__title, .method-card:nth-child(6) .method-card__title { font-size: 22px; }
+    .method-card:nth-child(6) { grid-column: span 2; }
+    .method-card:nth-child(7) { grid-column: span 2; }
+    .method-card:nth-child(8) { grid-column: span 6; }
+    .method-card:nth-child(1) { background: linear-gradient(135deg, var(--bg) 65%, rgba(212,168,83,0.04)); }
+    .method-card:nth-child(1) .method-card__title { font-size: 22px; }
 
-    .method-card__num   { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 18px; opacity: 0.5; text-transform: uppercase; }
-    .method-card__icon  { font-size: 30px; margin-bottom: 14px; display: block; will-change: transform; }
-    .method-card__title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .method-card__week {
+      display: inline-block;
+      background: rgba(212,168,83,0.06); border: 1px solid rgba(212,168,83,0.18);
+      border-radius: 6px; padding: 4px 10px;
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.04em; margin: 8px 0 14px;
+    }
+    .method-card--rupture {
+      background: linear-gradient(135deg, rgba(212,168,83,0.05) 0%, var(--bg) 60%);
+      border-color: rgba(212,168,83,0.2);
+    }
+    .method-card__rupture-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;
+    }
+    .method-card--rupture .method-card__title { font-size: 22px; }
+    .method-card__rupture-list { display: flex; flex-direction: column; gap: 0; padding-top: 56px; }
+    .method-card__feat {
+      font-size: 14px; color: var(--muted);
+      padding: 11px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .method-card__feat::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .method-card__rupture-flags { display: flex; flex-direction: column; gap: 7px; margin-top: 16px; }
+    .rupture-country { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .method-card__num   { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 700; color: rgba(212,168,83,0.13); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; display: block; }
+    .method-card__title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; margin-top: 2px; }
     .method-card__desc  { font-size: 14px; color: var(--muted); margin-bottom: 22px; line-height: 1.68; }
     .method-card__meta  { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; }
     .method-card__level { padding: 3px 10px; border-radius: 999px; font-weight: 700; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -446,6 +429,7 @@
 
     /* ── PRICING ─────────────────────────────────────────────────────────── */
     .pricing__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: start; }
+    .pricing__grid--2col { grid-template-columns: repeat(2,1fr); max-width: 820px; margin: 0 auto; }
     .plan {
       background: var(--bg); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 36px 28px; position: relative;
@@ -464,10 +448,10 @@
       z-index: -1;
     }
     .plan__badge {
-      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(90deg, #D4A853, #EDD07A); color: #0A0702;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: #D4A853; color: #0A0702;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 999px; white-space: nowrap;
     }
     .plan__name    { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
     .plan__price   { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
@@ -480,13 +464,34 @@
     .btn--plan-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn--plan-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* ── WEEK CONTENT ────────────────────────────────────────────────────── */
-    .week-section { padding: 108px 0; }
-    .week-loading { text-align: center; padding: 60px 0; color: var(--muted); }
-    .week-spinner { width: 36px; height: 36px; border: 2px solid rgba(212,168,83,0.12); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 16px; }
-    @keyframes spin { to{transform:rotate(360deg)} }
-    .week-error { text-align: center; padding: 40px 0; color: var(--orange); }
-    .week-error a { color: var(--gold); cursor: pointer; }
+    /* ── WEEK PREVIEW ────────────────────────────────────────────────────── */
+    .week-preview { display: flex; flex-direction: column; max-width: 860px; margin: 0 auto 48px; }
+    .week-preview__item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .week-preview__item:last-child { border-bottom: none; }
+    .week-preview__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700;
+      color: rgba(212,168,83,0.25); min-width: 32px; text-align: center;
+    }
+    .week-preview__body { flex: 1; }
+    .week-preview__theme { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+    .week-preview__topic { font-size: 15px; color: var(--text); font-weight: 500; }
+    .week-preview__lock {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+      background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-brd);
+    }
+    .week-preview__lock:not(:empty)[class~="week-preview__lock"] { }
+    .week-preview__item:nth-child(5) .week-preview__lock,
+    .week-preview__item:nth-child(6) .week-preview__lock {
+      background: rgba(196,98,45,0.08); color: var(--orange); border-color: rgba(196,98,45,0.2);
+    }
+    .week-preview__cta { text-align: center; }
+    .week-preview__cta p { margin-top: 12px; font-size: 13px; color: var(--muted); }
     .week-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 20px; }
     .wcard { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; position: relative; box-shadow: var(--shadow); }
     .wcard-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: flex; align-items: center; gap: 6px; }
@@ -648,11 +653,13 @@
     .footer__disclaimer { margin-top: 16px; text-align: center; font-size: 12px; color: rgba(122,102,73,0.4); }
 
     /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
-    @media (max-width: 1024px) { .hero__float { display: none; } }
+    @media (max-width: 1024px) { .hero__ring { display: none; } }
     @media (max-width: 960px) {
       .methods__grid { grid-template-columns: repeat(2,1fr); }
       .method-card:nth-child(n) { grid-column: span 1; }
-      .method-card:nth-child(1), .method-card:nth-child(6) { grid-column: span 2; }
+      .method-card:nth-child(1), .method-card:nth-child(8) { grid-column: span 2; }
+      .method-card__rupture-inner { grid-template-columns: 1fr; gap: 20px; }
+      .method-card__rupture-list { padding-top: 0; }
       .revenue__inner { grid-template-columns: 1fr; gap: 44px; }
       .pricing__grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
       .plan--featured { transform: none; }
@@ -698,10 +705,10 @@
         <a href="#" class="nav__logo">✦ Nomad <span>Money</span> Academy</a>
         <ul class="nav__links">
           <li><a href="#steps">Comment ça marche</a></li>
-          <li><a href="#methodes">Méthodes</a></li>
+          <li><a href="#methodes">Formations</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
-          <li><a href="#temoignages">Résultats</a></li>
-          <li><a href="#tarifs" class="nav__cta">Commencer gratuitement</a></li>
+          <li><a href="/membres.html">Espace membres</a></li>
+          <li><a href="#tarifs" class="nav__cta">Rejoindre l'académie</a></li>
         </ul>
         <button class="nav__burger" id="burgerBtn" aria-label="Menu">☰</button>
       </div>
@@ -712,50 +719,33 @@
         <a href="#tarifs">Tarifs</a>
         <a href="#semaine">Contenu</a>
         <a href="#temoignages">Avis</a>
-        <a href="#tarifs">Commencer gratuitement →</a>
+        <a href="#tarifs">Rejoindre l'académie →</a>
       </div>
     </div>
   </nav>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker__inner">
-      <span class="ticker__item">Mathieu, 24 ans — quitte son CDI en 4 mois</span>
-      <span class="ticker__item">3 200€/mois en dropshipping depuis Bali</span>
-      <span class="ticker__item">Alexandre, 29 ans — x3 sur l'IPO SpaceX</span>
-      <span class="ticker__item">12 000+ membres dans 40 pays</span>
-      <span class="ticker__item">Sarah remplace son salaire en 3 mois</span>
-      <span class="ticker__item">Nicolas — 28 000€ avec un airdrop crypto</span>
-      <span class="ticker__item">Mathieu, 24 ans — quitte son CDI en 4 mois</span>
-      <span class="ticker__item">3 200€/mois en dropshipping depuis Bali</span>
-      <span class="ticker__item">Alexandre, 29 ans — x3 sur l'IPO SpaceX</span>
+      <span class="ticker__item">Hyperliquid — analyse complète cette semaine</span>
+      <span class="ticker__item">SpaceX IPO — stratégie d'entrée en bourse</span>
+      <span class="ticker__item">Rupture conventionnelle : calculer ses indemnités</span>
+      <span class="ticker__item">Top villes nomades mai 2026 : Tbilisi en tête</span>
+      <span class="ticker__item">Salaire occidental depuis Bali — méthode marketing digital</span>
+      <span class="ticker__item">Wise vs Revolut vs N26 — comparatif nomade 2026</span>
+      <span class="ticker__item">Hyperliquid — analyse complète cette semaine</span>
+      <span class="ticker__item">SpaceX IPO — stratégie d'entrée en bourse</span>
+      <span class="ticker__item">Immobilier Géorgie : rendement 9% net · guide complet</span>
     </div>
   </div>
 
   <!-- SCÈNE 1 : HOOK ─────────────────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <!-- 3D canvas scene -->
-    <canvas id="heroCanvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-
-    <!-- 3D grid plane -->
-    <div class="hero__grid" aria-hidden="true">
-      <div class="hero__grid-plane" id="heroGridPlane"></div>
-    </div>
+    <!-- Decorative rings -->
+    <div class="hero__ring" aria-hidden="true"></div>
 
     <!-- Ambient glows -->
     <div class="hero__glow hero__glow--1" id="glow1" aria-hidden="true"></div>
     <div class="hero__glow hero__glow--2" id="glow2" aria-hidden="true"></div>
-
-    <!-- Floating stat cards -->
-    <div class="hero__float hero__float--1" aria-hidden="true">
-      <span class="hero__float-icon">💸</span>
-      <span class="hero__float-val">3.2M€</span>
-      <span class="hero__float-label">générés ce mois</span>
-    </div>
-    <div class="hero__float hero__float--2" aria-hidden="true">
-      <span class="hero__float-icon">🌍</span>
-      <span class="hero__float-val">+340</span>
-      <span class="hero__float-label">nouveaux membres</span>
-    </div>
 
     <div class="container">
       <div class="hero__tag" id="heroTag">
@@ -768,10 +758,10 @@
         <span class="accent">Vis à tes conditions.</span>
       </h1>
       <p class="hero__sub" id="heroSub">
-        On t'apprend les vraies méthodes — freelance, trading, e-commerce, affiliation — pour remplacer ton salaire et travailler depuis Bali, Lisbonne ou ta chambre.
+        Rupture conventionnelle, crypto, bourse, immobilier, freelance à distance — 8 stratégies concrètes pour quitter ton CDI proprement et travailler depuis où tu veux.
       </p>
       <div class="hero__actions" id="heroActions">
-        <a href="#tarifs" class="btn btn--green">Commencer gratuitement →</a>
+        <a href="#tarifs" class="btn btn--green">Rejoindre l'académie →</a>
         <a href="#temoignages" class="btn btn--outline">Voir les 12 000 résultats</a>
       </div>
       <div class="hero__proof" id="heroProof">
@@ -820,30 +810,30 @@
     <div class="container">
       <div class="section-header section-header--center" id="stepsHeader">
         <span class="section-label">Comment ça marche</span>
-        <h2 class="section-title">Ton chemin vers la liberté</h2>
-        <p class="section-sub">De zéro à ton premier salaire libre en 6 mois. Le même plan que nos 12 000 membres.</p>
+        <h2 class="section-title">De ton CDI à ta liberté en 3 étapes</h2>
+        <p class="section-sub">Un plan structuré — de la négociation de ta rupture conventionnelle à ton installation nomade. Le même chemin que nos 12 000 membres.</p>
       </div>
       <div class="steps__scene">
         <div class="steps__grid">
           <div class="step" id="step1">
             <span class="step__num">01</span>
-            <h3 class="step__title">Choisis ta méthode</h3>
-            <p class="step__desc">Freelance, dropshipping, trading, affiliation — on analyse ton profil et on choisit la méthode qui colle à ta situation et tes objectifs.</p>
-            <span class="step__result">✓ Premier revenu en 30 jours</span>
+            <h3 class="step__title">Prépare ta sortie</h3>
+            <p class="step__desc">Rupture conventionnelle, calcul des indemnités, droits au chômage, création de ta structure freelance — tu pars intelligemment, sans perdre d'argent ni de droits.</p>
+            <span class="step__result">✓ Sortie négociée, chômage sécurisé</span>
             <div class="step__arrow">→</div>
           </div>
           <div class="step" id="step2">
             <span class="step__num">02</span>
-            <h3 class="step__title">Applique le plan</h3>
-            <p class="step__desc">Formations, coaching, communauté. Tu n'es pas seul. Chaque semaine, du contenu frais, des stratégies testées, des membres qui partagent leurs résultats.</p>
-            <span class="step__result">✓ 1 000€/mois dès le 3e mois</span>
+            <h3 class="step__title">Construis tes revenus</h3>
+            <p class="step__desc">Crypto, bourse, immobilier, freelance à distance — tu choisis ta stratégie selon ton profil. Chaque semaine, une analyse fraîche et des actions concrètes à appliquer.</p>
+            <span class="step__result">✓ Premier revenu alternatif en 30 jours</span>
             <div class="step__arrow">→</div>
           </div>
           <div class="step" id="step3">
             <span class="step__num">03</span>
-            <h3 class="step__title">Quitte ton CDI</h3>
-            <p class="step__desc">Quand tes revenus dépassent ton salaire, tu poses ta dem. Tu travailles depuis où tu veux. Pas de patron, pas de métro, pas de compromis.</p>
-            <span class="step__result">✓ Liberté totale en 6 mois</span>
+            <h3 class="step__title">Installe-toi librement</h3>
+            <p class="step__desc">Villes nomades, banques internationales, fiscalité optimisée — tu travailles depuis Tbilisi, Bali ou Lisbonne avec la bonne structure juridique et les bons comptes.</p>
+            <span class="step__result">✓ Liberté totale, fiscalité optimisée</span>
           </div>
         </div>
       </div>
@@ -854,75 +844,107 @@
   <section class="section" id="methodes">
     <div class="container">
       <div class="section-header" id="methodesHeader">
-        <span class="section-label">Les méthodes</span>
-        <h2 class="section-title">Ce qu'on n'enseigne pas à l'école</h2>
-        <p class="section-sub">6 façons prouvées de générer des revenus sans patron, sans horaires, depuis n'importe où.</p>
+        <span class="section-label">Les formations</span>
+        <h2 class="section-title">8 thèmes. Mis à jour chaque semaine.</h2>
+        <p class="section-sub">Analyses crypto, stratégies bourse, immobilier par pays, freelance à distance — et les outils concrets pour sortir proprement de ton CDI.</p>
       </div>
       <div class="methods__grid">
         <div class="method-card tilt-card">
           <div class="method-card__num">01</div>
-          <span class="method-card__icon">🎨</span>
-          <h3 class="method-card__title">Freelance & Services</h3>
-          <p class="method-card__desc">Vends tes compétences sur Malt, Upwork ou Fiverr. La voie la plus rapide pour remplacer un salaire — même sans expérience préalable.</p>
+          <h3 class="method-card__title">Analyse Crypto Hebdomadaire</h3>
+          <p class="method-card__desc">Chaque semaine, une crypto analysée en profondeur : vidéos libres de droits de spécialistes, articles de référence, niveaux d'entrée et gestion du risque. Avec des liens directs vers les meilleures plateformes.</p>
+          <div class="method-card__week">Cette semaine — Hyperliquid</div>
           <div class="method-card__meta">
-            <span class="method-card__level level--debutant">Débutant</span>
-            <span>8 modules · 42 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span class="method-card__level level--intermediaire">Intermédiaire</span>
+            <span>Analyse hebdo · vidéos + articles</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
           </div>
         </div>
         <div class="method-card tilt-card">
           <div class="method-card__num">02</div>
-          <span class="method-card__icon">📦</span>
-          <h3 class="method-card__title">Dropshipping & E-commerce</h3>
-          <p class="method-card__desc">Vends en ligne sans stock. Scalable depuis ton laptop, n'importe où dans le monde.</p>
+          <h3 class="method-card__title">Bourse & ETFs</h3>
+          <p class="method-card__desc">Stratégies long terme, sélections ETF, IPO à surveiller. Analyse hebdo d'une valeur ou d'un événement clé pour investir intelligemment.</p>
+          <div class="method-card__week">Cette semaine — SpaceX IPO</div>
           <div class="method-card__meta">
             <span class="method-card__level level--intermediaire">Intermédiaire</span>
-            <span>10 modules · 58 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span>Analyse hebdo</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
           </div>
         </div>
         <div class="method-card tilt-card">
           <div class="method-card__num">03</div>
-          <span class="method-card__icon">📈</span>
-          <h3 class="method-card__title">Trading & Investissement</h3>
-          <p class="method-card__desc">Actions, ETF, cryptos, IPO — fais travailler ton argent pendant que tu vis ta vie.</p>
+          <h3 class="method-card__title">Travailler à l'étranger & Facturer l'Occident</h3>
+          <p class="method-card__desc">Marketing digital, IA, risk management — les compétences qui se vendent à 80€/h depuis Bali. Chaque semaine, une liste de sociétés occidentales qui recrutent à distance.</p>
           <div class="method-card__meta">
-            <span class="method-card__level level--avance">Avancé</span>
-            <span>12 modules · 74 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span class="method-card__level level--debutant">Débutant</span>
+            <span>Liste hebdo de sociétés</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
           </div>
         </div>
         <div class="method-card tilt-card">
           <div class="method-card__num">04</div>
-          <span class="method-card__icon">🤝</span>
-          <h3 class="method-card__title">Marketing d'Affiliation</h3>
-          <p class="method-card__desc">Recommande des produits, touche 5% à 50% de commission. 100% passif, 0 stock.</p>
+          <h3 class="method-card__title">Meilleures Villes Nomades</h3>
+          <p class="method-card__desc">Top 5 villes chaque semaine — coût de la vie, visa, qualité du coworking, communauté expat, internet. Tout ce qu'il faut pour choisir ta prochaine base.</p>
+          <div class="method-card__week">Cette semaine — Tbilisi · Chiang Mai · Medellín</div>
           <div class="method-card__meta">
             <span class="method-card__level level--debutant">Débutant</span>
-            <span>7 modules · 38 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span>Guide hebdo par ville</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
           </div>
         </div>
         <div class="method-card tilt-card">
           <div class="method-card__num">05</div>
-          <span class="method-card__icon">🎓</span>
-          <h3 class="method-card__title">Formation en Ligne</h3>
-          <p class="method-card__desc">Crée et vends tes propres cours. Construit une fois, génère des revenus 24h/24.</p>
+          <h3 class="method-card__title">Immobilier Locatif & Achat-Revente</h3>
+          <p class="method-card__desc">Les meilleurs pays pour investir dans la pierre — rendements locatifs, règles juridiques, droits de notaire, fiscalité locale. Géorgie, Portugal, Mexique, Indonésie et bien d'autres.</p>
           <div class="method-card__meta">
-            <span class="method-card__level level--intermediaire">Intermédiaire</span>
-            <span>9 modules · 51 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span class="method-card__level level--avance">Avancé</span>
+            <span>Analyse par pays chaque semaine</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
           </div>
         </div>
         <div class="method-card tilt-card">
           <div class="method-card__num">06</div>
-          <span class="method-card__icon">🏠</span>
-          <h3 class="method-card__title">Immobilier & SCPI</h3>
-          <p class="method-card__desc">Investis dans la pierre physique ou digitale et génère des revenus locatifs même en voyageant à l'autre bout de la planète.</p>
+          <h3 class="method-card__title">Banques & Finances Nomades</h3>
+          <p class="method-card__desc">Wise, Revolut, N26, comptes pros multi-devises — quelle banque, quel pays, quelle structure juridique. La boîte à outils financière du nomade en 2026.</p>
           <div class="method-card__meta">
-            <span class="method-card__level level--avance">Avancé</span>
-            <span>11 modules · 63 leçons</span>
-            <a href="#tarifs" class="method-card__link">Voir →</a>
+            <span class="method-card__level level--intermediaire">Intermédiaire</span>
+            <span>Guides pratiques · comparatifs</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
+          </div>
+        </div>
+        <div class="method-card tilt-card">
+          <div class="method-card__num">07</div>
+          <h3 class="method-card__title">Psychologie du Saut dans le Vide</h3>
+          <p class="method-card__desc">Surmonter la peur, gérer l'incertitude, décider vite. Le côté humain que personne n'enseigne — et pourtant le seul vrai frein entre toi et ta liberté.</p>
+          <div class="method-card__meta">
+            <span class="method-card__level level--debutant">Débutant</span>
+            <span>Module mindset · exercices</span>
+            <a href="#tarifs" class="method-card__link">Accéder →</a>
+          </div>
+        </div>
+        <div class="method-card tilt-card method-card--rupture">
+          <div class="method-card__rupture-inner">
+            <div>
+              <div class="method-card__num">08</div>
+              <h3 class="method-card__title">Rupture Conventionnelle</h3>
+              <p class="method-card__desc">Le guide légal que ton patron ne veut pas que tu lises — décliné pour les règles spécifiques de chaque pays. Calcul des indemnités, conservation des droits chômage, lancement en freelance sans risque.</p>
+              <div class="method-card__rupture-flags">
+                <span class="rupture-country">🇫🇷 France — Rupture homologuée DREETS · ARE France Travail</span>
+                <span class="rupture-country">🇧🇪 Belgique — Transaction amiable · Allocations ONEM</span>
+                <span class="rupture-country">🇨🇭 Suisse — Résiliation d'un commun accord · Assurance chômage ALV</span>
+              </div>
+            </div>
+            <div class="method-card__rupture-list">
+              <div class="method-card__feat">Calculer ses indemnités minimales légales (FR · BE · CH)</div>
+              <div class="method-card__feat">Conserver ses droits chômage — ARE · ONEM · ALV</div>
+              <div class="method-card__feat">Négocier avec son employeur — timing et script</div>
+              <div class="method-card__feat">Créer sa structure freelance avant de partir</div>
+              <div class="method-card__feat">Éviter les pièges qui font perdre les indemnités</div>
+              <div class="method-card__meta" style="margin-top:20px;border-top:none;padding-top:0">
+                <span class="method-card__level level--debutant">France · Belgique · Suisse</span>
+                <a href="#tarifs" class="method-card__link">Accéder →</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -935,15 +957,15 @@
         <div>
           <div id="revenusHeader">
             <span class="section-label">Progression réelle</span>
-            <h2 class="section-title">De 0 à ton premier salaire libre</h2>
-            <p class="section-sub">Nos membres atteignent leur premier 1 000€/mois dès le 3e mois. En 6 à 8 mois, beaucoup dépassent leur ancien salaire.</p>
+            <h2 class="section-title">De 0 à ton premier revenu alternatif</h2>
+            <p class="section-sub">Crypto, bourse ou freelance à distance — nos membres génèrent leurs premiers revenus dès le 1er mois. En 4 à 6 mois, la plupart ont dépassé leur salaire.</p>
           </div>
           <div class="revenue__features" id="revenusFeatures">
-            <div class="revenue__feature">Formations étape par étape pour les débutants complets</div>
-            <div class="revenue__feature">Communauté de 12 000+ membres qui partagent tout</div>
-            <div class="revenue__feature">Coaching par des gens qui l'ont déjà fait</div>
-            <div class="revenue__feature">Nouvelles stratégies mises à jour chaque semaine</div>
-            <div class="revenue__feature">Guides pour travailler depuis Bali, Lisbonne, Thaïlande…</div>
+            <div class="revenue__feature">Analyse crypto et bourse chaque semaine, actionnables</div>
+            <div class="revenue__feature">Listes de sociétés qui recrutent à distance mises à jour</div>
+            <div class="revenue__feature">Guide rupture conventionnelle + droits chômage inclus</div>
+            <div class="revenue__feature">Comparatifs immobilier par pays avec règles juridiques</div>
+            <div class="revenue__feature">Top villes nomades chaque semaine avec budget détaillé</div>
           </div>
         </div>
         <div class="chart tilt-card" id="revenusChart">
@@ -969,63 +991,126 @@
     <div class="container">
       <div class="section-header section-header--center" id="tarifsHeader">
         <span class="section-label">Tarifs</span>
-        <h2 class="section-title">Commence gratuitement</h2>
-        <p class="section-sub">Pas de carte bancaire. Pas d'engagement. Accès immédiat.</p>
+        <h2 class="section-title">Accès complet dès 29€/mois</h2>
+        <p class="section-sub">Deux formules. Pas d'essai gratuit — un vrai contenu, à un prix juste.</p>
       </div>
-      <div class="pricing__grid">
-        <div class="plan tilt-card" id="plan1">
-          <div class="plan__name">Starter</div>
-          <div class="plan__price">€0</div>
-          <div class="plan__period">/mois · Gratuit pour toujours</div>
-          <ul class="plan__features">
-            <li>3 méthodes accessibles</li>
-            <li>Communauté Discord</li>
-            <li>1 formation introductive</li>
-            <li>Newsletter hebdomadaire</li>
-          </ul>
-          <a href="#" class="btn btn--plan btn--plan-outline">Commencer gratuitement</a>
-        </div>
-        <div class="plan plan--featured" id="plan2">
-          <div class="plan__badge">⭐ Le plus populaire</div>
-          <div class="plan__name">Pro</div>
+      <div class="pricing__grid pricing__grid--2col">
+        <div class="plan plan--featured tilt-card" id="plan2">
+          <div class="plan__badge">Le plus populaire</div>
+          <div class="plan__name">Accès</div>
           <div class="plan__price">€29</div>
           <div class="plan__period">/mois · Sans engagement</div>
           <ul class="plan__features">
-            <li>Toutes les méthodes</li>
-            <li>+50 formations complètes</li>
-            <li>Coaching mensuel en groupe</li>
-            <li>Outils de tracking revenus</li>
-            <li>Accès aux webinaires live</li>
+            <li>8 thèmes hebdo complets — articles + vidéos</li>
+            <li>Analyses crypto & bourse chaque semaine</li>
+            <li>Listes sociétés recrutement remote</li>
+            <li>Top villes nomades + budget détaillé</li>
+            <li>Guides immobilier par pays</li>
+            <li>Comparatifs banques & finances nomades</li>
+            <li>4 semaines d'archives</li>
           </ul>
-          <a href="#" class="btn btn--plan btn--green">Choisir Pro →</a>
+          <!-- STRIPE-LINK-29: remplace href par ton lien Stripe Payment Link -->
+          <a href="https://buy.stripe.com/REMPLACER_ACCES_29" class="btn btn--plan btn--green">S'abonner à 29€/mois →</a>
         </div>
         <div class="plan tilt-card" id="plan3">
           <div class="plan__name">Expert</div>
           <div class="plan__price">€99</div>
-          <div class="plan__period">/mois · Pour aller vite</div>
+          <div class="plan__period">/mois · Analyses approfondies</div>
           <ul class="plan__features">
-            <li>Tout le plan Pro</li>
-            <li>Coaching 1-on-1 mensuel</li>
-            <li>Stratégies exclusives</li>
-            <li>Réseau mastermind privé</li>
-            <li>Accompagnement prioritaire</li>
+            <li>Tout le plan Accès</li>
+            <li>Archives illimitées — toutes les semaines</li>
+            <li>Analyses crypto : niveaux d'entrée/sortie précis</li>
+            <li>Due diligence immobilière pays par pays</li>
+            <li>Calculateur rupture conv. FR · BE · CH</li>
+            <li>Modèles de lettres & checklists juridiques</li>
+            <li>Support email — réponse sous 48h</li>
           </ul>
-          <a href="#" class="btn btn--plan btn--plan-outline">Choisir Expert</a>
+          <!-- STRIPE-LINK-99: remplace href par ton lien Stripe Payment Link -->
+          <a href="https://buy.stripe.com/REMPLACER_EXPERT_99" class="btn btn--plan btn--dark">S'abonner à 99€/mois →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt week-section" id="semaine">
+  <section class="section section--alt" id="semaine">
     <div class="container">
       <div class="section-header section-header--center" id="semaineHeader">
-        <span class="section-label">Nouveau cette semaine</span>
-        <h2 class="section-title">Contenu de la semaine</h2>
-        <p class="section-sub">Témoignage, formation actionnable et guide digital nomade — chaque semaine une nouvelle destination.</p>
+        <span class="section-label">Cette semaine</span>
+        <h2 class="section-title">Au programme cette semaine</h2>
+        <p class="section-sub">Les thèmes couverts cette semaine — articles, vidéos et analyses réservés aux membres.</p>
       </div>
-      <div id="wk-loading" class="week-loading"><div class="week-spinner"></div><p>Chargement…</p></div>
-      <div id="wk-error" class="week-error" hidden><p>⚠️ Contenu indisponible. <a onclick="loadWeekContent()">Réessayer</a></p></div>
-      <div id="wk-grid" class="week-grid" hidden></div>
+      <div class="week-preview">
+        <!-- NMA-WEEK-START -->
+        <div class="week-preview__item">
+          <span class="week-preview__num">01</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Analyse Crypto</div>
+            <div class="week-preview__topic">Hyperliquid — analyse complète + niveaux d'entrée</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">02</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Bourse & ETFs</div>
+            <div class="week-preview__topic">SpaceX IPO — comment positionner son portefeuille</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">03</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Remote &amp; Facturation Occident</div>
+            <div class="week-preview__topic">12 agences marketing UK/US qui recrutent en remote ce mois</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">04</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Villes Nomades</div>
+            <div class="week-preview__topic">Tbilisi · Chiang Mai · Medellín — comparatif coût + visa mai 2026</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">05</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Immobilier</div>
+            <div class="week-preview__topic">Géorgie — achat appartement à Tbilisi, rendement locatif 9% net</div>
+          </div>
+          <span class="week-preview__lock">Expert</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">06</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Rupture Conventionnelle</div>
+            <div class="week-preview__topic">Calculateur indemnités FR · BE · CH + modèle de lettre</div>
+          </div>
+          <span class="week-preview__lock">Expert</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">07</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Banques Nomades</div>
+            <div class="week-preview__topic">Wise Business vs Revolut Pro — comparatif frais 2026</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <div class="week-preview__item">
+          <span class="week-preview__num">08</span>
+          <div class="week-preview__body">
+            <div class="week-preview__theme">Psychologie</div>
+            <div class="week-preview__topic">Décider en 30 jours — la méthode pour arrêter de procrastiner son départ</div>
+          </div>
+          <span class="week-preview__lock">Membres</span>
+        </div>
+        <!-- NMA-WEEK-END -->
+      </div>
+      <div class="week-preview__cta">
+        <a href="#tarifs" class="btn btn--green">Accéder au contenu complet →</a>
+        <p>Accès dès 29€/mois · sans engagement</p>
+      </div>
     </div>
   </section>
 
@@ -1042,12 +1127,12 @@
           <div class="testimonial tilt-card" id="temoignageFeatured">
             <div>
               <div class="testimonial__stars">★★★★★</div>
-              <p class="testimonial__quote">"En 4 mois, j'ai remplacé mon salaire de graphiste. Je travaille depuis Lisbonne maintenant. Mes anciens collègues prennent toujours le métro à 8h du matin."</p>
+              <p class="testimonial__quote">"La rupture conventionnelle m'a permis de partir avec 6 mois d'indemnités et mes droits chômage. J'ai utilisé ce temps pour développer mes revenus crypto et freelance. Aujourd'hui je suis à Lisbonne, mes anciens collègues prennent encore le métro à 8h."</p>
               <div class="testimonial__author">
                 <div class="testimonial__avatar">S</div>
                 <div>
                   <div class="testimonial__name">Sarah M., 27 ans</div>
-                  <div class="testimonial__role">Freelance designer · Lisbonne, Portugal</div>
+                  <div class="testimonial__role">Freelance marketing · Lisbonne, Portugal</div>
                 </div>
               </div>
             </div>
@@ -1057,15 +1142,15 @@
               <div class="testimonial__journey">
                 <div class="t-journey-item">
                   <span class="t-journey-icon">📍</span>
-                  <div><span class="t-journey-label">Avant</span>Graphiste salariée à Paris · 2 200€/mois</div>
+                  <div><span class="t-journey-label">Avant</span>Chef de projet marketing · Paris · 2 400€/mois</div>
                 </div>
                 <div class="t-journey-item">
                   <span class="t-journey-icon">⚡</span>
-                  <div><span class="t-journey-label">Méthode</span>Freelance · Plan Pro · 4 mois</div>
+                  <div><span class="t-journey-label">Départ</span>Rupture conventionnelle négociée · 5 mois d'indemnités</div>
                 </div>
                 <div class="t-journey-item">
                   <span class="t-journey-icon">🌍</span>
-                  <div><span class="t-journey-label">Aujourd'hui</span>Nomade · Lisbonne, Bali, Barcelone</div>
+                  <div><span class="t-journey-label">Aujourd'hui</span>Freelance marketing digital · facture des clients UK et US</div>
                 </div>
               </div>
             </div>
@@ -1073,23 +1158,23 @@
         </div>
         <div class="testimonial tilt-card" id="temoignage2">
           <div class="testimonial__stars">★★★★★</div>
-          <p class="testimonial__quote">"J'avais 23 ans et zéro expérience. Aujourd'hui mon shop fait 3 200€/mois. J'ai quitté mon stage CDI prospect et je le regrette pas du tout."</p>
+          <p class="testimonial__quote">"Les analyses crypto hebdo m'ont appris à entrer et sortir correctement. J'ai commencé avec 2 000€ sur Hyperliquid, aujourd'hui c'est ma deuxième source de revenus régulière. Je gère ça depuis Bali."</p>
           <div class="testimonial__author">
             <div class="testimonial__avatar">T</div>
             <div>
               <div class="testimonial__name">Thomas L., 24 ans</div>
-              <div class="testimonial__role">E-commerce · Bali, Indonésie</div>
+              <div class="testimonial__role">Trader crypto · Bali, Indonésie</div>
             </div>
           </div>
         </div>
         <div class="testimonial tilt-card" id="temoignage3">
           <div class="testimonial__stars">★★★★★</div>
-          <p class="testimonial__quote">"J'ai deux sources de revenus passifs. Je bosse 20h/semaine et je gagne plus qu'avant. La meilleure décision de ma vie à 26 ans."</p>
+          <p class="testimonial__quote">"J'ai acheté un appartement en Géorgie à 42 000€ en suivant le guide immobilier. Rendement locatif de 9,2% net. J'ai tout compris sur les droits de notaire et la fiscalité locale grâce aux analyses pays."</p>
           <div class="testimonial__author">
             <div class="testimonial__avatar">A</div>
             <div>
               <div class="testimonial__name">Amina K., 26 ans</div>
-              <div class="testimonial__role">Affiliation · Nomade digitale</div>
+              <div class="testimonial__role">Investisseuse immobilier · Tbilisi, Géorgie</div>
             </div>
           </div>
         </div>
@@ -1102,9 +1187,9 @@
       <div id="ctaContent">
         <span class="section-label">Rejoindre</span>
         <h2 class="section-title">C'est ton tour maintenant.</h2>
-        <p class="section-sub">12 000+ jeunes ont arrêté d'attendre. Commence aujourd'hui — gratuit, sans engagement, sans bullshit.</p>
+        <p class="section-sub">12 000+ jeunes ont négocié leur rupture conv., construit leurs revenus et choisi leur ville. Dès 29€/mois, sans engagement.</p>
         <a href="#tarifs" class="btn btn--green" style="font-size:16px;padding:18px 44px;margin-top:4px">
-          Rejoindre l'académie — C'est gratuit →
+          Rejoindre l'académie →
         </a>
       </div>
     </div>
@@ -1142,59 +1227,12 @@
       nav.classList.toggle('scrolled', scroll > 60);
     });
 
-    /* ── 3D PARTICLE CANVAS ──────────────────────────────────────────────── */
+    /* ── 3D PARTICLE CANVAS (removed) ───────────────────────────────────── */
     (function initCanvas() {
-      const canvas = document.getElementById('heroCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
+      // Canvas removed — replaced with CSS editorial rings
+      return;
+      const ctx = null;
       let W, H, particles = [], mouse = { x: 0, y: 0 }, raf;
-
-      function resize() {
-        W = canvas.width  = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      // Create 3D particles
-      const N = 90;
-      for (let i = 0; i < N; i++) {
-        particles.push({
-          x: (Math.random() - 0.5) * 2,
-          y: (Math.random() - 0.5) * 2,
-          z: Math.random() * 2 - 1,
-          vx: (Math.random() - 0.5) * 0.0008,
-          vy: (Math.random() - 0.5) * 0.0008,
-          vz: (Math.random() - 0.5) * 0.002,
-          r: Math.random() * 1.8 + 0.4,
-        });
-      }
-
-      document.addEventListener('mousemove', e => {
-        mouse.x = (e.clientX / window.innerWidth  - 0.5);
-        mouse.y = (e.clientY / window.innerHeight - 0.5);
-      });
-
-      const GOLD = [212, 168, 83];
-      const FOV = 400;
-
-      function project(p) {
-        // Slight camera tilt from mouse
-        const rx = p.y * Math.cos(mouse.y * 0.3) - p.z * Math.sin(mouse.y * 0.3);
-        const ry = p.y * Math.sin(mouse.y * 0.3) + p.z * Math.cos(mouse.y * 0.3);
-        const cx = p.x * Math.cos(mouse.x * 0.3) + p.z * Math.sin(mouse.x * 0.3);
-        const cz = -p.x * Math.sin(mouse.x * 0.3) + p.z * Math.cos(mouse.x * 0.3);
-        const z  = cz + 2;
-        if (z <= 0.1) return null;
-        const scale = FOV / (FOV + z * 180);
-        return {
-          sx: W * 0.5 + cx * W * 0.4 * scale,
-          sy: H * 0.5 + ry * H * 0.4 * scale,
-          scale,
-          depth: z,
-        };
-      }
-
       function draw() {
         ctx.clearRect(0, 0, W, H);
 
@@ -1284,19 +1322,6 @@
       .from('#heroActions', { y: 30, opacity: 0, duration: 0.8 }, '-=0.6')
       .from('#heroProof',   { y: 20, opacity: 0, duration: 0.7 }, '-=0.5');
 
-    // Grid plane moves forward as you scroll (camera zoom effect)
-    gsap.to('#heroGridPlane', {
-      y: -80,
-      backgroundSize: '90px 90px',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.5,
-      }
-    });
-
     // Hero content recedes as you scroll
     gsap.to('#hero .container', {
       y: -60,
@@ -1382,19 +1407,22 @@
       scrollTrigger: { trigger: '#tarifsHeader', start: 'top 82%' }
     });
 
-    // Plans flip 3D : vrais retournements de cartes
+    // Plans flip 3D
     gsap.set('.pricing__grid', { perspective: 1000 });
-    gsap.from('#plan1', {
-      rotateY: -55, x: -60, opacity: 0, duration: 1.3, ease: 'back.out(1)',
+    gsap.from('#plan2', {
+      rotateY: -40, x: -50, opacity: 0, duration: 1.3, ease: 'back.out(1)',
       scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
     });
-    gsap.from('#plan2', {
-      y: -60, rotateX: -30, scale: 0.8, opacity: 0, duration: 1.3, ease: 'back.out(1.5)',
+    gsap.from('#plan3', {
+      rotateY: 40, x: 50, opacity: 0, duration: 1.3, ease: 'back.out(1)',
       delay: 0.15, scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
     });
-    gsap.from('#plan3', {
-      rotateY: 55, x: 60, opacity: 0, duration: 1.3, ease: 'back.out(1)',
-      delay: 0.3, scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' }
+
+    // Week preview items
+    gsap.from('.week-preview__item', {
+      x: -30, opacity: 0,
+      stagger: 0.07, duration: 0.7, ease: 'power2.out',
+      scrollTrigger: { trigger: '.week-preview', start: 'top 80%' }
     });
 
     gsap.from('#semaineHeader', {
@@ -1480,135 +1508,7 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-count]').forEach(el => counterIo.observe(el));
 
-    /* ── UTILITY ─────────────────────────────────────────────────────────── */
-    function fmt(n) { return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n); }
-    function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-    function flag(code) {
-      const flags = { PT:'🇵🇹',ID:'🇮🇩',TH:'🇹🇭',GE:'🇬🇪',ES:'🇪🇸',CO:'🇨🇴',AR:'🇦🇷',MX:'🇲🇽',EE:'🇪🇪',CV:'🇨🇻' };
-      return flags[code] || '🌍';
-    }
 
-    function renderTemoignage(t) {
-      const max = Math.max(...t.revenus_progressifs.map(r => r.revenus));
-      const bars = t.revenus_progressifs.map(r => {
-        const h = Math.max(4, Math.round((r.revenus / max) * 100));
-        return `<div class="wt-bar-w" title="Mois ${r.mois} : ${fmt(r.revenus)}"><div class="wt-bar" style="height:${h}%"></div><span class="wt-bar-lbl">M${r.mois}</span></div>`;
-      }).join('');
-      return `<div class="wcard wcard--temoignage">
-        <div class="wcard-label">💬 Témoignage de la semaine</div>
-        <div class="wt-header">
-          <div class="wt-avatar">${esc(t.avatar_initiales || t.prenom[0])}</div>
-          <div><div class="wt-name">${esc(t.prenom)}, ${t.age} ans · ${esc(t.ville)}</div><div class="wt-meta">${esc(t.methode)} · Plan ${esc(t.plan_moneyflow)}</div></div>
-          <div class="wt-badge">+${fmt(t.revenus_progressifs[5].revenus)}/mois</div>
-        </div>
-        <div class="wt-steps">
-          <div class="wt-step wt-step--avant"><div class="wt-step-lbl">Avant</div>${esc(t.parcours.avant)}</div>
-          <div class="wt-step wt-step--pendant"><div class="wt-step-lbl">Pendant</div>${esc(t.parcours.pendant)}</div>
-          <div class="wt-step wt-step--resultat"><div class="wt-step-lbl">Résultat</div>${esc(t.parcours.resultat)}</div>
-        </div>
-        <div class="wt-bars" aria-label="Évolution revenus 6 mois">${bars}</div>
-        <blockquote class="wt-quote">"${esc(t.citation)}"</blockquote>
-      </div>`;
-    }
-
-    function renderNomade(g) {
-      const bm = g.budget_mensuel;
-      const postes = [['Logement','logement'],['Nourriture','nourriture'],['Coworking','coworking'],['Transport','transport'],['Loisirs','loisirs_sorties'],['Santé','sante_divers']];
-      const rows = postes.map(([l,k]) => `<tr><td>${l}</td><td class="col-serre">${fmt(bm[k].budget_serre)}</td><td class="col-confort">${fmt(bm[k].budget_confort)}</td><td class="col-premium">${fmt(bm[k].budget_premium)}</td></tr>`).join('');
-      const t = bm.totaux;
-      const quartiers = (g.meilleurs_quartiers||[]).slice(0,3).map(q=>`<div class="wn-quartier"><div class="wn-q-name">${esc(q.nom)}</div><div class="wn-q-desc">${esc(q.avantages_nomade||q.ambiance||'')}</div></div>`).join('');
-      return `<div class="wcard wcard--nomade">
-        <div class="wcard-label">🌍 Guide Digital Nomade</div>
-        <div class="wn-dest"><span class="wn-flag">${flag(g.pays_code)}</span><div><div class="wn-name">${esc(g.destination)}</div><div class="wn-tag">${esc((g.introduction||'').split('.')[0])}</div></div></div>
-        <table class="wn-table"><thead><tr><th>Poste</th><th>Serré</th><th>Confort</th><th>Premium</th></tr></thead><tbody>${rows}</tbody>
-        <tfoot><tr><td><strong>Total / mois</strong></td><td class="col-serre"><strong>${fmt(t.budget_serre)}</strong></td><td class="col-confort"><strong>${fmt(t.budget_confort)}</strong></td><td class="col-premium"><strong>${fmt(t.budget_premium)}</strong></td></tr></tfoot></table>
-        <div class="wn-quartiers">${quartiers}</div>
-      </div>`;
-    }
-
-    function renderFormation(f) {
-      const etapes = (f.etapes||[]).map((e,i) => `<div class="acc-item"><button class="acc-btn" aria-expanded="${i===0?'true':'false'}"><span class="acc-num">${e.numero}</span>${esc(e.titre)}<span class="acc-chevron">▼</span></button><div class="acc-body ${i===0?'open':''}"><div class="acc-content">${esc(e.description)}${e.action_immediate?`<div class="acc-action">⚡ ${esc(e.action_immediate)}</div>`:''}</div></div></div>`).join('');
-      const outils = (f.outils_recommandes||[]).map(o=>`<div class="wf-outil"><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.nom)}</a><div class="wf-prix">${esc(o.prix)}</div><div class="wf-usage">${esc(o.usage)}</div></div>`).join('');
-      const erreurs = (f.erreurs_courantes||[]).map(e=>`<div class="wf-erreur"><div class="wf-err-title">⚠️ ${esc(e.erreur)}</div><div style="color:var(--muted);font-size:12px">${esc(e.consequence)}</div><div class="wf-err-sol">✓ ${esc(e.solution)}</div></div>`).join('');
-      const ra = f.resultat_attendu||{};
-      return `<div class="wcard wcard--formation">
-        <div class="wf-head"><div><div class="wcard-label">📚 Formation de la semaine</div><h3 class="wf-title">${esc(f.titre)}</h3><p class="wf-sub">${esc(f.sous_titre)}</p></div>
-        <div class="wf-chips">${ra.semaine_4?`<div class="wf-chip"><span class="v">4 sem.</span><span class="l">${esc(ra.semaine_4)}</span></div>`:''}${ra.mois_3?`<div class="wf-chip"><span class="v">3 mois</span><span class="l">${esc(ra.mois_3)}</span></div>`:''}${ra.mois_6?`<div class="wf-chip"><span class="v">6 mois</span><span class="l">${esc(ra.mois_6)}</span></div>`:''}</div></div>
-        <div class="accordion">${etapes}</div>
-        <div class="wcard-label" style="margin-bottom:14px">🛠 Outils recommandés</div>
-        <div class="wf-outils">${outils}</div>
-        <div class="wcard-label" style="margin-bottom:14px">⚠️ Erreurs à éviter</div>
-        <div class="wf-erreurs">${erreurs}</div>
-      </div>`;
-    }
-
-    function renderLocked(data, tier) {
-      const isPro=tier==='pro', label=isPro?'Pro':'Expert', price=isPro?'29€/mois':'99€/mois';
-      const badgeCls=isPro?'locked-badge--pro':'locked-badge--expert', ovrCls=isPro?'locked-overlay--pro':'locked-overlay--expert';
-      const btnCls=isPro?'btn--green':'btn--dark', icon=isPro?'⭐':'💎';
-      const chips=(data.modules||[]).map(m=>`<div class="locked-module-chip">${esc(m.titre)}</div>`).join('');
-      const preview=`<div class="wcard" style="opacity:0.3;filter:blur(3px);pointer-events:none"><div class="wcard-label">${icon} ${esc(data.titre_section)}</div><div style="font-size:18px;font-weight:800;margin-bottom:12px">${esc(data.accroche)}</div>${(data.modules||[]).slice(0,2).map(m=>`<div style="background:var(--bg2);border-radius:8px;padding:14px;margin-bottom:8px;font-size:13px;color:var(--muted)"><strong style="color:var(--text)">${esc(m.titre)}</strong><br>${esc(m.contenu.slice(0,80))}…</div>`).join('')}</div>`;
-      return `<div class="locked-section"><div class="locked-preview">${preview}</div><div class="locked-overlay ${ovrCls}"><div class="locked-icon">${icon}</div><span class="locked-badge ${badgeCls}">Plan ${label}</span><h3 class="locked-title">${esc(data.accroche)}</h3><p class="locked-desc">${data.modules?.length||0} modules exclusifs réservés aux abonnés ${label}.</p><div class="locked-modules-preview">${chips}</div><a href="#tarifs" class="btn ${btnCls}" style="font-size:15px;padding:14px 28px">Accéder au plan ${label} — ${price}</a></div></div>`;
-    }
-
-    function renderNewsletter(n) {
-      return `<div class="wcard wcard--nl"><div class="icon">📬</div><h3>Reçois le contenu chaque semaine</h3><p>Témoignage, formation actionnable et guide nomade — dans ta boîte mail chaque lundi.</p><a href="#tarifs" class="btn btn--green" style="font-size:15px">Recevoir la newsletter →</a>${n.objet_email?`<p class="objet">Cette semaine : « ${esc(n.objet_email)} »`:''}</div>`;
-    }
-
-    function initAccordion(root) {
-      root.querySelectorAll('.acc-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const open = btn.getAttribute('aria-expanded') === 'true';
-          root.querySelectorAll('.acc-btn').forEach(b => { b.setAttribute('aria-expanded','false'); b.nextElementSibling.classList.remove('open'); });
-          if (!open) { btn.setAttribute('aria-expanded','true'); btn.nextElementSibling.classList.add('open'); }
-        });
-      });
-    }
-
-    function renderFull(data, tier) {
-      const isPro=tier==='pro', icon=isPro?'⭐':'💎', color=isPro?'var(--gold)':'var(--orange)', label=isPro?'Pro':'Expert';
-      const modules=(data.modules||[]).map(m=>`<div style="background:var(--bg2);border-radius:10px;padding:18px;margin-bottom:12px"><div style="font-weight:700;color:${color};margin-bottom:8px">${esc(m.titre)}</div><div style="color:var(--muted);font-size:14px;line-height:1.65">${esc(m.contenu)}</div></div>`).join('');
-      return `<div class="wcard" style="grid-column:span 12;border-top:3px solid ${color}"><div class="wcard-label">${icon} Contenu ${label} — Aperçu admin</div><div style="font-size:20px;font-weight:800;margin-bottom:20px">${esc(data.accroche)}</div>${modules}</div>`;
-    }
-
-    function renderGrid(data, adminMode) {
-      return renderTemoignage(data.temoignage) + renderNomade(data.guide_digital_nomade) + renderFormation(data.formation) +
-        (data.contenu_pro    ? (adminMode ? renderFull(data.contenu_pro,'pro')       : renderLocked(data.contenu_pro,'pro'))    : '') +
-        (data.contenu_expert ? (adminMode ? renderFull(data.contenu_expert,'expert') : renderLocked(data.contenu_expert,'expert')) : '') +
-        renderNewsletter(data.newsletter);
-    }
-
-    async function loadWeekContent() {
-      const loading=document.getElementById('wk-loading'), error=document.getElementById('wk-error'), grid=document.getElementById('wk-grid');
-      loading.hidden=false; error.hidden=true; grid.hidden=true;
-      try {
-        const idx = await fetch('/content-index.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json();});
-        const sem = idx.semaines.find(s=>s.numero===idx.semaine_courante);
-        if(!sem) throw new Error('semaine introuvable');
-        const data = await fetch('/'+sem.fichier).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();});
-        window._weekData = data;
-        const adminMode = new URLSearchParams(location.search).has('preview');
-        grid.innerHTML = renderGrid(data, adminMode);
-        grid.hidden=false; loading.hidden=true;
-        initAccordion(grid);
-        initTilt();
-        // Animate newly injected cards
-        gsap.from('#wk-grid .wcard', {
-          y: 40, opacity: 0,
-          stagger: 0.1, duration: 0.8, ease: 'power2.out'
-        });
-      } catch(err) {
-        console.error('[NMA]', err);
-        loading.hidden=true; error.hidden=false;
-      }
-    }
-
-    window.loadWeekContent = loadWeekContent;
-    loadWeekContent();
-
-    if (new URLSearchParams(location.search).has('preview')) {
-      document.querySelector('.nav__logo').style.outline = '2px solid var(--gold)';
-    }
 
   })();
   </script>

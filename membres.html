@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Membres — Nomad Money Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #1A1510; --bg2: #141008; --bg3: #221C12; --bg-dark: #060402;
+      --gold: #D4A853; --gold-dim: rgba(212,168,83,0.10); --gold-brd: rgba(212,168,83,0.25);
+      --gold-mid: #B8943F; --orange: #C4622D; --text: #F2E8D5; --muted: #7A6649;
+      --border: rgba(212,168,83,0.14); --radius: 18px; --radius-sm: 10px;
+      --shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 40px rgba(0,0,0,0.5);
+    }
+    html, body { height: 100%; }
+    body { font-family: 'DM Sans', sans-serif; background: #090703; color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── LOGIN SCREEN ── */
+    #loginScreen {
+      display: none !important;
+    }
+    .login-box {
+      width: 100%; max-width: 400px;
+      background: rgba(22,18,12,0.6); backdrop-filter: blur(24px);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 48px 40px; text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+    .login-logo {
+      font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700;
+      margin-bottom: 36px; display: block;
+    }
+    .login-logo span { background: linear-gradient(90deg, #D4A853, #EDD07A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .login-box h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+    .login-box p { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    .login-input {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 14px 18px; color: var(--text);
+      font-family: inherit; font-size: 15px; outline: none;
+      transition: border-color 0.2s; margin-bottom: 12px;
+    }
+    .login-input:focus { border-color: var(--gold); }
+    .login-input::placeholder { color: var(--muted); }
+    .login-btn {
+      width: 100%; background: var(--gold); color: #0A0702; border: none;
+      border-radius: var(--radius-sm); padding: 14px; font-family: inherit;
+      font-weight: 700; font-size: 14px; letter-spacing: 0.04em; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .login-btn:hover { background: #EDD07A; transform: translateY(-1px); }
+    .login-error { color: var(--orange); font-size: 13px; margin-top: 12px; }
+    .login-subscribe { display: inline-block; margin-top: 24px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s; }
+    .login-subscribe:hover { color: var(--gold); }
+
+    /* ── MEMBER AREA ── */
+    #memberArea { display: block; min-height: 100vh; }
+
+    .member-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,4,2,0.88); backdrop-filter: blur(28px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+    .member-header__inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .member-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; }
+    .member-logo span { background: linear-gradient(90deg, #D4A853, #EDD07A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .member-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .member-badge--acces { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-brd); }
+    .member-badge--expert { background: rgba(196,98,45,0.1); color: var(--orange); border: 1px solid rgba(196,98,45,0.25); }
+    .member-header__right { display: flex; align-items: center; gap: 16px; }
+    .member-week { font-size: 12px; color: var(--muted); }
+    .member-logout { font-size: 12px; color: var(--muted); cursor: pointer; transition: color 0.2s; border: none; background: none; font-family: inherit; padding: 0; }
+    .member-logout:hover { color: var(--text); }
+
+    .member-layout {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Sidebar */
+    .member-sidebar {
+      border-right: 1px solid var(--border);
+      padding: 28px 20px; position: sticky; top: 60px;
+      height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .sidebar-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; padding: 0 8px; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 8px; border-radius: var(--radius-sm);
+      cursor: pointer; transition: background 0.15s; margin-bottom: 2px;
+      border: none; background: none; width: 100%; text-align: left; color: var(--text);
+      font-family: inherit; text-decoration: none;
+    }
+    .sidebar-item:hover { background: var(--gold-dim); }
+    .sidebar-item.active { background: var(--gold-dim); color: var(--gold); }
+    .sidebar-item__num { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 700; color: rgba(212,168,83,0.3); min-width: 20px; }
+    .sidebar-item.active .sidebar-item__num { color: var(--gold); }
+    .sidebar-item__text { font-size: 13px; font-weight: 500; line-height: 1.3; }
+    .sidebar-item__lock { font-size: 10px; color: var(--orange); margin-left: auto; }
+
+    /* Main content */
+    .member-main { padding: 40px 48px; }
+    .content-panel { display: block; border-bottom: 1px solid var(--border); padding-bottom: 60px; margin-bottom: 60px; }
+    .content-panel:last-child { border-bottom: none; }
+
+    .content-week-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .content-week-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    .content-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
+    .content-sub { color: var(--muted); font-size: 16px; margin-bottom: 40px; max-width: 620px; line-height: 1.72; }
+    .content-divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+    .content-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .content-section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold); }
+
+    .content-body { font-size: 15px; color: rgba(242,232,213,0.8); line-height: 1.82; max-width: 720px; }
+    .content-body p { margin-bottom: 18px; }
+    .content-body strong { color: var(--text); font-weight: 600; }
+
+    .content-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+    .content-card__title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .content-card__body { font-size: 14px; color: var(--muted); line-height: 1.72; }
+    .content-card__tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-brd); border-radius: 999px; padding: 3px 10px; margin-bottom: 10px; }
+    .content-card__tag--orange { background: rgba(196,98,45,0.08); color: var(--orange); border-color: rgba(196,98,45,0.2); }
+
+    .content-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .content-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+
+    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
+    .stat-card__val { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+    .stat-card__label { font-size: 12px; color: var(--muted); }
+
+    .link-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .link-item:last-child { border-bottom: none; }
+    .link-item a { color: var(--gold); font-weight: 600; font-size: 13px; }
+    .link-item a:hover { text-decoration: underline; }
+    .link-item__desc { color: var(--muted); font-size: 13px; }
+
+    .company-row { display: grid; grid-template-columns: 1fr 1fr 100px 80px; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .company-row:last-child { border-bottom: none; }
+    .company-row__name { font-weight: 600; }
+    .company-row__role { color: var(--muted); font-size: 13px; }
+    .company-row__salary { color: var(--gold); font-weight: 700; font-size: 13px; }
+    .company-row__link a { color: var(--gold); font-size: 12px; font-weight: 700; }
+    .company-header { display: grid; grid-template-columns: 1fr 1fr 100px 80px; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    .city-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .city-card__name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .city-card__country { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+    .city-card__row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(212,168,83,0.07); font-size: 13px; }
+    .city-card__row:last-child { border-bottom: none; }
+    .city-card__row span:last-child { font-weight: 700; color: var(--text); }
+    .city-card__score { display: flex; gap: 4px; margin-top: 14px; }
+    .score-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .score-dot.filled { background: var(--gold); }
+
+    /* Expert lock overlay */
+    .expert-lock {
+      background: var(--bg2); border: 1px solid rgba(196,98,45,0.25);
+      border-radius: var(--radius); padding: 64px 40px; text-align: center;
+    }
+    .expert-lock__icon { font-size: 40px; margin-bottom: 16px; }
+    .expert-lock__title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .expert-lock__sub { color: var(--muted); font-size: 15px; margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+    /* Calculator */
+    .calc-form { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 24px; }
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .calc-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .calc-field input, .calc-field select {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 12px 14px; color: var(--text);
+      font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .calc-field input:focus, .calc-field select:focus { border-color: var(--gold); }
+    .calc-btn {
+      background: var(--gold); color: #0A0702; border: none;
+      border-radius: var(--radius-sm); padding: 14px 28px;
+      font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer;
+      transition: background 0.2s; letter-spacing: 0.04em;
+    }
+    .calc-btn:hover { background: #EDD07A; }
+    .calc-result { background: var(--bg-dark); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; display: none; }
+    .calc-result.visible { display: block; }
+    .calc-result__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .calc-result__item { text-align: center; }
+    .calc-result__val { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 700; color: var(--gold); line-height: 1; display: block; }
+    .calc-result__label { font-size: 11px; color: var(--muted); margin-top: 4px; display: block; text-transform: uppercase; letter-spacing: 0.08em; }
+    .calc-result__note { font-size: 13px; color: var(--muted); font-style: italic; border-top: 1px solid var(--border); padding-top: 16px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-sm); font-family: inherit; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; letter-spacing: 0.03em; }
+    .btn--green { background: var(--gold); color: #0A0702; }
+    .btn--green:hover { background: #EDD07A; transform: translateY(-2px); }
+    .btn--outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn--outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { display: inline-block; background: var(--gold-dim); border: 1px solid var(--gold-brd); border-radius: 6px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--gold); }
+
+    @media (max-width: 960px) {
+      .member-layout { grid-template-columns: 1fr; }
+      .member-sidebar { display: none; }
+      .member-main { padding: 24px 20px; }
+      .content-grid-2, .content-grid-3, .calc-row { grid-template-columns: 1fr; }
+      .company-header, .company-row { grid-template-columns: 1fr 1fr; }
+      .company-row__salary, .company-row__link { display: none; }
+      .mobile-nav { display: flex; }
+    }
+    .mobile-nav {
+      display: none;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav-btn {
+      flex-shrink: 0;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    .mobile-nav-btn.active { background: var(--gold-dim); color: var(--gold); border-color: var(--gold-brd); }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ──────────────────────────────────────────────────────── -->
+<div id="loginScreen">
+  <div class="login-box">
+    <span class="login-logo">✦ Nomad <span>Money</span> Academy</span>
+    <h1>Espace Membres</h1>
+    <p>Entre ton mot de passe abonné pour accéder au contenu de la semaine.</p>
+    <input type="password" class="login-input" id="passwordInput" placeholder="Mot de passe abonné" autocomplete="current-password">
+    <button type="button" class="login-btn" id="loginBtn">Accéder →</button>
+    <p class="login-error" id="loginError" style="display:none">Mot de passe incorrect. Vérifie ton email d'abonnement.</p>
+    <a href="/#tarifs" class="login-subscribe">Pas encore membre ? S'abonner dès 29€/mois →</a>
+  </div>
+</div>
+
+<!-- ── MEMBER AREA ───────────────────────────────────────────────────────── -->
+<div id="memberArea">
+
+  <header class="member-header">
+    <div class="member-header__inner">
+      <span class="member-logo">✦ Nomad <span>Money</span> Academy</span>
+      <div class="member-header__right">
+        <span class="member-week">Semaine du 26 mai 2026</span>
+        <span class="member-badge" id="memberBadge">Accès</span>
+        <button class="member-logout" id="logoutBtn">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a class="mobile-nav-btn active" href="#panel-crypto">01 Crypto</a>
+    <a class="mobile-nav-btn" href="#panel-bourse">02 Bourse</a>
+    <a class="mobile-nav-btn" href="#panel-remote">03 Remote</a>
+    <a class="mobile-nav-btn" href="#panel-villes">04 Villes</a>
+    <a class="mobile-nav-btn" href="#panel-immo">05 Immo</a>
+    <a class="mobile-nav-btn" href="#panel-rupture">06 Rupture conv.</a>
+    <a class="mobile-nav-btn" href="#panel-banques">07 Banque</a>
+    <a class="mobile-nav-btn" href="#panel-psycho">08 Psycho</a>
+  </nav>
+
+  <div class="member-layout">
+
+    <!-- Sidebar -->
+    <aside class="member-sidebar">
+      <div class="sidebar-label">Cette semaine</div>
+      <a class="sidebar-item active" href="#panel-crypto">
+        <span class="sidebar-item__num">01</span>
+        <span class="sidebar-item__text">Analyse Crypto</span>
+      </a>
+      <a class="sidebar-item" href="#panel-bourse">
+        <span class="sidebar-item__num">02</span>
+        <span class="sidebar-item__text">Bourse & ETFs</span>
+      </a>
+      <a class="sidebar-item" href="#panel-remote">
+        <span class="sidebar-item__num">03</span>
+        <span class="sidebar-item__text">Remote & Facturation</span>
+      </a>
+      <a class="sidebar-item" href="#panel-villes">
+        <span class="sidebar-item__num">04</span>
+        <span class="sidebar-item__text">Villes Nomades</span>
+      </a>
+      <a class="sidebar-item" href="#panel-immo">
+        <span class="sidebar-item__num">05</span>
+        <span class="sidebar-item__text">Immobilier</span>
+        <span class="sidebar-item__lock expert-only-indicator">Expert</span>
+      </a>
+      <a class="sidebar-item" href="#panel-rupture">
+        <span class="sidebar-item__num">06</span>
+        <span class="sidebar-item__text">Rupture Conv.</span>
+        <span class="sidebar-item__lock expert-only-indicator">Expert</span>
+      </a>
+      <a class="sidebar-item" href="#panel-banques">
+        <span class="sidebar-item__num">07</span>
+        <span class="sidebar-item__text">Banques Nomades</span>
+      </a>
+      <a class="sidebar-item" href="#panel-psycho">
+        <span class="sidebar-item__num">08</span>
+        <span class="sidebar-item__text">Psychologie</span>
+      </a>
+    </aside>
+
+    <!-- Main content -->
+    <main class="member-main">
+
+      <!-- 01 · CRYPTO ──────────────────────────────────────────────────── -->
+      <div class="content-panel active" id="panel-crypto">
+        <!-- NMA-START:crypto -->
+        <div class="content-week-tag">Analyse Crypto — Semaine 22</div>
+        <h1 class="content-title">Hyperliquid (HYPE)</h1>
+        <p class="content-sub">Protocole de trading décentralisé on-chain, Hyperliquid a dépassé les 10 milliards de volume journalier. Voici l'analyse complète pour décider si et comment se positionner.</p>
+
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:32px;border:1px solid var(--border)">
+          <iframe src="https://www.youtube.com/embed/CjOEKxbbPZg" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="Hyperliquid — Un expert explique tout (Journal du Coin)"></iframe>
+        </div>
+
+        <div class="content-grid-3">
+          <div class="stat-card"><div class="stat-card__val">$18.40</div><div class="stat-card__label">Prix actuel (HYPE)</div></div>
+          <div class="stat-card"><div class="stat-card__val">$6.2B</div><div class="stat-card__label">Capitalisation</div></div>
+          <div class="stat-card"><div class="stat-card__val">+340%</div><div class="stat-card__label">Performance 6 mois</div></div>
+        </div>
+
+        <div class="content-section-label">Ce qu'est Hyperliquid</div>
+        <div class="content-body">
+          <p>Hyperliquid est une blockchain Layer 1 spécialisée dans le trading perpetual on-chain. Contrairement aux DEX classiques (Uniswap, dYdX), Hyperliquid tourne sur son propre réseau HyperBFT — ce qui lui permet d'atteindre une latence de 200ms et un carnet d'ordres entièrement on-chain.</p>
+          <p>Le token HYPE a été distribué via airdrop en novembre 2024 à tous les utilisateurs de la plateforme. Depuis, il s'est apprécié de plus de 600% depuis le snapshot, ce qui en fait l'un des airdrops les plus profitables de l'histoire crypto.</p>
+          <p><strong>Pourquoi ça intéresse maintenant :</strong> Hyperliquid vient de lancer HyperEVM — leur VM compatible Ethereum — ce qui ouvre la porte à un écosystème DeFi complet sur leur chaîne. C'est le catalyseur qui justifie l'analyse cette semaine.</p>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">Analyse technique</div>
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="content-card__tag">Support clé</div>
+            <div class="content-card__title">Zone $14–15</div>
+            <div class="content-card__body">C'est le niveau de retest du breakout de janvier. Un retour dans cette zone constitue une opportunité d'entrée long terme avec un ratio risque/rendement favorable.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag content-card__tag--orange">Résistance</div>
+            <div class="content-card__title">Zone $22–24</div>
+            <div class="content-card__body">ATH historique. Une clôture hebdomadaire au-dessus de $24 ouvrirait vers $35–40 en extension. Un rejet à ce niveau invite à alléger les positions.</div>
+          </div>
+        </div>
+
+        <div class="content-section-label">Vidéos — spécialistes FR</div>
+        <div class="link-item"><span class="link-item__desc">Un expert explique tout sur Hyperliquid — Journal du Coin</span><a href="https://www.youtube.com/watch?v=CjOEKxbbPZg" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Hyperliquid : analyse complète de l'écosystème — Journal du Coin</span><a href="https://www.youtube.com/watch?v=m4YKM8DkKY4" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">La révolution Hyperliquid en 15 minutes — CoinAcademy</span><a href="https://www.youtube.com/watch?v=jqEnT9Fbxps" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Hyperliquid (HYPE) expliqué en 9 minutes</span><a href="https://www.youtube.com/watch?v=qPyAV5la60k" target="_blank" rel="noopener">Regarder →</a></div>
+
+        <div class="content-section-label" style="margin-top:24px">Articles — analyses FR</div>
+        <div class="link-item"><span class="link-item__desc">Qu'est-ce qu'Hyperliquid ? Définition & analyse complète — Journal du Coin</span><a href="https://journalducoin.com/cryptopedia/hype/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Pourquoi le marché sous-estime HYPE selon Bitwise — Journal du Coin</span><a href="https://journalducoin.com/defi/bitwise-marche-sous-estime-hyperliquid/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">ETF Hyperliquid : comment Wall Street aspire le rendement DeFi — JDC</span><a href="https://journalducoin.com/economie/etf-hyperliquid-hype-wall-street-rendement-defi/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Pourquoi Hyperliquid et HYPE explosent — Cryptoast</span><a href="https://cryptoast.fr/pourquoi-hyperliquid-crypto-hype-explosent/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Hyperliquid s'impose comme l'une des DeFi les plus rentables — JDC</span><a href="https://journalducoin.com/defi/hyperliquid-plateformes-rentables-defi/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Documentation officielle HyperEVM</span><a href="https://hyperliquid.xyz" target="_blank" rel="noopener">Consulter →</a></div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">Plateformes pour trader HYPE</div>
+        <div class="link-item"><span>Hyperliquid DEX (natif — meilleure liquidité)</span><a href="https://app.hyperliquid.xyz" target="_blank" rel="noopener">Ouvrir →</a></div>
+        <div class="link-item"><span>Bybit (centralisé — pour débutants)</span><a href="https://bybit.com" target="_blank" rel="noopener">Ouvrir →</a></div>
+        <div class="link-item"><span>KuCoin (centralisé — frais réduits)</span><a href="https://kucoin.com" target="_blank" rel="noopener">Ouvrir →</a></div>
+        <div style="margin-top:20px"><p style="font-size:12px;color:var(--muted);font-style:italic">Ce contenu est informatif et ne constitue pas un conseil financier. Investis uniquement ce que tu peux te permettre de perdre.</p></div>
+        <!-- NMA-END:crypto -->
+      </div>
+
+      <!-- 02 · BOURSE ──────────────────────────────────────────────────── -->
+      <div class="content-panel" id="panel-bourse">
+        <!-- NMA-START:bourse -->
+        <div class="content-week-tag">Bourse & ETFs — Semaine 22</div>
+        <h1 class="content-title">SpaceX (SPCX) — L'IPO du siècle</h1>
+        <p class="content-sub">IPO confirmée sur le Nasdaq, cotation prévue mi-juin 2026. Valorisation cible : 1 750 à 2 000 milliards de dollars — la plus grande introduction en bourse de l'histoire.</p>
+
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:32px;border:1px solid var(--border)">
+          <iframe src="https://www.youtube.com/embed/B2fS2TIjBJI" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="IPO SpaceX — l'introduction en Bourse la plus folle de la décennie ?"></iframe>
+        </div>
+
+        <div class="content-grid-3">
+          <div class="stat-card"><div class="stat-card__val">$1 750B</div><div class="stat-card__label">Valorisation cible</div></div>
+          <div class="stat-card"><div class="stat-card__val">Juin 2026</div><div class="stat-card__label">Date IPO confirmée</div></div>
+          <div class="stat-card"><div class="stat-card__val">$18.7B</div><div class="stat-card__label">CA 2025</div></div>
+        </div>
+
+        <div class="content-section-label">Contexte</div>
+        <div class="content-body">
+          <p>SpaceX a déposé son dossier d'introduction en Bourse auprès de la SEC sous le ticker <strong>SPCX</strong>. Avec Starlink (40M+ abonnés), Starship et des contrats NASA/DoD massifs, c'est la plus grande entreprise privée jamais introduite en bourse — devant Saudi Aramco et Alibaba.</p>
+          <p><strong>Point clé pour les nomades investisseurs :</strong> SpaceX détient 18 712 BTC (~1,3 milliard de dollars). L'IPO pourrait déclencher un effet de levier indirect sur le marché crypto. Les marchés prédictifs (Trade.xyz sur Hyperliquid) permettent déjà de se positionner sur SPCX via un contrat perpétuel à $150 de référence.</p>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">Stratégie — comment se positionner</div>
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="content-card__tag">Avant l'IPO</div>
+            <div class="content-card__title">Marché secondaire & ETFs</div>
+            <div class="content-card__body">Accès via plateformes de parts privées (Forge Global, EquityZen). Indirectement : ARKX (Space ETF), QQQ (Nasdaq 100). Tesla reste un proxy Musk mais attention au risque spécifique.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag content-card__tag--orange">Risques à connaître</div>
+            <div class="content-card__title">Volatilité post-IPO + risque Musk</div>
+            <div class="content-card__body">SpaceX n'est pas encore profitable au niveau consolidé (-$4,9B en 2025). La "prime Musk" peut se retourner rapidement. IPO à $2T = très peu de marge d'erreur pour les acheteurs du jour 1.</div>
+          </div>
+        </div>
+
+        <div class="content-section-label">Vidéos — analyses FR</div>
+        <div class="link-item"><span class="link-item__desc">IPO SpaceX : l'introduction la plus folle de la décennie ?</span><a href="https://www.youtube.com/watch?v=B2fS2TIjBJI" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">SpaceX ENTRE EN BOURSE : tout savoir sur l'IPO</span><a href="https://www.youtube.com/watch?v=1W0dOKFM45U" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">SpaceX : vers la plus grosse IPO jamais réalisée — France 24</span><a href="https://www.youtube.com/watch?v=ZFXF3mJ0zhk" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">SpaceX en Bourse : on a les chiffres</span><a href="https://www.youtube.com/watch?v=-fPgW9pMqDc" target="_blank" rel="noopener">Regarder →</a></div>
+
+        <div class="content-section-label" style="margin-top:24px">Articles — analyses FR</div>
+        <div class="link-item"><span class="link-item__desc">Faut-il acheter l'action SpaceX (SPCX) ? — Cryptoast</span><a href="https://cryptoast.fr/faut-il-acheter-action-spacex/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Acheter SPCX avant l'IPO du 11 juin — risques & accès — Cryptonomie</span><a href="https://www.cryptonomie.fr/acheter-spacex-spcx-avant-lipo-du-11-juin-2026-risques-acces-et-valorisation/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">SpaceX bientôt au Nasdaq : bonne nouvelle pour Bitcoin ? — JDC</span><a href="https://journalducoin.com/economie/spacex-elon-musk-nasdaq-pourquoi-bonne-nouvelle-bitcoin/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">SpaceX, OpenAI et Anthropic arrivent en Bourse — JDC</span><a href="https://journalducoin.com/economie/spacex-openai-anthropic-bourse/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">IPO SpaceX : l'entreprise détient 1,3 milliard en Bitcoin — Cryptoast</span><a href="https://cryptoast.fr/ipo-spacex-entreprise-elon-musk-detient-milliard-dollars-bitcoin/" target="_blank" rel="noopener">Lire →</a></div>
+
+        <div style="margin-top:20px"><p style="font-size:12px;color:var(--muted);font-style:italic">Ce contenu est informatif et ne constitue pas un conseil financier.</p></div>
+        <!-- NMA-END:bourse -->
+      </div>
+
+      <!-- 03 · REMOTE ──────────────────────────────────────────────────── -->
+      <div class="content-panel" id="panel-remote">
+        <!-- NMA-START:remote -->
+        <div class="content-week-tag">Remote & Facturation Occident — Semaine 22</div>
+        <h1 class="content-title">Travailler à distance et facturer en euros — le guide complet</h1>
+        <p class="content-sub">Marketing digital, IA, risk management. Pas seulement où postuler — mais comment décrocher, comment facturer, et quelle structure juridique adopter.</p>
+
+        <div class="content-section-label">1 — Quelle structure juridique choisir</div>
+        <div class="content-grid-3">
+          <div class="content-card">
+            <div class="content-card__tag">Auto-entrepreneur</div>
+            <div class="content-card__title">Jusqu'à ~77K€/an</div>
+            <div class="content-card__body">Le plus simple pour démarrer. Plafond de CA (77 700€ pour les services). Charges sociales ~22%. Inconvénient : pas de TVA récupérable, image moins professionnelle pour les clients B2B anglosaxons.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">SASU</div>
+            <div class="content-card__title">Recommandée dès 40K€/an</div>
+            <div class="content-card__body">Société par actions simplifiée unipersonnelle. Permet de rémunérer via dividendes (flat tax 30%), frais professionnels déductibles, image sérieuse. Comptable indispensable (~1 200€/an). Structure préférée des nomades FR.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Portage salarial</div>
+            <div class="content-card__title">Transition douce</div>
+            <div class="content-card__body">Tu restes salarié d'une société portage pendant que tu factures tes clients. Charges élevées (~45%) mais tu cotises retraite/chômage et tu gardes un bulletin de salaire. Idéal pour tester avant de créer ta structure.</div>
+          </div>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">2 — Comment décrocher ces missions</div>
+        <div class="content-body">
+          <p><strong>LinkedIn est ton outil principal.</strong> Profil en anglais, titre en anglais ("Freelance Growth Marketer · Remote · Available"), bannière qui dit clairement que tu travailles en remote B2B. Les recruteurs US/UK filtrent sur "Open to work" + localisation "Remote".</p>
+          <p><strong>Le pitch qui convertit :</strong> "I work as an independent contractor — I can be contracted directly via B2B service agreement, no employer costs on your side." Cette phrase seule élimine 80% des objections des entreprises qui hésitent à embaucher un étranger.</p>
+          <p><strong>Où chercher :</strong> Wellfound (ex-AngelList) pour les startups US, Remotive.io, We Work Remotely, Toptal pour les profils tech/marketing senior, Malt pour les clients EU.</p>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">3 — Opportunités cette semaine</div>
+        <div class="tag-list">
+          <span class="tag">Marketing digital</span>
+          <span class="tag">IA / Prompt engineering</span>
+          <span class="tag">Risk management</span>
+          <span class="tag">Content strategy</span>
+          <span class="tag">Growth hacking</span>
+        </div>
+        <div class="company-header">
+          <span>Société</span><span>Poste</span><span>Rémunération</span><span>Postuler</span>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Remote.com</div><div class="company-row__role">UK · SaaS RH</div></div>
+          <div><div class="company-row__role">Growth Marketing Manager</div></div>
+          <div class="company-row__salary">€55–75K/an</div>
+          <div class="company-row__link"><a href="https://remote.com/careers" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Deel</div><div class="company-row__role">US · Payroll global</div></div>
+          <div><div class="company-row__role">Content Strategist (AI tools)</div></div>
+          <div class="company-row__salary">€60–80K/an</div>
+          <div class="company-row__link"><a href="https://deel.com/careers" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Superside</div><div class="company-row__role">CA · Design as a service</div></div>
+          <div><div class="company-row__role">Digital Marketing Lead</div></div>
+          <div class="company-row__salary">€50–65K/an</div>
+          <div class="company-row__link"><a href="https://superside.com/careers" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Hotjar</div><div class="company-row__role">MT · Analytics SaaS</div></div>
+          <div><div class="company-row__role">SEO Content Manager</div></div>
+          <div class="company-row__salary">€45–60K/an</div>
+          <div class="company-row__link"><a href="https://hotjar.com/jobs" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Loom (Atlassian)</div><div class="company-row__role">US · Vidéo async</div></div>
+          <div><div class="company-row__role">AI Product Marketing</div></div>
+          <div class="company-row__salary">€70–95K/an</div>
+          <div class="company-row__link"><a href="https://atlassian.com/jobs" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Coda</div><div class="company-row__role">US · Doc workspace</div></div>
+          <div><div class="company-row__role">Prompt Engineer / AI Ops</div></div>
+          <div class="company-row__salary">$80–110K/an</div>
+          <div class="company-row__link"><a href="https://coda.io/jobs" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Pitch</div><div class="company-row__role">DE · Présentations SaaS</div></div>
+          <div><div class="company-row__role">Growth & Acquisition Manager</div></div>
+          <div class="company-row__salary">€55–70K/an</div>
+          <div class="company-row__link"><a href="https://pitch.com/jobs" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <div class="company-row">
+          <div><div class="company-row__name">Spendesk</div><div class="company-row__role">FR/UK · FinTech B2B</div></div>
+          <div><div class="company-row__role">Risk & Compliance Analyst</div></div>
+          <div class="company-row__salary">€50–65K/an</div>
+          <div class="company-row__link"><a href="https://spendesk.com/careers" target="_blank" rel="noopener">Voir →</a></div>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">4 — Plateformes pour trouver des missions</div>
+        <div class="link-item"><span>Wellfound (ex-AngelList) — startups US/EU full remote</span><a href="https://wellfound.com/jobs" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>Remotive.io — jobs remote vérifiés, toutes catégories</span><a href="https://remotive.io" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>We Work Remotely — 3M+ visiteurs, entreprises sérieuses</span><a href="https://weworkremotely.com" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>Malt — freelance EU, bonne réputation côté client FR</span><a href="https://malt.fr" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>Toptal — top 3% freelances, tarifs élevés (min $80/h)</span><a href="https://toptal.com" target="_blank" rel="noopener">Voir →</a></div>
+        <!-- NMA-END:remote -->
+      </div>
+
+      <!-- 04 · VILLES ──────────────────────────────────────────────────── -->
+      <div class="content-panel" id="panel-villes">
+        <!-- NMA-START:villes -->
+        <div class="content-week-tag">Villes Nomades — Semaine 22</div>
+        <h1 class="content-title">Top 10 villes nomades — Mai 2026</h1>
+        <p class="content-sub">Classement hebdomadaire basé sur le coût de la vie, qualité internet, visa, communauté nomade et rapport qualité/prix. Budget solo lifestyle confortable.</p>
+
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:32px;border:1px solid var(--border)">
+          <iframe src="https://www.youtube.com/embed/e2SyxCu90Ak" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="10 meilleures villes Europe digital nomad"></iframe>
+        </div>
+
+        <div class="content-section-label">Classement cette semaine</div>
+        <div style="margin-bottom:32px">
+          <div class="company-header" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span>#</span><span>Ville</span><span>Budget/mois</span><span>Visa EU</span><span>Score</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="color:var(--gold);font-weight:700">1</span>
+            <div><div class="company-row__name">Bangkok</div><div class="company-row__role">🇹🇭 Thaïlande</div></div>
+            <span>800–1 200€</span><span>DTV 5 ans (90€)</span>
+            <span style="color:var(--gold)">★★★★★</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="color:var(--gold);font-weight:700">2</span>
+            <div><div class="company-row__name">Tbilisi</div><div class="company-row__role">🇬🇪 Géorgie</div></div>
+            <span>900–1 300€</span><span>365j sans visa</span>
+            <span style="color:var(--gold)">★★★★★</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="color:var(--gold);font-weight:700">3</span>
+            <div><div class="company-row__name">Chiang Mai</div><div class="company-row__role">🇹🇭 Thaïlande</div></div>
+            <span>800–1 200€</span><span>DTV 5 ans (90€)</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="color:var(--gold);font-weight:700">4</span>
+            <div><div class="company-row__name">Lisbonne</div><div class="company-row__role">🇵🇹 Portugal</div></div>
+            <span>1 500–2 200€</span><span>Visa D8 (3 280€/m)</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="color:var(--gold);font-weight:700">5</span>
+            <div><div class="company-row__name">Bali (Canggu)</div><div class="company-row__role">🇮🇩 Indonésie</div></div>
+            <span>1 000–1 600€</span><span>E33G 5 ans</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="font-weight:700">6</span>
+            <div><div class="company-row__name">Medellín</div><div class="company-row__role">🇨🇴 Colombie</div></div>
+            <span>1 100–1 600€</span><span>90j sans visa</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="font-weight:700">7</span>
+            <div><div class="company-row__name">Budapest</div><div class="company-row__role">🇭🇺 Hongrie</div></div>
+            <span>1 200–1 800€</span><span>Zone Schengen</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="font-weight:700">8</span>
+            <div><div class="company-row__name">Séoul</div><div class="company-row__role">🇰🇷 Corée du Sud</div></div>
+            <span>1 500–2 200€</span><span>Visa K-Digital 2 ans</span>
+            <span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="font-weight:700">9</span>
+            <div><div class="company-row__name">Barcelone</div><div class="company-row__role">🇪🇸 Espagne</div></div>
+            <span>1 800–2 600€</span><span>Visa nomade 1 an</span>
+            <span style="color:var(--gold)">★★★☆☆</span>
+          </div>
+          <div class="company-row" style="grid-template-columns:40px 1fr 120px 120px 100px">
+            <span style="font-weight:700">10</span>
+            <div><div class="company-row__name">Dubaï</div><div class="company-row__role">🇦🇪 Émirats</div></div>
+            <span>2 500–4 000€</span><span>Visa nomade 1 an</span>
+            <span style="color:var(--gold)">★★★☆☆</span>
+          </div>
+        </div>
+
+        <div class="content-section-label">Fiches détaillées — Top 5</div>
+        <div class="content-grid-3" style="margin-bottom:16px">
+          <div class="city-card">
+            <div class="city-card__name">Bangkok</div>
+            <div class="city-card__country">🇹🇭 Thaïlande · #1</div>
+            <div class="city-card__row"><span>Logement (studio central)</span><span>400–700€/mois</span></div>
+            <div class="city-card__row"><span>Coworking</span><span>60–120€/mois</span></div>
+            <div class="city-card__row"><span>Repas (local)</span><span>2–4€</span></div>
+            <div class="city-card__row"><span>Budget total confort</span><span>800–1 200€</span></div>
+            <div class="city-card__row"><span>Visa DTV</span><span>5 ans · 180j/séjour · 90€</span></div>
+            <div class="city-card__row"><span>Internet</span><span>Excellent · 300 Mbps moy.</span></div>
+            <div class="city-card__row"><span>Quartiers</span><span>Silom · Sukhumvit · Ari</span></div>
+            <div class="city-card__score"><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div></div>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Tbilisi</div>
+            <div class="city-card__country">🇬🇪 Géorgie · #2</div>
+            <div class="city-card__row"><span>Logement (studio central)</span><span>350–500€/mois</span></div>
+            <div class="city-card__row"><span>Coworking</span><span>80–150€/mois</span></div>
+            <div class="city-card__row"><span>Repas (local)</span><span>3–6€</span></div>
+            <div class="city-card__row"><span>Budget total confort</span><span>900–1 300€</span></div>
+            <div class="city-card__row"><span>Visa</span><span>365j sans visa (EU)</span></div>
+            <div class="city-card__row"><span>Internet</span><span>Excellent · 200 Mbps moy.</span></div>
+            <div class="city-card__row"><span>Quartiers</span><span>Vera · Vake · Fabrika</span></div>
+            <div class="city-card__score"><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div></div>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Chiang Mai</div>
+            <div class="city-card__country">🇹🇭 Thaïlande · #3</div>
+            <div class="city-card__row"><span>Logement (studio central)</span><span>300–550€/mois</span></div>
+            <div class="city-card__row"><span>Coworking</span><span>60–120€/mois</span></div>
+            <div class="city-card__row"><span>Repas (local)</span><span>2–4€</span></div>
+            <div class="city-card__row"><span>Budget total confort</span><span>800–1 200€</span></div>
+            <div class="city-card__row"><span>Visa DTV</span><span>5 ans · 180j/séjour · 90€</span></div>
+            <div class="city-card__row"><span>Internet</span><span>Bon · 100 Mbps moy.</span></div>
+            <div class="city-card__row"><span>Quartiers</span><span>Nimman · Old City</span></div>
+            <div class="city-card__score"><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot"></div></div>
+          </div>
+        </div>
+        <div class="content-grid-2" style="margin-bottom:32px">
+          <div class="city-card">
+            <div class="city-card__name">Lisbonne</div>
+            <div class="city-card__country">🇵🇹 Portugal · #4</div>
+            <div class="city-card__row"><span>Logement (studio central)</span><span>900–1 400€/mois</span></div>
+            <div class="city-card__row"><span>Coworking</span><span>150–250€/mois</span></div>
+            <div class="city-card__row"><span>Repas (local)</span><span>8–14€</span></div>
+            <div class="city-card__row"><span>Budget total confort</span><span>1 500–2 200€</span></div>
+            <div class="city-card__row"><span>Visa D8</span><span>Revenu min. 3 280€/mois</span></div>
+            <div class="city-card__row"><span>Internet</span><span>Excellent · fibre large</span></div>
+            <div class="city-card__row"><span>Quartiers</span><span>Príncipe Real · LX Factory</span></div>
+            <div class="city-card__score"><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot"></div></div>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Bali — Canggu</div>
+            <div class="city-card__country">🇮🇩 Indonésie · #5</div>
+            <div class="city-card__row"><span>Logement (villa privée)</span><span>600–1 100€/mois</span></div>
+            <div class="city-card__row"><span>Coworking</span><span>100–180€/mois</span></div>
+            <div class="city-card__row"><span>Repas (local)</span><span>3–6€</span></div>
+            <div class="city-card__row"><span>Budget total confort</span><span>1 000–1 600€</span></div>
+            <div class="city-card__row"><span>Visa E33G</span><span>5 ans · ~2 000$/mois requis</span></div>
+            <div class="city-card__row"><span>Internet</span><span>Correct · variable selon zone</span></div>
+            <div class="city-card__row"><span>Quartiers</span><span>Canggu · Seminyak · Ubud</span></div>
+            <div class="city-card__score"><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot"></div></div>
+          </div>
+        </div>
+
+        <div class="content-section-label">Vidéos — analyses FR</div>
+        <div class="link-item"><span class="link-item__desc">10 meilleures villes Europe pour digital nomad</span><a href="https://www.youtube.com/watch?v=e2SyxCu90Ak" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Devenir digital nomad en 2026 : le plan complet</span><a href="https://www.youtube.com/watch?v=0derAR2JP3E" target="_blank" rel="noopener">Regarder →</a></div>
+
+        <div class="content-section-label" style="margin-top:24px">Articles — guides FR</div>
+        <div class="link-item"><span class="link-item__desc">Meilleures destinations digital nomads 2026 — Ambroise Debret</span><a href="https://ambroisedebret.com/destinations-digital-nomads/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Top 10 meilleurs pays pour digital nomad — Digital Nomad Fam</span><a href="https://digitalnomadfam.fr/pays-pour-digital-nomad/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">20 meilleures villes pour digital nomad — Instinct Voyageur</span><a href="https://www.instinct-voyageur.fr/ville-digital-nomad/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Visa digital nomad : 41 pays en 2026 — Deel</span><a href="https://www.deel.com/fr/blog/visa-digital-nomad/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Digital nomad à Bali — Visa E33G et télétravail 2026</span><a href="https://vivreabali.fr/vivre-a-bali/digital-nomad-a-bali" target="_blank" rel="noopener">Lire →</a></div>
+        <!-- NMA-END:villes -->
+      </div>
+
+      <!-- 05 · IMMOBILIER (EXPERT) ─────────────────────────────────────── -->
+      <div class="content-panel" id="panel-immo">
+        <!-- NMA-START:immo -->
+        <div class="content-week-tag">Immobilier — Semaine 22</div>
+        <h1 class="content-title">Géorgie — Achat appartement à Tbilisi</h1>
+        <p class="content-sub">Rendement locatif net de 7–9%. Procédure d'achat simplifiée pour étrangers, pas de restrictions de propriété, taxes basses.</p>
+
+        <div id="immo-lock" class="expert-lock">
+          <div class="expert-lock__icon">🔐</div>
+          <h2 class="expert-lock__title">Contenu réservé aux membres Expert</h2>
+          <p class="expert-lock__sub">L'analyse immobilière complète par pays, avec prix au m², procédure d'achat, règles juridiques et droits de notaire est réservée au plan Expert.</p>
+          <a href="/#tarifs" class="btn btn--outline" style="margin-right:12px">Voir les plans →</a>
+        </div>
+
+        <div id="immo-content" style="display:none">
+          <div class="content-grid-3">
+            <div class="stat-card"><div class="stat-card__val">800–1500€</div><div class="stat-card__label">Prix au m² (Tbilisi centre)</div></div>
+            <div class="stat-card"><div class="stat-card__val">8.5%</div><div class="stat-card__label">Rendement locatif net moyen</div></div>
+            <div class="stat-card"><div class="stat-card__val">0%</div><div class="stat-card__label">Taxe sur plus-value (< 2 ans)</div></div>
+          </div>
+
+          <div class="content-section-label">Procédure d'achat</div>
+          <div class="content-body">
+            <p><strong>1. Pas de restriction pour les étrangers</strong> — contrairement à beaucoup de pays, la Géorgie autorise les non-résidents à acheter n'importe quel bien immobilier sans restriction.</p>
+            <p><strong>2. Le processus :</strong> Promesse de vente signée devant un notaire public géorgien (200–400€), paiement par virement SWIFT, enregistrement au cadastre (NAPR) en 1–3 jours. Durée totale : 1–2 semaines.</p>
+            <p><strong>3. Frais d'acquisition :</strong> Frais de notaire : 0,1–0,5% (très faibles), frais d'enregistrement : ~50€, pas de frais d'agence côté acheteur si négocié directement.</p>
+            <p><strong>4. Fiscalité locative :</strong> Taxe sur revenus locatifs : 20% — mais en créant une entreprise géorgienne (Virtual Zone), ce taux peut descendre à 5%.</p>
+          </div>
+
+          <div class="content-section-label">Quartiers à cibler — Tbilisi</div>
+          <div class="content-grid-2">
+            <div class="content-card">
+              <div class="content-card__tag">Rendement max</div>
+              <div class="content-card__title">Saburtalo</div>
+              <div class="content-card__body">Prix : 700–1 000€/m². Fort potentiel locatif avec la présence de l'université. Cible des étudiants et jeunes professionnels. Rendement brut : 9–12%.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">Capital stable</div>
+              <div class="content-card__title">Vake · Vera</div>
+              <div class="content-card__body">Prix : 1 200–1 800€/m². Quartiers prisés, demande locative forte de la communauté expat. Rendement brut : 6–8%. Plus-value probable sur 5 ans.</div>
+            </div>
+          </div>
+          <hr class="content-divider">
+
+          <div class="content-section-label">Autres pays à fort potentiel</div>
+          <div class="content-grid-3">
+            <div class="content-card">
+              <div class="content-card__tag">🇵🇹 Portugal</div>
+              <div class="content-card__title">Lisbonne · Porto</div>
+              <div class="content-card__body">Prix : 3 500–6 000€/m² (Lisbonne centre), 2 000–3 500€/m² (Porto). Rendement brut : 4–6%. Marché tendu mais plus-value forte (+12%/an depuis 2020). Acquéreurs EU : pas de restriction. Frais notaire : ~6–8% (IMT + IS). Fiscalité NHR supprimée en 2024 — régime IFICI disponible.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">🇹🇭 Thaïlande</div>
+              <div class="content-card__title">Chiang Mai · Bangkok</div>
+              <div class="content-card__body">Étrangers : ne peuvent PAS posséder un terrain. Possible via condominium (max 49% d'unités à des étrangers), bail 30 ans renouvelable, ou société thaïlandaise. Prix : 1 200–2 500€/m² (Nimman). Rendement brut : 6–9%. Attention au cadre légal complexe — avocat local indispensable.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">🇨🇴 Colombie</div>
+              <div class="content-card__title">Medellín · Bogotá</div>
+              <div class="content-card__body">Étrangers : droits d'achat identiques aux nationaux. Prix : 800–1 800€/m² (El Poblado, Medellín). Rendement brut : 7–10%. Marché en forte croissance. Frais d'acquisition : ~3% (taxes + notaire). Risque de change COP/EUR à prendre en compte.</div>
+            </div>
+          </div>
+        </div>
+        <!-- NMA-END:immo -->
+      </div>
+
+      <!-- 06 · RUPTURE CONV. (EXPERT) ──────────────────────────────────── -->
+      <div class="content-panel" id="panel-rupture">
+        <!-- NMA-START:rupture -->
+        <div class="content-week-tag">Rupture Conventionnelle — Semaine 22</div>
+        <h1 class="content-title">Calculateur d'indemnités</h1>
+        <p class="content-sub">France · Belgique · Suisse — calcule tes indemnités minimales légales, tes droits chômage estimés, et le meilleur timing pour partir.</p>
+
+        <div id="rupture-lock" class="expert-lock">
+          <div class="expert-lock__icon">🔐</div>
+          <h2 class="expert-lock__title">Contenu réservé aux membres Expert</h2>
+          <p class="expert-lock__sub">Le calculateur rupture conventionnelle FR/BE/CH, les modèles de lettres et les checklists juridiques sont réservés au plan Expert à 99€/mois.</p>
+          <a href="/#tarifs" class="btn btn--outline" style="margin-right:12px">Voir les plans →</a>
+        </div>
+
+        <div id="rupture-content" style="display:none">
+          <div class="calc-form">
+            <div class="calc-row">
+              <div class="calc-field">
+                <label>Salaire brut mensuel (€)</label>
+                <input type="number" id="calc-salary" placeholder="ex: 2800" min="0">
+              </div>
+              <div class="calc-field">
+                <label>Années d'ancienneté</label>
+                <input type="number" id="calc-years" placeholder="ex: 3" min="0" max="50">
+              </div>
+              <div class="calc-field">
+                <label>Pays</label>
+                <select id="calc-country">
+                  <option value="fr">🇫🇷 France</option>
+                  <option value="be">🇧🇪 Belgique</option>
+                  <option value="ch">🇨🇭 Suisse</option>
+                </select>
+              </div>
+            </div>
+            <button class="calc-btn" id="calcBtn">Calculer mes droits →</button>
+          </div>
+
+          <div class="calc-result" id="calcResult">
+            <div class="calc-result__grid">
+              <div class="calc-result__item">
+                <span class="calc-result__val" id="res-indemnity">—</span>
+                <span class="calc-result__label">Indemnité minimale légale</span>
+              </div>
+              <div class="calc-result__item">
+                <span class="calc-result__val" id="res-chomage">—</span>
+                <span class="calc-result__label">Allocations chômage/mois (estimé)</span>
+              </div>
+              <div class="calc-result__item">
+                <span class="calc-result__val" id="res-duration">—</span>
+                <span class="calc-result__label">Durée d'indemnisation estimée</span>
+              </div>
+            </div>
+            <p class="calc-result__note" id="res-note"></p>
+          </div>
+
+          <hr class="content-divider">
+          <div class="content-section-label">Stratégie de négociation</div>
+          <div class="content-grid-2" style="margin-bottom:24px">
+            <div class="content-card">
+              <div class="content-card__tag">Le bon timing</div>
+              <div class="content-card__title">Quand demander</div>
+              <div class="content-card__body">Attends une période calme (pas avant un bilan, pas pendant un conflit). Le meilleur moment : après un succès ou une évaluation positive. Évite les lundis et vendredis. Demande un entretien privé avec ton manager direct — ne pas lâcher la demande par email.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">La phrase d'ouverture</div>
+              <div class="content-card__title">Comment formuler</div>
+              <div class="content-card__body">"Je souhaite qu'on discute d'une rupture conventionnelle. Je pense que c'est une solution qui convient à nos deux parties pour aller dans des directions différentes." Ne justifie pas, ne t'excuse pas. C'est une proposition professionnelle, pas une demande émotionnelle.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">Si ton employeur refuse</div>
+              <div class="content-card__title">Les leviers légaux</div>
+              <div class="content-card__body">L'employeur n'est pas obligé d'accepter. Mais : tu peux relancer après 1–2 mois. Si le refus est persistant, un médecin du travail ou un délégué syndical peut faciliter la démarche. Ne jamais faire de faute professionnelle volontaire — ça supprime le droit au chômage.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">Négocier l'indemnité</div>
+              <div class="content-card__title">Au-dessus du minimum légal</div>
+              <div class="content-card__body">Le minimum légal est un plancher, pas un plafond. Tu peux négocier : maintien de la mutuelle 1–3 mois, achat de ton matériel informatique, indemnité supra-légale (+20–50% selon ton poste). Plus tu as de compétences rares, plus tu peux négocier.</div>
+            </div>
+          </div>
+          <hr class="content-divider">
+          <div class="content-section-label">Règles par pays</div>
+          <div class="content-grid-3">
+            <div class="content-card">
+              <div class="content-card__tag">France</div>
+              <div class="content-card__title">Rupture homologuée</div>
+              <div class="content-card__body">Formulaire Cerfa 14598 · délai rétractation 15j · homologation DREETS 15j · ARE : 57–75% du salaire journalier de référence · durée max 24 mois.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">Belgique</div>
+              <div class="content-card__title">Transaction amiable</div>
+              <div class="content-card__body">Pas de formulaire légal standardisé · accord signé devant notaire · allocations ONEM : 60% du salaire plafonné · délai de carence variable selon ancienneté.</div>
+            </div>
+            <div class="content-card">
+              <div class="content-card__tag">Suisse</div>
+              <div class="content-card__title">Résiliation d'un commun accord</div>
+              <div class="content-card__body">Aufhebungsvertrag · suspencion ALV 45 jours si accord amiable · indemnité négociée · ALV : 70–80% du salaire assuré · durée max 24 mois.</div>
+            </div>
+          </div>
+        </div>
+        <!-- NMA-END:rupture -->
+      </div>
+
+      <!-- 07 · BANQUES ─────────────────────────────────────────────────── -->
+      <div class="content-panel" id="panel-banques">
+        <!-- NMA-START:banques -->
+        <div class="content-week-tag">Banques & Finances Nomades — Semaine 22</div>
+        <h1 class="content-title">Wise Business vs Revolut Pro + fiscalité nomade</h1>
+        <p class="content-sub">Comparatif complet 2026, comment déclarer tes comptes étrangers, et comment structurer ta situation fiscale en tant que nomade.</p>
+
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:32px;border:1px solid var(--border)">
+          <iframe src="https://www.youtube.com/embed/mxIAUUmTRnU" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="Wise ou Revolut : comparatif complet 2025"></iframe>
+        </div>
+
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="content-card__tag">Wise Business</div>
+            <div class="content-card__title">Meilleur pour : facturer à l'international</div>
+            <div class="content-card__body">
+              <strong>Avantages :</strong> Taux de change mid-market (le meilleur du marché), IBAN local dans 10+ pays (UK, US, EU, AU), parfait pour recevoir des clients GB/US sans frais de conversion.
+              <br><br><strong>Inconvénients :</strong> Pas de carte virtuelle gratuite, limites sur les virements SWIFT sortants.
+              <br><br><strong>Frais :</strong> 0 abonnement · 0,35–1,5% sur les conversions.
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Revolut Pro</div>
+            <div class="content-card__title">Meilleur pour : dépenses quotidiennes nomades</div>
+            <div class="content-card__body">
+              <strong>Avantages :</strong> Cartes virtuelles illimitées, cashback crypto, assurance voyage incluse (plan Metal), interface mobile excellente, cryptos intégrées.
+              <br><br><strong>Inconvénients :</strong> Taux de change moins bon le week-end (+0,5%), service client parfois lent.
+              <br><br><strong>Frais :</strong> 0 (Standard) · 7,99€/mois (Pro) · 12,99€/mois (Ultra).
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section-label">Notre recommandation</div>
+        <div class="content-body">
+          <p><strong>Les deux ensemble.</strong> Wise pour recevoir les paiements clients (IBAN local, meilleur taux) — Revolut pour les dépenses du quotidien nomade (retraits ATM, abonnements, voyages). Budget total : 8–13€/mois pour une configuration optimale.</p>
+          <p>Pour la structure juridique : ouvre le compte Wise Business au nom de ta SASU ou de ton auto-entreprise — ça te donne une séparation claire pro/perso et simplifie la comptabilité.</p>
+        </div>
+
+        <div class="content-section-label">Autres outils à connaître</div>
+        <div class="link-item"><span>N26 Business — Compte allemand, bon en Europe</span><a href="https://n26.com/fr-fr/business" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>Payoneer — Idéal pour recevoir depuis Upwork/Fiverr</span><a href="https://payoneer.com" target="_blank" rel="noopener">Voir →</a></div>
+        <div class="link-item"><span>Mercury — Compte US pour freelances facturant des clients US</span><a href="https://mercury.com" target="_blank" rel="noopener">Voir →</a></div>
+
+        <div class="content-section-label" style="margin-top:24px">Vidéos — banques & fiscalité nomade FR</div>
+        <div class="link-item"><span class="link-item__desc">Wise : la meilleure banque pour digital nomades</span><a href="https://www.youtube.com/watch?v=jjTqldQRg-c" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Wise ou Revolut : comparatif complet 2025</span><a href="https://www.youtube.com/watch?v=mxIAUUmTRnU" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Digital nomade : 0% d'impôt si bien structuré</span><a href="https://www.youtube.com/watch?v=E32_Z41hGHE" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Comment NE PLUS AVOIR de résidence fiscale (nomade perpétuel)</span><a href="https://www.youtube.com/watch?v=_nn9EG5RY4A" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Comment déclarer ses comptes étrangers — tuto impôts 2026</span><a href="https://www.youtube.com/watch?v=B7koBCno0WI" target="_blank" rel="noopener">Regarder →</a></div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">Résidence fiscale nomade — le vrai sujet</div>
+        <div class="content-body">
+          <p><strong>Le danger invisible :</strong> Beaucoup de nomades continuent à payer leurs impôts en France par défaut, même en vivant à l'étranger. C'est légal mais pas optimal. La règle générale : tu es résident fiscal du pays où tu passes plus de 183 jours par an ET où se trouvent tes intérêts vitaux (famille, logement principal, centre d'activité).</p>
+          <p><strong>Options réalistes pour les nomades FR :</strong></p>
+          <p>→ <strong>Géorgie</strong> : 0% d'impôt sur les revenus étrangers si tu deviens résident géorgien (programme "Virtual Zone"). Formalités simples, coût de vie bas.</p>
+          <p>→ <strong>Portugal (IFICI)</strong> : taux forfaitaire 20% sur revenus d'activité, sous conditions. Remplace l'ancien régime NHR supprimé en 2024.</p>
+          <p>→ <strong>Émirats</strong> : 0% d'impôt sur le revenu. Visa nomade 1 an. Coût de vie élevé mais fiscalité nulle.</p>
+          <p><strong>À ne pas faire :</strong> Déclarer une adresse fictive à l'étranger en restant vivre en France. C'est une fraude fiscale. L'administration fiscale française vérifie la cohérence avec les données de connexion, bancaires, et les billets d'avion.</p>
+          <p style="font-size:12px;color:var(--muted);font-style:italic;margin-top:12px">Ce contenu est informatif. Consulte un expert-comptable ou un avocat fiscaliste avant toute décision de changement de résidence fiscale.</p>
+        </div>
+        <!-- NMA-END:banques -->
+      </div>
+
+      <!-- 08 · PSYCHOLOGIE ─────────────────────────────────────────────── -->
+      <div class="content-panel" id="panel-psycho">
+        <!-- NMA-START:psycho -->
+        <div class="content-week-tag">Psychologie — Semaine 22</div>
+        <h1 class="content-title">Le saut dans le vide — ce que personne ne te dit</h1>
+        <p class="content-sub">Burn-out, peur du vide, regard des autres, reconversion. Les vraies mécaniques psychologiques derrière le passage à l'acte — vues par des professionnels de santé mentale.</p>
+
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:32px;border:1px solid var(--border)">
+          <iframe src="https://www.youtube.com/embed/sTb6KWv4XPI" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="Marie-Laurence — Psy et digital nomade"></iframe>
+        </div>
+
+        <div class="content-section-label">1 — La peur du vide : ce que dit la psychologie</div>
+        <div class="content-body">
+          <p>La peur du vide n'est pas une faiblesse — c'est une réponse normale du système nerveux face à l'incertitude. Le cerveau humain est câblé pour préférer une douleur connue à une incertitude inconnue. C'est ce qu'on appelle le biais du statu quo : rester dans une situation insatisfaisante parce que le changement est perçu comme plus risqué, même quand objectivement il ne l'est pas.</p>
+          <p><strong>Ce qui aggrave la peur :</strong> l'entourage qui projette ses propres craintes ("et ta retraite ?", "et si ça marche pas ?"), les réseaux sociaux qui montrent uniquement les succès, et l'absence de modèles proches qui aient fait le saut. Ton cerveau cherche des preuves que c'est possible — donne-lui des exemples concrets, pas des abstractions.</p>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">2 — Le burn-out comme signal de départ</div>
+        <div class="content-body">
+          <p>En 2026, le burn-out touche officiellement 1 Français sur 3. Ce n'est plus un accident individuel — c'est un symptôme structurel. La psychologue Catherine PY, après 20 ans en RH et son propre burn-out, l'explique ainsi : <em>"Le burn-out n'est pas une faiblesse, c'est la preuve que tu as donné trop longtemps à quelque chose qui ne te nourrissait plus."</em></p>
+          <p><strong>Ce que le burn-out révèle :</strong> il force à recalibrer ce qui compte vraiment. La plupart des nomades qui réussissent le changement de vie sont d'anciens burn-outés. L'épuisement a supprimé leur tolérance à la souffrance inutile. Ce n'est pas un hasard.</p>
+          <p><strong>Attention :</strong> on ne construit pas une nouvelle vie sur des braises encore chaudes. La priorité absolue après un burn-out, c'est la reconstruction — pas la reconversion. Les deux étapes ne peuvent pas se faire en même temps.</p>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">3 — Profils de ceux qui s'épanouissent</div>
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="content-card__tag">Profil 1 — L'ancien burn-outé</div>
+            <div class="content-card__title">Reconstruction par le mouvement</div>
+            <div class="content-card__body">A vécu l'épuisement total. Le changement de vie n'était pas un choix idéologique — c'était une nécessité physiologique. Le nomadisme a fonctionné comme thérapie : nouveau rythme, nouvelles stimulations, rupture avec les déclencheurs. Souvent les plus résilients après 2 ans.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Profil 2 — L'insatisfait chronique</div>
+            <div class="content-card__title">Le sens avant la sécurité</div>
+            <div class="content-card__body">N'a pas connu le burn-out clinique mais ressent un vide persistant. Le travail "alimentaire" ne suffit plus. Cherche un alignement entre valeurs et quotidien. Ce profil a besoin de valider financièrement avant de sauter — la précarité amplifie l'anxiété.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Profil 3 — Le surcompensateur</div>
+            <div class="content-card__title">Attention au piège nomade</div>
+            <div class="content-card__body">Fuit un contexte plutôt qu'il ne choisit un autre. Le voyage devient anesthésiant — on évite de se confronter à soi. Ce profil finit souvent par "travel burnout" : épuisement du nomadisme lui-même. Signal d'alarme : incapacité à rester plus de 3 semaines au même endroit.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Profil 4 — Le méthodique</div>
+            <div class="content-card__title">Planification sur 18 mois</div>
+            <div class="content-card__body">Construit le saut sur la durée. Teste en remote d'abord, économise un an de runway, valide les clients avant de quitter. Moins de romanesque, beaucoup moins d'échecs. Le mode le moins glamour mais le plus efficace statistiquement.</div>
+          </div>
+        </div>
+        <hr class="content-divider">
+
+        <div class="content-section-label">4 — La méthode des 30 jours pour décider</div>
+        <div class="content-grid-3">
+          <div class="content-card">
+            <div class="content-card__tag">Semaines 1–2</div>
+            <div class="content-card__title">Rendre le désir concret</div>
+            <div class="content-card__body">Écris ta journée idéale en 500 mots. Pas "être libre" — mais "se lever à 8h à Tbilisi, café à 1,20€, 4h de travail, sport, soirée en terrasse". Plus c'est précis, plus le cerveau peut s'y projeter.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Semaines 3–4</div>
+            <div class="content-card__title">Test de réalité inverse</div>
+            <div class="content-card__body">"Dans 5 ans, si rien ne change, à quoi ressemble ma vie ?" Sois honnête. Pour la plupart, cette projection est plus effrayante que le saut. C'est le levier psychologique le plus puissant qui soit.</div>
+          </div>
+          <div class="content-card">
+            <div class="content-card__tag">Jour 30</div>
+            <div class="content-card__title">La règle des 48h</div>
+            <div class="content-card__body">Donne-toi exactement 48h pour décider. Pas plus. Quelle que soit ta décision, tu t'y tiens 3 mois. L'indécision permanente coûte plus cher que n'importe quelle mauvaise décision.</div>
+          </div>
+        </div>
+
+        <div class="content-section-label">Vidéos — psychologues & témoignages FR</div>
+        <div class="link-item"><span class="link-item__desc">Marie-Laurence — Psy et digital nomade, retour d'expérience</span><a href="https://www.youtube.com/watch?v=sTb6KWv4XPI" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Le burn-out — Paul Deligny, psychologue du travail</span><a href="https://www.youtube.com/watch?v=B-0RsUc-WkE" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Êtes-vous en burn-out sans le savoir ? — Un psychologue répond</span><a href="https://www.youtube.com/watch?v=nPKriZMsFSk" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">BURNOUT — Au-delà de l'épuisement · Dr Robert Neuburger</span><a href="https://www.youtube.com/watch?v=ygQOjTj3CWA" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Travel burnout — J'ai failli arrêter d'être digital nomad</span><a href="https://www.youtube.com/watch?v=V44qo80Z388" target="_blank" rel="noopener">Regarder →</a></div>
+        <div class="link-item"><span class="link-item__desc">Expérience de psy nomade — FAQ</span><a href="https://www.youtube.com/watch?v=XelSwvl0mv0" target="_blank" rel="noopener">Regarder →</a></div>
+
+        <div class="content-section-label" style="margin-top:24px">Articles — psychologie & reconversion FR</div>
+        <div class="link-item"><span class="link-item__desc">Burn-out 2026 : le nouveau visage de l'épuisement — Monde du Travail</span><a href="https://mondedutravail.fr/burn-out/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Reconversion après burn-out : comment se reconstruire — OFAP</span><a href="https://ofap.fr/reconversion-apres-burn-out/" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Sortir du burn-out : clés d'une reconversion épanouissante</span><a href="https://lauryane-bonheur.fr/blog/articles/sortir-du-burnout-les-cles-d-une-reconversion-professionnelle-epanouissante" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Burn-out → nouveau départ : transformer l'épuisement — HelloSense</span><a href="https://www.hellosense.fr/post/burn-out-comment-transformer-un-epuisement-professionnel-en-nouveau-depart" target="_blank" rel="noopener">Lire →</a></div>
+        <div class="link-item"><span class="link-item__desc">Se reconvertir après un burn-out — Transitions Pro</span><a href="https://www.transitionspro.fr/blog/motivations/preserver-sante/comment-se-reconvertir-quand-on-a-fait-un-burn-out/" target="_blank" rel="noopener">Lire →</a></div>
+        <!-- NMA-END:psycho -->
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // ── NAVIGATION — défini en premier pour que onclick fonctionne toujours ──
+  window.navigateTo = function(panel) {
+    document.querySelectorAll('.sidebar-item, .mobile-nav-btn').forEach(function(i) { i.classList.remove('active'); });
+    document.querySelectorAll('.content-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('[data-panel="' + panel + '"]').forEach(function(i) { i.classList.add('active'); });
+    var el = document.getElementById('panel-' + panel);
+    if (el) el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+(function() {
+  const PASSWORDS = {
+    'nma2026':       'acces',
+    'nmaexpert2026': 'expert'
+  };
+
+  // ── AUTH ──────────────────────────────────────────────────────────────
+  function getLevel() { return sessionStorage.getItem('nma_level'); }
+
+  function showMemberArea(level) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('memberArea').style.display = 'block';
+    const badge = document.getElementById('memberBadge');
+    badge.textContent = level === 'expert' ? 'Expert' : 'Accès';
+    badge.className = 'member-badge member-badge--' + (level === 'expert' ? 'expert' : 'acces');
+    setupExpertContent(level);
+  }
+
+  function setupExpertContent(level) {
+    const isExpert = level === 'expert';
+    // Show/hide expert-only sidebar indicators
+    document.querySelectorAll('.expert-only-indicator').forEach(el => {
+      el.style.display = isExpert ? 'none' : '';
+    });
+    // Immobilier
+    document.getElementById('immo-lock').style.display    = isExpert ? 'none'  : '';
+    document.getElementById('immo-content').style.display = isExpert ? 'block' : 'none';
+    // Rupture
+    document.getElementById('rupture-lock').style.display    = isExpert ? 'none'  : '';
+    document.getElementById('rupture-content').style.display = isExpert ? 'block' : 'none';
+  }
+
+  // Auto-login via URL param (?p=) or show expert by default
+  const urlParam = new URLSearchParams(window.location.search).get('p');
+  const paramLevel = urlParam ? PASSWORDS[urlParam.trim().toLowerCase()] : null;
+  const level = paramLevel || getLevel() || 'expert';
+  sessionStorage.setItem('nma_level', level);
+  showMemberArea(level);
+
+  // Login
+  function tryLogin() {
+    try {
+      const input = document.getElementById('passwordInput').value.trim().toLowerCase();
+      const level = PASSWORDS[input];
+      if (level) {
+        sessionStorage.setItem('nma_level', level);
+        document.getElementById('loginError').style.display = 'none';
+        showMemberArea(level);
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    } catch(e) {
+      console.error('Login error:', e);
+    }
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', tryLogin);
+  document.getElementById('passwordInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') tryLogin();
+  });
+
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    sessionStorage.removeItem('nma_level');
+    document.getElementById('memberArea').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passwordInput').value = '';
+  });
+
+
+  // ── CALCULATEUR RUPTURE CONV. ─────────────────────────────────────────
+  document.getElementById('calcBtn').addEventListener('click', function() {
+    const salary  = parseFloat(document.getElementById('calc-salary').value) || 0;
+    const years   = parseFloat(document.getElementById('calc-years').value)  || 0;
+    const country = document.getElementById('calc-country').value;
+    if (!salary || !years) {
+      alert('Renseigne ton salaire et ton ancienneté.'); return;
+    }
+
+    let indemnity = 0, chomageMonthly = 0, chomageDuration = 0, note = '';
+
+    if (country === 'fr') {
+      // France : 1/4 mois par année jusqu'à 10 ans, 1/3 mois au-delà
+      const baseSalary = salary; // salaire brut de référence (dernier mois ou moyenne 12 mois)
+      if (years <= 10) {
+        indemnity = (baseSalary / 4) * years;
+      } else {
+        indemnity = (baseSalary / 4) * 10 + (baseSalary / 3) * (years - 10);
+      }
+      chomageMonthly = Math.round(salary * 0.65);
+      chomageDuration = Math.min(24, Math.round(years * 4));
+      note = 'France — Calcul ARE : ~65% du salaire brut journalier de référence · Durée max 24 mois · Délai de carence : 7 jours + franchise (indemnités ÷ 90). Consultez France Travail pour un calcul précis.';
+    } else if (country === 'be') {
+      indemnity = salary * Math.min(years, 12) * 0.5;
+      chomageMonthly = Math.round(Math.min(salary, 2800) * 0.60);
+      chomageDuration = Math.min(48, Math.round(years * 5));
+      note = 'Belgique — Pas de règle légale uniforme sur les indemnités (transaction amiable). Estimation : ~0,5 mois par année. Allocations ONEM : 60% du salaire plafonné (~2 800€) · durée variable selon âge et ancienneté.';
+    } else if (country === 'ch') {
+      const annualSalary = salary * 13;
+      indemnity = (annualSalary / 12) * Math.min(years * 0.5, 6);
+      chomageMonthly = Math.round(Math.min(salary, 12350) * 0.70);
+      chomageDuration = Math.min(24, Math.round(years * 3));
+      note = 'Suisse — Résiliation d'un commun accord (Aufhebungsvertrag). Attention : suspension ALV de 45 jours. ALV : 70–80% du salaire assuré (plafonné à CHF 12 350/mois) · max 24 mois selon situation.';
+    }
+
+    const fmt = n => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: country === 'ch' ? 'CHF' : 'EUR', maximumFractionDigits: 0 }).format(n);
+    document.getElementById('res-indemnity').textContent  = fmt(Math.round(indemnity));
+    document.getElementById('res-chomage').textContent    = fmt(chomageMonthly) + '/mois';
+    document.getElementById('res-duration').textContent   = chomageDuration + ' mois';
+    document.getElementById('res-note').textContent       = note;
+
+    const result = document.getElementById('calcResult');
+    result.classList.add('visible');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+})();
+</script>
+</body>
+</html>
