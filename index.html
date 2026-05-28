@@ -694,8 +694,36 @@
       .ticker { display: none; }
       .hero__scroll { display: none; }
       .pricing__grid { max-width: 100%; }
+      .faq__grid { grid-template-columns: 1fr; }
     }
-  </style>
+
+    /* ── GUARANTEE BADGE ─────────────────────────────────────────────────── */
+    .guarantee {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 16px; padding: 12px 18px;
+      background: rgba(212,168,83,0.06); border: 1px solid rgba(212,168,83,0.18);
+      border-radius: 10px; font-size: 13px; color: var(--muted);
+    }
+    .guarantee__icon { font-size: 18px; flex-shrink: 0; }
+    .guarantee strong { color: var(--text); }
+
+    /* ── FAQ ─────────────────────────────────────────────────────────────── */
+    .faq__grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-top: 48px;
+    }
+    .faq__item {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 32px;
+    }
+    .faq__q {
+      font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+      color: var(--text); margin-bottom: 12px; line-height: 1.4;
+    }
+    .faq__a {
+      font-size: 14px; color: var(--muted); line-height: 1.75;
+    }
+    .faq__a a { color: var(--gold); text-decoration: underline; }
 </head>
 <body>
 
@@ -707,6 +735,7 @@
           <li><a href="#steps">Comment ça marche</a></li>
           <li><a href="#methodes">Formations</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="/membres.html">Espace membres</a></li>
           <li><a href="#tarifs" class="nav__cta">Rejoindre l'académie</a></li>
         </ul>
@@ -1011,6 +1040,10 @@
           </ul>
           <!-- STRIPE-LINK-29: remplace href par ton lien Stripe Payment Link -->
           <a href="https://buy.stripe.com/REMPLACER_ACCES_29" class="btn btn--plan btn--green">S'abonner à 29€/mois →</a>
+          <div class="guarantee">
+            <span class="guarantee__icon">🛡️</span>
+            <span><strong>Satisfait ou remboursé 7 jours</strong> — annulation en un clic, sans question</span>
+          </div>
         </div>
         <div class="plan tilt-card" id="plan3">
           <div class="plan__name">Expert</div>
@@ -1027,6 +1060,10 @@
           </ul>
           <!-- STRIPE-LINK-99: remplace href par ton lien Stripe Payment Link -->
           <a href="https://buy.stripe.com/REMPLACER_EXPERT_99" class="btn btn--plan btn--dark">S'abonner à 99€/mois →</a>
+          <div class="guarantee">
+            <span class="guarantee__icon">🛡️</span>
+            <span><strong>Satisfait ou remboursé 7 jours</strong> — annulation en un clic, sans question</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1191,6 +1228,42 @@
         <a href="#tarifs" class="btn btn--green" style="font-size:16px;padding:18px 44px;margin-top:4px">
           Rejoindre l'académie →
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ─────────────────────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <div class="section-header section-header--center">
+        <span class="section-label">Questions fréquentes</span>
+        <h2 class="section-title">Tout ce que tu veux savoir</h2>
+      </div>
+      <div class="faq__grid">
+        <div class="faq__item">
+          <div class="faq__q">C'est quoi exactement Nomad Money Academy ?</div>
+          <div class="faq__a">C'est une lettre hebdomadaire premium. Chaque semaine tu reçois une analyse complète sur 8 thèmes : crypto, bourse, remote, villes nomades, immobilier international, rupture conventionnelle, banques nomades et psychologie. Du contenu réel — pas des théories générales.</div>
+        </div>
+        <div class="faq__item">
+          <div class="faq__q">Comment je reçois le contenu ?</div>
+          <div class="faq__a">Dès ton abonnement, tu accèdes à l'espace membres en ligne. Tout est disponible directement sur le site — articles, vidéos sélectionnées, analyses. Pas d'app à télécharger, pas d'email à attendre.</div>
+        </div>
+        <div class="faq__item">
+          <div class="faq__q">Quelle différence entre Accès (29€) et Expert (99€) ?</div>
+          <div class="faq__a">Le plan Accès couvre les 8 thèmes hebdomadaires avec 4 semaines d'archives. Le plan Expert ajoute les archives illimitées, les niveaux d'entrée/sortie précis sur les cryptos, la due diligence immobilière pays par pays, le calculateur de rupture conventionnelle FR·BE·CH et un support email.</div>
+        </div>
+        <div class="faq__item">
+          <div class="faq__q">Est-ce que je peux annuler quand je veux ?</div>
+          <div class="faq__a">Oui, sans engagement. Tu annules en un clic depuis ton espace Stripe — aucune rétention, aucune démarche compliquée. Et si tu n'es pas satisfait dans les 7 premiers jours, tu es remboursé intégralement sur simple demande.</div>
+        </div>
+        <div class="faq__item">
+          <div class="faq__q">Le contenu est-il mis à jour régulièrement ?</div>
+          <div class="faq__a">Chaque semaine, les 8 panels sont mis à jour avec les opportunités actuelles — l'actif crypto de la semaine, les nouvelles entreprises qui recrutent en remote, la ville spotlight du moment... Pas de contenu recyclé de 2022.</div>
+        </div>
+        <div class="faq__item">
+          <div class="faq__q">Je suis débutant, c'est fait pour moi ?</div>
+          <div class="faq__a">Oui. Le contenu part du principe que tu n'as pas encore quitté ton CDI. Chaque section explique le contexte avant d'aller dans l'analyse. Si tu veux un coup de main personnalisé, le plan Expert inclut un support email.</div>
+        </div>
       </div>
     </div>
   </section>
